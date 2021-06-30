@@ -1,0 +1,149 @@
+<mat-card class="mat__card--container">
+
+  <div class="d-flex justify-content-between">
+    <button class="m-1" id="back" class="unexo__primary--btn" (click)="routeBack()"><i
+        class="fas fa-arrow-left"></i></button>
+    <h1 class="unexo__h1">Job Details</h1>
+    <div></div>
+  </div>
+</mat-card>
+
+
+<div class="main_personal-resume-heading p-3 pt-0">
+  <mat-card class="example-card mb-4">
+    <mat-card-header>
+      <div>
+        <mat-card-title>{{jobs && jobs.jobTitle}}</mat-card-title>
+      </div>
+      <div>
+        <button class="m-1 mr-2" [disabled]="jobs && jobs.isApplied" class="unexo__primary--btn" type="button"
+          (click)="applyJob(jobs && jobs.jobId)">{{jobs && jobs.isApplied?"Applied":"Apply"}}</button>
+      </div>
+    </mat-card-header>
+    <mat-card-subtitle>{{jobs && jobs.companyName}}</mat-card-subtitle>
+
+    <mat-card-content class="text-left unexo__job--details">
+      &nbsp;<i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;{{jobs && jobs.salary}}&nbsp;Per Annum<br>
+      <i class="fas fa-briefcase"></i>&nbsp;{{jobs && jobs.expYears}}&nbsp;Years<br>
+      <i class="fas fa-location-arrow"></i>&nbsp;{{jobs && jobs.jobLocation}}
+      <hr>
+      <br>
+
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <h4>Skill Requirements</h4>
+          {{jobs && jobs.skillRequirements}}
+          <br>
+          <br>
+          <h4>Applicant Responsibilities</h4>
+          {{jobs && jobs.applicantResponsibilities}}
+          <br>
+          <br>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>About Company</h4>
+          {{jobs && jobs.aboutCompany}}
+          <br>
+          <br>
+          <h4>Company Website</h4>
+          {{jobs && jobs.websiteCompany}}
+          <br>
+          <br>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>Qualifications</h4>
+          <table>
+            <tr>
+              <td class="table_tile">
+                Post Graduate
+              </td>
+              <td>
+                {{jobs && jobs.postGraduate}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Under Graduate
+              </td>
+              <td>
+                {{jobs && jobs.underGraduate}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>Job Details</h4>
+          <table>
+            <tr>
+              <td class="table_tile">
+                Industry Type
+              </td>
+              <td>
+                {{jobs && jobs.industryType}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Functional Area
+              </td>
+              <td>
+                {{jobs && jobs.functionalArea}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Role
+              </td>
+              <td>
+                {{jobs && jobs.role}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Employment Type
+              </td>
+              <td>
+                {{jobs && jobs.employmentType}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+      <div>
+
+        <hr>
+        <h4>Key Skills Required</h4>
+        <div class="key_skills" *ngFor="let skills of jobs && jobs.keySkills;let i=index;">
+          {{skills.skills}}
+        </div>
+      </div>
+
+    </mat-card-content>
+    <hr>
+
+    <mat-card-actions class=" job_applicants-data">
+      <div class="table_title">
+        Applied Applicants: <b>{{ jobs && jobs.appliedApplicants}}</b>
+      </div>
+      <div class="table_title">
+        Max Applicants: <b>{{jobs && jobs.maxApplicants}}</b>
+      </div>
+      <div class="table_title">
+        Openings: <b>{{jobs && jobs.openings}}</b>
+      </div>
+      <div class="table_title">
+        Posted At: <b>{{jobs && jobs.postedAt}}</b>
+      </div>
+      <div class="table_title">
+        Updated At: <b>{{jobs && jobs.updatedAt}}</b>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

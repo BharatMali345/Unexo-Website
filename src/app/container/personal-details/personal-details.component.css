@@ -1,0 +1,128 @@
+.wrapper {
+  display: flex;
+  padding-right: 0;
+}
+
+.wrapper .sidebar {
+  width: 100%;
+  background: var(--primary-color);
+  padding: 1.5rem 0rem;
+  font-size: 1.8rem;
+  font-weight: 100;
+  position: sticky;
+  top: 0;
+}
+
+.wrapper .sidebar h3 {
+  color: #fff;
+  text-transform: inherit;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+.wrapper .sidebar a {
+  color: #fff;
+}
+.wrapper .sidebar a i {
+  margin-right: 3px;
+}
+.wrapper .sidebar h3 a:hover {
+  text-decoration: none;
+}
+.wrapper .sidebar ul {
+  list-style: none;
+}
+.wrapper .sidebar ul li {
+  padding: 1rem;
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-width: thin;
+  border-color: #6a4ddb;
+}
+/* @media screen and (max-width: 991px) { */
+.wrapper .sidebar h3 {
+  text-align: center;
+}
+.wrapper .sidebar ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  justify-content: center;
+  padding: 0rem 2rem;
+}
+.wrapper .sidebar ul li {
+  border: none;
+  border-bottom: 1px solid #bdb8d7;
+}
+/* } */
+.wrapper .sidebar ul li a {
+  font-size: 1.6rem;
+  color: #bdb8d7;
+  display: block;
+  cursor: pointer;
+}
+
+.wrapper .sidebar ul li a .fas {
+  width: 2.5rem;
+}
+
+.wrapper .sidebar ul li:hover {
+  background-color: #594f8d;
+}
+
+.wrapper .sidebar ul li:hover a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.wrapper .sidebar .social_media {
+  /* position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); */
+  display: flex;
+}
+
+.wrapper .sidebar .social_media a {
+  display: block;
+  width: 4rem;
+  background: #594f8d;
+  height: 4rem;
+  line-height: 45px;
+  text-align: center;
+  margin: 0 5px;
+  color: #bdb8d7;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.form_validated {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--primary-color);
+  font-size: 1.6rem;
+}
+.form_validated ul li {
+  color: var(--secondary-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0 !important;
+  margin-left: 1rem !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+}
+.form_validated ul {
+  list-style: none;
+  margin-bottom: 0;
+}
+.form_validated a {
+  padding: 0rem 1rem;
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
+.form_validated a:hover {
+  color: var(--primary-color);
+}

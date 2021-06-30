@@ -1,0 +1,349 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1>EMPLOYER PERSPECTIVE DETAILS FORM</h1>
+  </div>
+  <div class="main_personal-resume-content">
+    <form *ngIf="!personalDetailService.editMode()" [formGroup]="employerForm" (ngSubmit)="onSubmit()">
+      <div class="main_personal-resume-content-subheader">
+        <hr>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="industryName">Industry Name:<sup class="unexo__required">*</sup></label>
+              <select formControlName="industryName" (change)="onChangeSubIndustry($event.target.value)"
+                id="industryName" required>
+                <option *ngFor="let option of Industaries" [value]="option.industryName">{{option.industryName}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="functionalArea">Functional Area:<sup class="unexo__required">*</sup></label>
+              <select formControlName="functionalArea" id="functionalArea" required>
+                <option *ngFor="let option of subIndustry;let i=index;" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="itSkills">Skills:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="50" id="itSkills" formControlName="itSkills" [ngClass]="f.itSkills.errors">
+              <div class="form_validate" *ngIf="f.itSkills.invalid &&f.itSkills.touched  && f.itSkills.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="salary">Salary:<sup class="unexo__required">*</sup></label>
+              <select id="salary" required formControlName="salary" [ngClass]="f.salary.errors">
+                <option *ngFor="let option of Salary;" [value]="option">{{option}}
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.salary.invalid &&f.salary.touched  && f.salary.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="shift">Shift:<sup class="unexo__required">*</sup></label>
+              <select id="shift" required formControlName="shift" [ngClass]="f.shift.errors">
+                <option value="Day">Day
+                </option>
+                <option value="Night">Night
+                </option>
+                <option value="Flexible">Flexible
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.shift.invalid &&f.shift.touched  && f.shift.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="joiningDate">Joining date of Company:<sup class="unexo__required">*</sup></label>
+              <input type="date" onkeydown="return false" id="joiningDate" formControlName="joiningDate"
+                [ngClass]="f.joiningDate.errors">
+              <div class="form_validate"
+                *ngIf="f.joiningDate.invalid &&f.joiningDate.touched  && f.joiningDate.errors.required">
+                This Field is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="jobType">Desired Job Type :<sup class="unexo__required">*</sup></label>
+              <select id="jobType" required formControlName="jobType" [ngClass]="f.jobType.errors">
+                <option value="Permanent">Permanent
+                </option>
+                <option value="Contractual">Contractual
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.jobType.invalid &&f.jobType.touched  && f.jobType.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="designation">Designation :<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" id="designation" formControlName="designation"
+                [ngClass]="f.designation.errors">
+              <div class="form_validate"
+                *ngIf="f.designation.invalid &&f.designation.touched  && f.designation.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="role">Role:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" id="role" formControlName="role" [ngClass]="f.role.errors">
+              <div class="form_validate" *ngIf="f.role.invalid &&f.role.touched  && f.role.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="experience">Fresher/Experience:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="experience" formControlName="experience" [ngClass]="f.experience.errors">
+              <div class="form_validate"
+                *ngIf="f.experience.invalid &&f.experience.touched  && f.experience.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="languages">Languages:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="languages" formControlName="languages" [ngClass]="f.languages.errors">
+              <div class="form_validate"
+                *ngIf="f.languages.invalid &&f.languages.touched  && f.languages.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="endDate">End date of Company:</label>
+              <input type="date" id="endDate" onkeydown="return false" formControlName="endDate"
+                (change)="compareDate()" [ngClass]="f.endDate.errors">
+              <!-- <div class="form_validate" *ngIf="f.endDate.invalid &&f.endDate.touched">
+                This Field is required.
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="main_personal-resume-content-header" style="background-color: #f0efef;">
+        <h2 style="color: var(--primary-color); font-size: 1.6rem; font-weight: 600;"> Skills and Abilities</h2>
+        <div class="main_personal-resume-content-subheader">
+          <button class="unexo__primary--btn" type="button" value="Add" (click)="addMainAbility()">Add Main
+            Ability</button>
+          <input type="text" name="userId" hidden>
+
+          <div formArrayName="mainAbility">
+            <ng-container *ngFor="let ingredientCtrl of employerForm.get('mainAbility').controls let i = index"
+              [formGroupName]="i">
+
+              <div class="main_personal-resume-content-subheader">
+                <div class="resume_form-group">
+                  <input type="text" formControlName="mainabilities">
+                  <button class="unexo__primary--btn" type="button" (click)="deleteMainAbility(i)"
+                    value="Delete">Delete</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <br>
+          <button class="unexo__primary--btn" type="button" value="Add" (click)="addOtherAbility()">Add Other
+            Ability</button>
+
+          <div formArrayName="otherAbility">
+            <ng-container *ngFor="let ingredientCtrl of employerForm.get('otherAbility').controls let j = index"
+              [formGroupName]="j">
+
+              <div class="main_personal-resume-content-subheader">
+                <div class="resume_form-group">
+                  <input type="text" formControlName="otherabilities">
+                  <button class="unexo__primary--btn" type="button" (click)="deleteOtherAbility(j)"
+                    value="Delete">Delete</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset()" value="Reset">Reset</button> -->
+          <button class="unexo__primary--btn" type="button" (click)="onSkip()">Skip</button>
+          <button class="unexo__primary--btn" type="submit" [disabled]="!employerForm.valid" value="Save & Next">Save &
+            Proceed</button>
+        </div>
+
+      </div>
+    </form>
+
+    <form *ngIf="personalDetailService.editMode()" [formGroup]="employerForm" (ngSubmit)="onSubmit()">
+
+      <div class="main_personal-resume-content-subheader">
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="industryName">Industry Name:<sup class="unexo__required">*</sup></label>
+              <select formControlName="industryName" (change)="onChangeSubIndustry($event.target.value)"
+                id="industryName" required>
+                <option *ngFor="let option of Industaries" [value]="option.industryName">{{option.industryName}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="functionalArea">Functional Area:<sup class="unexo__required">*</sup></label>
+              <select formControlName="functionalArea" id="functionalArea" required>
+                <option *ngFor="let option of subIndustry;let i=index;" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="itSkills">Skills:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="50" id="itSkills" formControlName="itSkills" [ngClass]="f.itSkills.errors">
+              <div class="form_validate" *ngIf="f.itSkills.invalid &&f.itSkills.touched  && f.itSkills.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="salary">Salary:<sup class="unexo__required">*</sup></label>
+              <select id="salary" required formControlName="salary" [ngClass]="f.salary.errors">
+                <option *ngFor="let option of Salary;" [value]="option">{{option}}
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.salary.invalid &&f.salary.touched  && f.salary.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="shift">Shift:<sup class="unexo__required">*</sup></label>
+              <select id="shift" required formControlName="shift" [ngClass]="f.shift.errors">
+                <option value="Day">Day
+                </option>
+                <option value="Night">Night
+                </option>
+                <option value="Flexible">Flexible
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.shift.invalid &&f.shift.touched  && f.shift.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="joiningDate">Joining date of Company:<sup class="unexo__required">*</sup></label>
+              <input type="date" id="joiningDate" onkeydown="return false" formControlName="joiningDate"
+                [ngClass]="f.joiningDate.errors">
+              <div class="form_validate"
+                *ngIf="f.joiningDate.invalid &&f.joiningDate.touched  && f.joiningDate.errors.required">
+                This Field is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="jobType">Desired Job Type :<sup class="unexo__required">*</sup></label>
+              <select id="jobType" required formControlName="jobType" [ngClass]="f.jobType.errors">
+                <option value="Permanent">Permanent
+                </option>
+                <option value="Contractual">Contractual
+                </option>
+              </select>
+              <div class="form_validate" *ngIf="f.jobType.invalid &&f.jobType.touched  && f.jobType.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="designation">Designation :<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" id="designation" formControlName="designation"
+                [ngClass]="f.designation.errors">
+              <div class="form_validate"
+                *ngIf="f.designation.invalid &&f.designation.touched  && f.designation.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="role">Role:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" id="role" formControlName="role" [ngClass]="f.role.errors">
+              <div class="form_validate" *ngIf="f.role.invalid &&f.role.touched  && f.role.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="experience">Fresher/Experience:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="experience" formControlName="experience" [ngClass]="f.experience.errors">
+              <div class="form_validate"
+                *ngIf="f.experience.invalid &&f.experience.touched  && f.experience.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="languages">Languages:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="languages" formControlName="languages" [ngClass]="f.languages.errors">
+              <div class="form_validate"
+                *ngIf="f.languages.invalid &&f.languages.touched  && f.languages.errors.required">
+                This Field is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="endDate">End date of Company:</label>
+              <input type="date" id="endDate" onkeydown="return false" formControlName="endDate"
+                (change)="compareDate()" [ngClass]="f.endDate.errors">
+              <!-- <div class="form_validate" *ngIf="f.endDate.invalid &&f.endDate.touched  && f.endDate.errors.required">
+                This Field is required.
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="main_personal-resume-content-header" style="background-color: #f0efef;">
+        <h2 style="color: var(--primary-color); font-size: 1.6rem; font-weight: 600;"> Skills and Abilities</h2>
+
+        <div class="main_personal-resume-content-subheader">
+          <button class="unexo__primary--btn" type="button" value="Add" (click)="addMainAbility()">Add Main
+            Ability</button>
+          <input type="text" name="userId" hidden>
+
+          <div formArrayName="mainAbility">
+            <ng-container *ngFor="let ingredientCtrl of employerForm.get('mainAbility').controls let i = index"
+              [formGroupName]="i">
+
+              <div class="main_personal-resume-content-subheader">
+                <div class="resume_form-group">
+                  <input type="text" formControlName="mainabilities">
+                  <button class="unexo__primary--btn" type="button" (click)="deleteMainAbility(i)"
+                    value="Delete">Delete</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <br>
+          <button class="unexo__primary--btn" type="button" value="Add" (click)="addOtherAbility()">Add Other
+            Ability</button>
+
+          <div formArrayName="otherAbility">
+            <ng-container *ngFor="let ingredientCtrl of employerForm.get('otherAbility').controls let j = index"
+              [formGroupName]="j">
+
+              <div class="main_personal-resume-content-subheader">
+                <div class="resume_form-group">
+                  <input type="text" formControlName="otherabilities">
+                  <button class="unexo__primary--btn" type="button" (click)="deleteOtherAbility(j)"
+                    value="Delete">Delete</button>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset()" value="Reset">Reset</button> -->
+          <button class="unexo__primary--btn" type="submit" [disabled]="!employerForm.valid" value="Save & Next">Update
+            & Proceed</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

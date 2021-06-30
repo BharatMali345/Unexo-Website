@@ -1,0 +1,50 @@
+<mat-card class="mat__card--container">
+
+  <div class="p-4">
+    <div class="text-right">
+      <button class="unexo__primary--btn" type="button" (click)="routeBack()"><i class="fas fa-arrow-left"></i></button>
+
+    </div>
+    <h1 class="text-center mb-4 unexo__h1">Applied Users List for {{jobname}}</h1>
+
+    <table class="table table-sm table-responsive-xl" id="unexo__table--responsive">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Phone No</th>
+          <th scope="col">Email</th>
+          <th scope="col"></th>
+          <th scope="col">STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of userdata;let i=index;">
+          <td>{{i+1}}</td>
+          <td>{{data.name}}</td>
+          <td>{{data.phoneNo}}</td>
+          <td>{{data.email}}</td>
+          <td> <button type="button" class="unexo__primary--btn" (click)="details(data.userId)">Details</button> </td>
+          <td><span class="unexo__status--approval"> <button type="button" [disabled]="data.approvalStatus==true"
+                class="unexo__primary--btn" (click)="approvalstatus(data.userId,1)"><i
+                  class="fas fa-check"></i></button>
+              &nbsp; <button type="button" [disabled]="data.approvalStatus==false" class="unexo__primary--btn"
+                (click)="approvalstatus(data.userId,0)"><i class="fas fa-times"></i></button>
+            </span>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <!-- <mat-card> -->
+    <mat-paginator class="unexo_mat-paginator" #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage"
+      (page)="pageEvent = getAppliedUsersOfJob(jobid,$event,false)">
+    </mat-paginator>
+    <!-- </mat-card> -->
+  </div>
+</mat-card>
+
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

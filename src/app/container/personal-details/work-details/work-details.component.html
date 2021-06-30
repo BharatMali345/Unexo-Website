@@ -1,0 +1,192 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1>WORK DETAILS FORM</h1>
+  </div>
+  <div class="main_personal-resume-content">
+    <form *ngIf="!personaldetailService.editMode()" #WorkExperience="ngForm"
+      (ngSubmit)="submitWorkExperience(WorkExperience)">
+      <div class="main_personal-resume-content-subheader">
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="companyName">Company Organization Name:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="50" ngModel name="companyName" id="companyName" #companyName="ngModel"
+                required>
+              <div class="form_validate" *ngIf="companyName.invalid && companyName.touched">
+                Company Name is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="position">Position:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel required id="position" #position="ngModel" name="position">
+              <div class="form_validate" *ngIf="position.invalid && position.touched">
+                Position is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="department">Department:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel id="department" #department="ngModel" name="department"
+                required>
+              <div class="form_validate" *ngIf="department.invalid && department.touched">
+                Department is required.
+              </div>
+            </div>
+
+            <div class="resume_form-group">
+              <label for="jobResponsibilities">Job Responsibilities:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel #jobResponsibilities="ngModel" required id="jobResponsibilities"
+                name="jobResponsibilities">
+              <div class="form_validate" *ngIf="jobResponsibilities.invalid && jobResponsibilities.touched">
+                Job Responsibilities is required.
+              </div>
+              <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+              <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset(WorkExperience)" value="Reset">Reset</button> -->
+          <button class="unexo__primary--btn" type="button" (click)="onSkip()">Skip</button>
+          <button class="unexo__primary--btn" type="submit" [disabled]="!WorkExperience.valid" value="Save & Next">Save
+            & Proceed</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div *ngFor="let data of wdData;">
+      <form *ngIf="personaldetailService.editMode() && !nodata" #WorkExperience="ngForm"
+        (ngSubmit)="submitWorkExperience(WorkExperience)">
+
+        <div class="main_personal-resume-content-subheader">
+          <hr>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <label for="companyName">Company Organization Name:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="50" [(ngModel)]="data.companyName" name="companyName" id="companyName"
+                  #companyName="ngModel" required>
+                <div class="form_validate" *ngIf="companyName.invalid && companyName.touched">
+                  Company Name is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="position">Position:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="30" [(ngModel)]="data.position" required id="position" #position="ngModel"
+                  name="position">
+                <div class="form_validate" *ngIf="position.invalid && position.touched">
+                  Position is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+
+              <div class="resume_form-group">
+                <label for="department">Department:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="30" [(ngModel)]="data.department" id="department" #department="ngModel"
+                  name="department" required>
+                <div class="form_validate" *ngIf="department.invalid && department.touched">
+                  Department is required.
+                </div>
+              </div>
+
+              <div class="resume_form-group">
+                <label for="jobResponsibilities">Job Responsibilities:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="30" [(ngModel)]="data.job" #jobResponsibilities="ngModel" required
+                  id="jobResponsibilities" name="jobResponsibilities">
+                <div class="form_validate" *ngIf="jobResponsibilities.invalid && jobResponsibilities.touched">
+                  Job Responsibilities is required.
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="button-cont">
+            <!-- <button type="button" (click)="onReset(WorkExperience)" value="Reset">Reset</button> -->
+            <button class="unexo__primary--btn" type="submit" [disabled]="!WorkExperience.valid"
+              value="Save & Next">Update & Proceed</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <form *ngIf="personaldetailService.editMode() && nodata" #WorkExperience="ngForm"
+      (ngSubmit)="submitWorkExperience(WorkExperience)">
+
+      <div class="main_personal-resume-content-subheader">
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="companyName">Company Organization Name:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="50" ngModel name="companyName" id="companyName" #companyName="ngModel"
+                required>
+              <div class="form_validate" *ngIf="companyName.invalid && companyName.touched">
+                Company Name is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="position">Position:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel required id="position" #position="ngModel" name="position">
+              <div class="form_validate" *ngIf="position.invalid && position.touched">
+                Position is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="department">Department:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel id="department" #department="ngModel" name="department"
+                required>
+              <div class="form_validate" *ngIf="department.invalid && department.touched">
+                Department is required.
+              </div>
+            </div>
+
+            <div class="resume_form-group">
+              <label for="jobResponsibilities">Job Responsibilities:<sup class="unexo__required">*</sup></label>
+              <input type="text" maxlength="30" ngModel #jobResponsibilities="ngModel" required id="jobResponsibilities"
+                name="jobResponsibilities">
+              <div class="form_validate" *ngIf="jobResponsibilities.invalid && jobResponsibilities.touched">
+                Job Responsibilities is required.
+              </div>
+              <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+              <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset(WorkExperience)" value="Reset">Reset</button> -->
+          <button class="unexo__primary--btn" type="button" (click)="onSkip()">Skip</button>
+          <button class="unexo__primary--btn" type="submit" [disabled]="!WorkExperience.valid" value="Save & Next">Save
+            & Proceed</button>
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+</div>

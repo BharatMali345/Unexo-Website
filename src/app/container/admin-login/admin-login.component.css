@@ -1,0 +1,61 @@
+.forgotpass_main {
+  width: 100%;
+  padding: 5rem;
+}
+.overflow_controller {
+  overflow-x: hidden;
+  width: 35rem;
+  margin: auto;
+}
+.forgotpass_container {
+  width: 35rem;
+  border: solid lightgrey 1px;
+  margin: auto;
+  padding: 5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  font-size: 1.6rem;
+}
+.forgotpass_container img {
+  width: 10rem;
+  height: 7rem;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.forgotpass_container h1 {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.forgotpass_container form {
+  width: 100%;
+}
+.forgotpass_container form input {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1.5rem;
+}
+#fpass {
+  animation: animationright 0.5s ease-in forwards;
+}
+#otp {
+  display: none;
+  animation: animationright 0.5s ease-in forwards;
+}
+#reset {
+  animation: animationright 0.5s ease-in forwards;
+}
+@keyframes animationright {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}

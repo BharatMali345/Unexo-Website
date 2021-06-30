@@ -1,0 +1,21 @@
+.resume_form-group input {
+  background-color: #cacaca;
+}
+.resume_form-group input.ng-touched.ng-invalid {
+  border: none;
+}
+.resume_form-group input[type="submit"] {
+  color: white;
+  font-weight: 600;
+  background-color: var(--primary-color);
+}
+.resume_form-group input[type="submit"]:hover,
+.resume_form-group input[type="submit"]:active {
+  background-color: var(--secondary-color);
+}
+.form_validate {
+  align-self: flex-start;
+  text-align: left;
+  margin-left: 0.8rem;
+  margin-bottom: 0.5rem;
+}

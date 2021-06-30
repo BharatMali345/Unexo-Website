@@ -1,0 +1,54 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="btn_holder">
+  <button type="button" (click)=" editBankDetails()">Edit Form</button>
+</div>
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header">
+      <h1>Bank Details</h1>
+    </div>
+    <hr>
+    <div *ngFor="let profiledata of data;">
+      <div class="main_profile-section">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Beneficiary's Name:</p>
+            <h3>{{profiledata.beneficiaryName}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Bank Name:</p>
+            <h3>{{profiledata.bankName}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Branch Address:</p>
+            <h3>{{profiledata.branchAddress}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Nomination:</p>
+            <h3>{{profiledata.nomination}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Bank Account No:</p>
+            <h3>{{profiledata.bankAccountNo}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Account Type:</p>
+            <h3>{{profiledata.accountType}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>IFSC Code:</p>
+            <h3>{{profiledata.ifscCode}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

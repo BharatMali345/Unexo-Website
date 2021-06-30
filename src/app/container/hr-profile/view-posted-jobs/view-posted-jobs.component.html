@@ -1,0 +1,155 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="main_personal-resume-heading p-3">
+  <mat-card class="mat__card-container unexo__mb">
+
+    <h1 class="text-center unexo__h1">My Posted Jobs</h1>
+  </mat-card>
+  <mat-card class="example-card mb-4" *ngFor="let job of jobs;">
+    <div class="text-right">
+      <button class="unexo__primary--btn" type="button" style="margin-right:1rem;"
+        (click)="viewAppliedUsers(job.jobId,job.jobTitle)">View
+        Applied
+        Users</button>
+      <button class="unexo__primary--btn" type="button" (click)="deleteJob(job.jobId)">Delete</button>
+
+
+    </div>
+    <mat-card-header>
+      <div>
+        <mat-card-title>{{job.jobTitle}}</mat-card-title>
+
+      </div>
+    </mat-card-header>
+    <mat-card-subtitle>{{job.companyName}}</mat-card-subtitle>
+
+    <mat-card-content class="text-left unexo__job--details">
+      &nbsp;<i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;{{job.salary}}&nbsp;Per Annum<br>
+      <i class="fas fa-briefcase"></i>&nbsp;{{job.expYears}}&nbsp;Years<br>
+      <i class="fas fa-location-arrow"></i>&nbsp;{{job.jobLocation}}
+      <hr>
+      <br>
+
+      <div class="row">
+        <div class="col-lg-6 mb-4">
+          <h4>Skill Requirements</h4>
+          {{job.skillRequirements}}
+          <br>
+          <br>
+          <h4>Applicant Responsibilities</h4>
+          {{job.applicantResponsibilities}}
+          <br>
+          <br>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>About Company</h4>
+          {{job.aboutCompany}}
+          <br>
+          <br>
+          <h4>Company Website</h4>
+          {{job.websiteCompany}}
+          <br>
+          <br>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>Qualifications</h4>
+          <table>
+            <tr>
+              <td class="table_tile">
+                Post Graduate
+              </td>
+              <td>
+                {{job.postGraduate}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Under Graduate
+              </td>
+              <td>
+                {{job.underGraduate}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+        <div class="col-lg-6 mb-4">
+          <h4>Job Details</h4>
+          <table>
+            <tr>
+              <td class="table_tile">
+                Industry Type
+              </td>
+              <td>
+                {{job.industryType}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Functional Area
+              </td>
+              <td>
+                {{job.functionalArea}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Role
+              </td>
+              <td>
+                {{job.role}}
+              </td>
+            </tr>
+            <tr>
+              <td class="table_tile">
+                Employment Type
+              </td>
+              <td>
+                {{job.employmentType}}
+              </td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+      <div *ngIf="job.keySkills!= 0">
+
+        <hr>
+        <h4>Key Skills Required</h4>
+        <div class="key_skills" *ngFor="let skills of job.keySkills;let i=index;">
+          {{skills.skills}}
+        </div>
+      </div>
+
+    </mat-card-content>
+    <hr>
+
+    <mat-card-actions class=" job_applicants-data">
+      <div class="table_title">
+        Applied Applicants: <b>{{job.appliedApplicants}}</b>
+      </div>
+      <div class="table_title">
+        Max Applicants: <b>{{job.maxApplicants}}</b>
+      </div>
+      <div class="table_title">
+        Openings: <b>{{job.openings}}</b>
+      </div>
+      <div class="table_title">
+        Posted At: <b>{{job.postedAt}}</b>
+      </div>
+      <div class="table_title">
+        Updated At: <b>{{job.updatedAt}}</b>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-paginator class="unexo_mat-paginator" #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage"
+      (page)="pageEvent = ViewPostedJobs($event)">
+    </mat-paginator>
+  </mat-card>
+</div>

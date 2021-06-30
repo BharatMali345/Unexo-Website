@@ -1,0 +1,88 @@
+<div class="btn_holder">
+  <button type="button" (click)=" editFamilyDetails()">Edit Form</button>
+</div>
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header">
+      <h1> Family Details</h1>
+    </div>
+    <hr>
+    <div *ngFor="let profiledata of data;">
+      <div class="main_profile-section">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Father's Name:</p>
+            <h3>{{profiledata.fatherName}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Father's Occupation:</p>
+            <h3>{{profiledata.fatherOccupation}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Father's Email:</p>
+            <h3>{{profiledata.fatherEmail}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Father's Mobile No:</p>
+            <h3>{{profiledata.fatherPhoneNo}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Father's DOB:</p>
+            <h3>{{profiledata.fatherDob}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Father's Address:</p>
+            <h3>{{profiledata.fatherAddress}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Father's Blood Group:</p>
+            <h3>{{profiledata.fatherBloodGroup}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Mother's Name:</p>
+            <h3>{{profiledata.motherName}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Mother's Occupation:</p>
+            <h3>{{profiledata.motherOccupation}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Mother's Email:</p>
+            <h3>{{profiledata.motherEmail}}</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Mother's Mobile No:</p>
+            <h3>{{profiledata.motherPhoneNo}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Mother's DOB:</p>
+            <h3>{{profiledata.motherDob}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Mother's Address:</p>
+            <h3>{{profiledata.motherAddress}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Mother's Blood Group:</p>
+            <h3>{{profiledata.motherBloodGroup}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

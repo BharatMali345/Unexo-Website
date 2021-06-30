@@ -1,0 +1,30 @@
+table {
+  text-align: center;
+}
+th {
+  color: white;
+  font-size: 1.6rem;
+}
+tr {
+  color: var(--primary-color);
+  font-size: 1.6rem;
+}
+td {
+  padding: 0.8rem 0rem;
+}
+button[type="submit"],
+button[type="button"] {
+  font-size: 1.2rem;
+}
+.unexo_mat-paginator {
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: "Lato", sans-serif !important;
+  margin-top: -1.5rem !important;
+}
+mat-paginator ::ng-deep button[type="button"] {
+  background-color: white !important;
+  color: black;
+  border-radius: none;
+}

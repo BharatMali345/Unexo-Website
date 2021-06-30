@@ -1,0 +1,59 @@
+<div class="main_personal-resume-heading p-3">
+  <div class="mat__card--container m-0 mb-4 unexo__mat--padding">
+
+    <h1 class="text-center unexo__h1">Jobs</h1>
+  </div>
+
+  <mat-card class="example-card mb-4" *ngFor="let job of dataSource;">
+
+    <div (click)="routeToJobDetails(job.jobId)">
+
+      <mat-card-header>
+        <div class="text-right apply--btn">
+          <button class="unexo__primary--btn" [disabled]="job.isApplied" type="button"
+            (click)="applyJob(job.jobId,currentPageEvent)">{{job.isApplied?"Applied":"Apply"}}</button>
+        </div>
+        <div>
+          <mat-card-title>{{job.jobTitle}}</mat-card-title>
+        </div>
+
+      </mat-card-header>
+      <mat-card-subtitle>{{job.companyName}}</mat-card-subtitle>
+
+      <mat-card-content class="text-left unexo__skills--container">
+        <div *ngIf="job.keySkills!= 0">
+          <hr>
+          <h4>Key Skills Required</h4>
+          <div class="key_skills" *ngFor="let skills of job.keySkills;let i=index;">
+            {{skills.skills}}
+          </div>
+        </div>
+      </mat-card-content>
+      <hr>
+      <mat-card-actions class=" job_applicants-data">
+        <div class="table_title">
+          Applied Applicants: <b>{{job.appliedApplicants}}</b>
+        </div>
+        <div class="table_title">
+          Max Applicants: <b>{{job.maxApplicants}}</b>
+        </div>
+        <div class="table_title">
+          Openings: <b>{{job.openings}}</b>
+        </div>
+        <div class="table_title">
+          Posted At: <b>{{job.updatedAt}}</b>
+        </div>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+  <mat-card>
+    <mat-paginator class="unexo_mat-paginator" #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+      [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage"
+      (page)="pageEvent = ViewAllPostedJobs($event,false)">
+    </mat-paginator>
+  </mat-card>
+</div>
+
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

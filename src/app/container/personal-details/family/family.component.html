@@ -1,0 +1,215 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1 style="text-decoration: underline;">FAMILY DETAILS FORM</h1>
+    <br><br>
+    <h2>CSPL NETWORK</h2>
+    <h1>CENTER FOR SKILLED PERSONNEL AND LABOUR NETWORK</h1>
+  </div>
+  <div class="main_personal-resume-content">
+    <form *ngIf="!personaldetailService.editMode()" #FamilyForm="ngForm" (ngSubmit)="submitFamilyForm(FamilyForm)">
+      <div class="main_personal-resume-content-header">
+        <h2>About Family </h2>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="fatherName">Father's Full Name:</label>
+              <input type="text" id="fatherName" name="fatherName" ngModel #fatherName="ngModel" required>
+              <div class="form_validate" *ngIf="fatherName.invalid && fatherName.touched">
+                Father's Name is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherOccupation">Occupation:</label>
+              <input type="text" id="fatherOccupation" name="fatherOccupation" ngModel #fatherOccupation="ngModel"
+                required>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherEmail">Email address:</label>
+              <input type="email" id="fatherEmail" name="fatherEmail" ngModel email>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherDob">Date Of Birth:</label>
+              <input type="date" id="fatherDob" name="fatherDob" ngModel>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherPhoneNo">Mobile No:</label>
+              <input type="number" id="fatherPhoneNo" name="fatherPhoneNo" ngModel #fatherPhoneNo="ngModel" required
+                minlength="10">
+              <div class="form_validate" *ngIf="fatherPhoneNo.invalid && fatherPhoneNo.touched">
+                Father's Mobile Number is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherAddress">Permanent address:</label>
+              <input type="text" id="fatherAddress" name="fatherAddress" ngModel>
+            </div>
+            <div class="resume_form-group">
+              <label for="fatherBloodGroup">Blood Group:</label>
+              <input type="text" id="fatherBloodGroup" name="fatherBloodGroup" ngModel>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="motherName">Mother's Full Name:</label>
+              <input type="text" id="motherName" name="motherName" ngModel required #motherName="ngModel">
+              <div class="form_validate" *ngIf="fatherPhoneNo.invalid && fatherPhoneNo.touched">
+                Mother's Name is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherOccupation">Occupation:</label>
+              <input type="text" id="motherOccupation" name="motherOccupation" ngModel required
+                #motherOccupation="ngModel">
+              <div class="form_validate" *ngIf="motherOccupation.invalid && motherOccupation.touched">
+                Mother's Occupation is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherEmail">Email address:</label>
+              <input type="email" id="motherEmail" name="motherEmail" ngModel>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherDob">Date Of Birth:</label>
+              <input type="date" id="motherDob" name="motherDob" ngModel>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherPhoneNo">Mobile No:</label>
+              <input type="number" id="motherPhoneNo" name="motherPhoneNo" ngModel required minlength="10"
+                #motherPhoneNo="ngModel">
+              <div class="form_validate" *ngIf="motherPhoneNo.invalid && motherPhoneNo.touched">
+                Mother's Mobile No is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherAddress">Permanent address:</label>
+              <input type="text" id="motherAddress" name="motherAddress" ngModel>
+            </div>
+            <div class="resume_form-group">
+              <label for="motherBloodGroup">Blood Group:</label>
+              <input type="text" id="motherBloodGroup" name="motherBloodGroup" ngModel>
+              <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+              <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset(FamilyForm)" value="Reset">Reset</button> -->
+          <button type="submit" [disabled]="!FamilyForm.valid" value="Save & Next">Save & Proceed</button>
+        </div>
+
+      </div>
+    </form>
+
+
+    <div *ngFor="let data of fdData;">
+      <form *ngIf="personaldetailService.editMode()" #FamilyForm="ngForm" (ngSubmit)="submitFamilyForm(FamilyForm)">
+        <div class="main_personal-resume-content-header">
+          <h2>About Family </h2>
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <label for="fatherName">Father's Full Name:</label>
+                <input type="text" id="fatherName" name="fatherName" [(ngModel)]="data.fatherName" #fatherName="ngModel"
+                  required>
+                <div class="form_validate" *ngIf="fatherName.invalid && fatherName.touched">
+                  Father's Name is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="fatherOccupation">Occupation:</label>
+                <input type="text" id="fatherOccupation" name="fatherOccupation" [(ngModel)]="data.fatherOccupation"
+                  #fatherOccupation="ngModel" required>
+              </div>
+              <div class="resume_form-group">
+                <label for="fatherEmail">Email address:</label>
+                <input type="email" id="fatherEmail" name="fatherEmail" [(ngModel)]="data.fatherEmail" email>
+              </div>
+              <div class="resume_form-group">
+                <label for="fatherDob">Date Of Birth:</label>
+                <input type="date" id="fatherDob" name="fatherDob" [(ngModel)]="data.fatherDob">
+              </div>
+              <div class="resume_form-group">
+                <label for="fatherPhoneNo">Mobile No:</label>
+                <input type="number" id="fatherPhoneNo" name="fatherPhoneNo" [(ngModel)]="data.fatherPhoneNo"
+                  #fatherPhoneNo="ngModel" required minlength="10">
+                <div class="form_validate" *ngIf="fatherPhoneNo.invalid && fatherPhoneNo.touched">
+                  Father's Mobile Number is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="fatherAddress">Permanent address:</label>
+                <input type="text" id="fatherAddress" name="fatherAddress" [(ngModel)]="data.fatherAddress">
+              </div>
+              <div class=" resume_form-group">
+                <label for="fatherBloodGroup">Blood Group:</label>
+                <input type="text" id="fatherBloodGroup" name="fatherBloodGroup" [(ngModel)]="data.fatherBloodGroup">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <label for="motherName">Mother's Full Name:</label>
+                <input type="text" id="motherName" name="motherName" [(ngModel)]="data.motherName" required
+                  #motherName="ngModel">
+                <div class="form_validate" *ngIf="fatherPhoneNo.invalid && fatherPhoneNo.touched">
+                  Mother's Name is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="motherOccupation">Occupation:</label>
+                <input type="text" id="motherOccupation" name="motherOccupation" [(ngModel)]="data.motherOccupation"
+                  required #motherOccupation="ngModel">
+                <div class="form_validate" *ngIf="motherOccupation.invalid && motherOccupation.touched">
+                  Mother's Occupation is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="motherEmail">Email address:</label>
+                <input type="email" id="motherEmail" name="motherEmail" [(ngModel)]="data.motherEmail">
+              </div>
+              <div class="resume_form-group">
+                <label for="motherDob">Date Of Birth:</label>
+                <input type="date" id="motherDob" name="motherDob" [(ngModel)]="data.motherDob">
+              </div>
+              <div class="resume_form-group">
+                <label for="motherPhoneNo">Mobile No:</label>
+                <input type="number" id="motherPhoneNo" name="motherPhoneNo" [(ngModel)]="data.motherPhoneNo" required
+                  minlength="10" #motherPhoneNo="ngModel">
+                <div class="form_validate" *ngIf="motherPhoneNo.invalid && motherPhoneNo.touched">
+                  Mother's Mobile No is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="motherAddress">Permanent address:</label>
+                <input type="text" id="motherAddress" name="motherAddress" [(ngModel)]="data.motherAddress">
+              </div>
+              <div class="resume_form-group">
+                <label for="motherBloodGroup">Blood Group:</label>
+                <input type="text" id="motherBloodGroup" name="motherBloodGroup" [(ngModel)]="data.motherBloodGroup">
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="button-cont">
+            <!-- <button type="button" (click)="onReset(FamilyForm)" value="Reset">Reset</button> -->
+            <button type="submit" [disabled]="!FamilyForm.valid" value="Save & Next">Update & Proceed</button>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>

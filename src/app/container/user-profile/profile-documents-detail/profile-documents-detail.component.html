@@ -1,0 +1,89 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="btn_holder">
+  <button type="button" (click)=" editDocumentDetails()">Edit Form</button>
+</div>
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header">
+      <h1>Documents Details</h1>
+    </div>
+    <hr>
+    <div *ngFor="let profiledata of data;">
+      <div class="main_profile-section">
+        <div class="row">
+          <div class="col-md-6">
+            <p>Pancard:</p>
+            <h3><a [hidden]="profiledata.pancardUrl == null" href="{{profiledata.pancardUrl}}">Download</a>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <p>Photo:</p>
+            <h3><a [hidden]="profiledata.photoUrl == null" href="{{profiledata.photoUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Aadhar Card:</p>
+            <h3><a [hidden]="profiledata.aadharUrl == null" href="{{profiledata.aadharUrl}}">Download</a>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <p>Passport:</p>
+            <h3><a [hidden]="profiledata.passportUrl == null" href="{{profiledata.passportUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Tenth Marksheet:</p>
+            <h3><a [hidden]="profiledata.tenthUrl == null" href="{{profiledata.tenthUrl}}">Download</a>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <p>Graduation Marksheet:</p>
+            <h3><a [hidden]="profiledata.graduationUrl == null" href="{{profiledata.graduationUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Twelfth Marksheet:</p>
+            <h3><a [hidden]="profiledata.twelfthUrl == null" href="{{profiledata.twelfthUrl}}">Download</a>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <p>Post Graduation Marksheet:</p>
+            <h3><a [hidden]="profiledata.postGraduationUrl == null"
+                href="{{profiledata.postGraduationUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Offer Letter:</p>
+            <h3><a [hidden]="profiledata.offerLetterUrl == null" href="{{profiledata.offerLetterUrl}}">Download</a>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <p>Resignation Letter:</p>
+            <h3><a [hidden]="profiledata.resignationLetterUrl == null"
+                href="{{profiledata.resignationLetterUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p>Resume:</p>
+            <h3><a [hidden]="profiledata.resumeUrl == null" href="{{profiledata.resumeUrl}}">Download</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

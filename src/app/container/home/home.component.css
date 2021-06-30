@@ -1,0 +1,20 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+/* re-captcha {
+  width: 20rem;
+} */
+a {
+  /* align-self: flex-end; */
+  color: blue !important;
+}
+a:hover {
+  cursor: pointer;
+}
+.unexo__tc--box a {
+  position: absolute;
+  top: 1%;
+  left: 4%;
+  font-weight: bold;
+  color: var(--primary-color) !important;
+}

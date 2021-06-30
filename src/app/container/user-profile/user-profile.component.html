@@ -1,0 +1,125 @@
+<!-- <div class="wrapper">
+  <div class="sidebar">
+    <h3><a routerLink="/home"><i class="fas fa-home"></i> Personal Resume</a></h3>
+    <ul>
+
+      <li><a routerLink="/user-profile"><i class="fas fa-user"></i>Personal Details</a>
+      </li>
+      <li><a routerLink="profile-education" routerLinkActive="active"><i class="fas fa-graduation-cap"></i>Educational
+          Details</a></li>
+      <li><a routerLink="profile-work" routerLinkActive="active"><i class="fas fa-briefcase"></i>Work Experience</a>
+      </li>
+      <li><a routerLink="profile-employer" routerLinkActive="active"><i class="fas fa-address-book"></i>Employer
+          Perspective</a>
+      </li>
+      <li><a routerLink="profile-family" routerLinkActive="active"><i class="fas fa-users"></i>About
+          Family</a></li>
+      <li><a routerLink="profile-bank" routerLinkActive="active"><i class="fas fa-university"></i>Bank Account
+          Details</a>
+      </li>
+      <li><a routerLink="profile-documents" routerLinkActive="active"><i class="fas fa-file-upload"></i>Attach
+          Documents</a>
+      </li>
+      <li><a href="interview_test.html" routerLinkActive="active"><i class="fas fa-mouse"></i>Online Interview Test</a>
+      </li>
+      <li>{{myUserStatus}} </li>
+
+    </ul>
+
+    <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet> -->
+<div class="p-5">
+
+  <mat-card class="unexo_dashboard-holder">
+    <div class="unexo_dashboard">
+      <p>
+        <span style="font-size: 2rem;">
+
+          {{authService.username}}
+        </span>
+        <br>
+        Your Profile is {{progressbarvalue}}% Complete.
+
+      </p>
+      <div class="unexo_label-holder mb-2">
+        <i class="fas fa-bell" style="font-size: 2rem; cursor: pointer;" (click)="toUserNotifications()"></i>
+        <div class="unexo__notifications-badge"></div>
+        <label class="unexo_label" style="left:-200%">Notifications</label>
+      </div>
+    </div>
+
+    <mat-progress-bar mode="determinate" [value]="progressbarvalue"></mat-progress-bar>
+
+  </mat-card>
+  <div class="row no-gutters">
+    <div class="col-lg-3">
+      <div class="admin_header-container ">
+
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h1>Candidate Panel</h1>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-selection-list [multiple]="false">
+              <mat-list-option routerLink="/user-profile">
+                <p> <a><i class="fas fa-user"></i>Personal Details</a></p>
+              </mat-list-option>
+              <mat-list-option routerLink="profile-education">
+                <p><a><i class="fas fa-graduation-cap"></i>Educational
+                    Details</a></p>
+              </mat-list-option>
+              <mat-list-option routerLink="profile-work">
+                <p> <a><i class="fas fa-laptop"></i>Work
+                    Experience</a></p>
+              </mat-list-option>
+              <mat-list-option routerLink="profile-employer">
+                <p> <a><i class="fas fa-address-book"></i>Employer
+                    Perspective</a></p>
+              </mat-list-option>
+              <mat-list-option routerLink="apply-jobs">
+                <p> <a><i class="fas fa-briefcase"></i>Apply Jobs</a></p>
+              </mat-list-option>
+              <mat-list-option routerLink="my-applied-jobs">
+                <p> <a><i class="far fa-eye"></i>My Applied Jobs</a></p>
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- <div class="unexo__side--dashboard">
+          <h2>QUICK LINKS</h2>
+          <hr>
+          <a routerLink="/user-profile" routerLinkActive="active">Personal Details</a>
+
+          <a routerLink="profile-education" routerLinkActive="active">Educational
+            Details</a>
+
+          <a routerLink="profile-work" routerLinkActive="active">Work
+            Experience</a>
+
+          <a routerLink="profile-employer" routerLinkActive="active">Employer
+            Perspective</a>
+
+          <a routerLink="apply-jobs" routerLinkActive="active">Apply Jobs</a>
+
+          <a routerLink="my-applied-jobs" routerLinkActive="active">My Applied Jobs</a>
+
+        </div> -->
+      </div>
+    </div>
+    <div class="col-lg-9 ">
+      <router-outlet (activate)="onActivate($event)"></router-outlet>
+
+    </div>
+  </div>
+</div>

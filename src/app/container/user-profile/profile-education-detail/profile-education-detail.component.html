@@ -1,0 +1,55 @@
+<!-- <div class="btn_holder">
+  <button type="button" (click)=" editEducationalDetail()">Edit Form</button>
+</div> -->
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header main_profile-header-flex">
+      <h1> Educational Details</h1>
+      <div class="unexo_label-holder">
+        <button class="unexo__primary--btn" type="button" (click)=" editEducationalDetail()"><i
+            class="fas fa-edit"></i></button>
+        <label class="unexo_label">Edit Form</label>
+      </div>
+    </div>
+    <div class="main_profile-section">
+      <div class="row unexo__padding">
+        <div class="col-md-6">
+          <p>Highest Qualification:</p>
+          <h3>{{data && data.highestQualification}}</h3>
+        </div>
+        <div class="col-md-6">
+          <p>School/College/University:</p>
+          <h3>{{data && data.school}}</h3>
+        </div>
+      </div>
+      <div class="row unexo__padding">
+        <div class="col-md-6">
+          <p>Course/Board:</p>
+          <h3>{{data && data.course}}</h3>
+        </div>
+        <div class="col-md-6">
+          <p>Specialization/Medium:</p>
+          <h3>{{data && data.specialization}}</h3>
+        </div>
+        <div class="col-md-6">
+          <p>Passing Year:</p>
+          <h3>{{data && data.passingYear}}</h3>
+        </div>
+        <div class="col-md-6">
+          <p>Percentage/Grade/CGPA:</p>
+          <h3>{{data && data.marks}}</h3>
+        </div>
+        <div *ngFor="let data1 of data && data.academicAchievements;let i= index;" class="col-md-6">
+          <p>Achievements:</p>
+          <h3>{{data1.achievements}}</h3>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

@@ -1,0 +1,189 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1 style="text-decoration: underline;">DOCUMENTS FORM</h1>
+    <br><br>
+    <h2>CSPL NETWORK</h2>
+    <h1>CENTER FOR SKILLED PERSONNEL AND LABOUR NETWORK</h1>
+  </div>
+  <div class="main_personal-resume-content">
+    <form action="">
+      <div class="main_personal-resume-content-header">
+        <h2>Attach Mandatory Documents <span class="form_validate">(Aadhar Card, Photograph, 10th/12th marksheet and
+            Resume is mandatory.Only Pdf Accepted)</span> </h2>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <h3>Identity Proof:</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="pancard">1.Pancard: <sup style="color: red;"></sup></label>
+              <form #Pancard="ngForm" (ngSubmit)="submitPancard(Pancard)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="pancard" ngModel required
+                  #pancard="ngModel" id="pancard">
+                <div *ngIf="pancard1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Pancard.valid" value="Upload ">
+              </form>
+            </div>
+            <div class="resume_form-group">
+              <label for="photo">2.Photograph: <sup style="color: red;">*</sup></label>
+              <form #Photo="ngForm" (ngSubmit)="submitPhoto(Photo)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="photo" ngModel required
+                  #photo="ngModel" id="photo">
+                <div *ngIf="photo1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Photo.valid" value="Upload ">
+              </form>
+            </div>
+          </div>
+          <div class=" col-lg-6">
+            <div class="resume_form-group">
+              <label for="aadhar">3.Aadhar Card: <sup style="color: red;">*</sup></label>
+              <form #Aadhar="ngForm" (ngSubmit)="submitAadhar(Aadhar)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="aadhar" ngModel required
+                  #aadhar="ngModel" id="aadhar">
+                <div *ngIf="aadhar1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Aadhar.valid" value="Upload  ">
+              </form>
+            </div>
+            <div class="resume_form-group">
+              <label for="passport">4.Passport <sup style="color: red;"></sup></label>
+              <form #Passport="ngForm" (ngSubmit)="submitPassport(Passport)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="passport" ngModel required
+                  #passport="ngModel" id="passport">
+                <div *ngIf="passport1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Passport.valid" value="Upload ">
+              </form>
+            </div>
+          </div>
+        </div>
+        <h3>Education Documents:</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="tenth">5.10th Marksheet/Certificate:<sup style="color: red;">*</sup></label>
+              <form #Tenth="ngForm" (ngSubmit)="submitTenth(Tenth)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="tenth" ngModel required
+                  #tenth="ngModel" id="tenth">
+                <div *ngIf="tenth1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Tenth.valid" value="Upload">
+              </form>
+            </div>
+            <div class="resume_form-group">
+              <label for="graduation">Graduation Marksheet/Certificate:<sup style="color: red;"></sup></label>
+              <form #Graduation="ngForm" (ngSubmit)="submitGraduation(Graduation)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="graduation" ngModel
+                  required #graduation="ngModel" id="graduation">
+                <div *ngIf="graduation1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Graduation.valid" value="Upload">
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="twelfth">12th Marksheet/Certificate:<sup style="color: red;">*</sup></label>
+              <form #Twelfth="ngForm" (ngSubmit)="submitTwelfth(Twelfth)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="twelfth" ngModel required
+                  #twelfth="ngModel" id="twelfth">
+                <div *ngIf="twelfth1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Twelfth.valid" value="Upload">
+              </form>
+            </div>
+            <div class="resume_form-group">
+              <label for="postGraduation">Post-Graduation Marksheet/Certificate:<sup style="color: red;"></sup></label>
+              <form #PostGraduation="ngForm" (ngSubmit)="submitPostGraduation(PostGraduation)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="postGraduation" ngModel
+                  required #postGraduation="ngModel" id="postGraduation">
+                <div *ngIf="postGraduation1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!PostGraduation.valid" value="Upload">
+              </form>
+            </div>
+          </div>
+        </div>
+        <h3>Current And previous employment Documents:</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="offerLetter">Offer Letter:<sup style="color: red;"></sup></label>
+              <form #OfferLetter="ngForm" (ngSubmit)="submitOfferLetter(OfferLetter)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="offerLetter" ngModel
+                  required #offerLetter="ngModel" id="offerLetter">
+                <div *ngIf="offer1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!OfferLetter.valid" value="Upload">
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="resignationLetter">Resignation Letter:<sup style="color: red;"></sup></label>
+              <form #ResignationLetter="ngForm" (ngSubmit)="submitResignationLetter(ResignationLetter)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="resignationLetter" ngModel
+                  required #resignationLetter="ngModel" id="resignationLetter">
+                <div *ngIf="resignation1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!ResignationLetter.valid" value="Upload">
+              </form>
+            </div>
+          </div>
+        </div>
+        <h3>Updated Resume:*</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="resume">Resume: <sup style="color: red;">*</sup></label>
+              <form #Resume="ngForm" (ngSubmit)="submitResume(Resume)">
+                <input type="file" accept="application/pdf" (change)="setFiles($event)" name="resume" ngModel required
+                  #resume="ngModel" id="resume">
+                <div *ngIf="resume1" class="form_validate">
+                  Uploaded
+                </div>
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="submit" [disabled]="!Resume.valid" value="Upload">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <form #Registration="ngForm" (ngSubmit)="completeRegistration(Registration)">
+            <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+
+            <button *ngIf="!personaldetailService.editMode()" type="submit">Complete Registration</button>
+          </form>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

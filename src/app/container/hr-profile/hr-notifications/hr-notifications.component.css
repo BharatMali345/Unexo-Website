@@ -1,0 +1,18 @@
+.unexo_mat-paginator {
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: "Lato", sans-serif !important;
+
+  /* margin-top: -1.5rem !important; */
+}
+
+mat-paginator ::ng-deep button[type="button"] {
+  background-color: white !important;
+  color: black;
+  border-radius: none;
+}
+button:focus {
+  border: none;
+  outline: none !important;
+}

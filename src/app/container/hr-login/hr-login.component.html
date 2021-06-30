@@ -1,0 +1,3234 @@
+<!-- <div class="forgotpass_main">
+  <div class="overflow_controller">
+    <div id="login">
+      <div class="forgotpass_container">
+        <img src="../../../assets/images/UnexoLogo.png" alt="unexo logo">
+        <h1>HR Log In</h1>
+        <form #HrLogIn="ngForm" (ngSubmit)="hrLogin(HrLogIn)">
+          <input type="email" name="email" ngModel required #email="ngModel" placeholder="Enter Email" email>
+          <div class="form_validate" *ngIf="email.invalid && email.touched">
+            Enter a Valid Email.
+          </div>
+          <div class="unexopassword1">
+            <input [type]="showPassword1 ? 'text' : 'password'" name="password" ngModel required #password="ngModel"
+              placeholder="Enter password"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+            <i [ngClass]="showPassword1?'far fa-eye unexopasswordlogo1': 'far fa-eye-slash unexopasswordlogo1'"
+              id="unexopasswordlogo1" (click)="togglepassword1()"></i>
+            <div class="form_validate" *ngIf="password.invalid && password.touched">
+              Password minimum length should be 8 digits And should include atleast one lowercase,one uppercase,one
+              number
+              and one special charcater.
+            </div>
+          </div>
+
+          <button class="unexo__primary--btn" type="submit" [disabled]="!HrLogIn.valid">LogIn</button>
+        </form>
+        <a routerLink="/forgot-password">Forgot password?</a>
+        <a (click)="SignUpSwitch()"><span>Not Yet Registered?</span> Sign Up</a>
+      </div>
+    </div>
+
+    <div id="signup">
+      <div class="forgotpass_container">
+        <img src="../../../assets/images/UnexoLogo.png" alt="unexo logo">
+        <h1>HR Sign Up</h1>
+        <form #HrSignUp="ngForm" (ngSubmit)="hrSignup(HrSignUp)">
+          <input type="text" name="firstName" ngModel minlength="3" maxlength="20" placeholder="First Name"
+            #firstName="ngModel" pattern="^[a-zA-Z ]*$" required>
+          <div class="form_validate" *ngIf="firstName.invalid && firstName.touched">
+            First Name is required . <br> Numbers & Special Characters Not Allowed. <br>
+            Minimum length Should be 3.
+          </div>
+          <input type="text" name="lastName" ngModel minlength="3" maxlength="20" placeholder="Last Name"
+            #lastName="ngModel" pattern="^[a-zA-Z ]*$" required>
+          <div class="form_validate" *ngIf="lastName.invalid && lastName.touched">
+            Last Name is required . <br> Numbers & Special Characters Not Allowed. <br>
+            Minimum length Should be 3.
+          </div>
+          <input type="email" name="email" ngModel #email="ngModel" placeholder="Email" email required>
+          <div class="form_validate" *ngIf="email.invalid && email.touched">
+            Enter a Valid Email.
+          </div>
+          <input type="number" name="phoneNo" ngModel id="phoneNo" #phoneNo="ngModel" placeholder="Mobile No"
+            pattern="^[0-9]{10}$" minlength=10 maxlength="10" required>
+          <div class="form_validate" *ngIf="phoneNo.invalid && phoneNo.touched">
+            Enter a Valid 10 digit Mobile No.
+          </div>
+          <div id="unexopassword2">
+
+            <input [type]="showPassword2 ? 'text' : 'password'" name="password" ngModel #password="ngModel"
+              placeholder="Password" required
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+            <i [ngClass]="showPassword2?'far fa-eye ': 'far fa-eye-slash'" id="unexopasswordlogo2"
+              (click)="togglepassword2()"></i>
+            <div class="form_validate" *ngIf="password.invalid && password.touched">
+              Password minimum length should be 8 digits And should include atleast one lowercase,one uppercase,one
+              number
+              and one special charcater.
+            </div>
+          </div>
+          <div id="unexopassword2">
+
+            <input [type]="showPassword2 ? 'text' : 'password'" name="confirmPassword" ngModel
+              #confirmPassword="ngModel" placeholder="Confirm Password"
+              pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" required>
+            <i [ngClass]="showPassword2?'far fa-eye ': 'far fa-eye-slash'" id="unexopasswordlogo2"
+              (click)="togglepassword2()"></i>
+            <div class="form_validate" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+              Password minimum length should be 8 digits And should include atleast one lowercase,one uppercase,one
+              number
+              and one special charcater.
+
+            </div>
+          </div>
+          <div class="form_validate" *ngIf="matchPassword">
+            Password did not match.
+          </div>
+          <input type="text" [(ngModel)]="hr" name="userType" hidden>
+          <re-captcha (resolved)="resolved($event)" siteKey="6LeyFuIZAAAAAPruOXL6x_X8OXCwDnXxC3zItyp7" required>
+          </re-captcha>
+          <div class="form_validate" *ngIf="verifyCaptcha">
+            <br>
+            Please Tick The Recaptcha Box.
+          </div>
+          <br>
+          <button class="unexo__primary--btn" type="submit" [disabled]="!HrSignUp.valid">SignUp</button>
+        </form>
+        <a (click)="LogInSwitch()"> <span>Already Registered? </span> Log In</a>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="unexo__frame">
+  <div class="unexo__tc--cont" id="tcbox1">
+    <div class="unexo__tc--box">
+      <h1>TERMS OF SERVICE AGREEMENT</h1>
+      <h5>Terms and Condition</h5>
+      <br />
+      <b>PURPOSE:</b>
+      <p>
+        UnexoIndia.com is intended only to serve as a preliminary medium of
+        contact and exchange of information for its users / members / visitors
+        who have a bona fide intention to contact and/or be contacted for the
+        purposes related to genuine existing job vacancies and for other career
+        enhancement services.
+      </p>
+      <br />
+      <b>USE TO BE IN CONFORMITY WITH THE PURPOSE</b>
+      <p>
+        UnexoIndia.com (and related products) or service or product that is
+        subscribe to or used (whether the same is paid for by you or not) is
+        meant for the Purpose and
+        <b> only the exclusive use of the subscriber/registered user.</b>
+        Copying or downloading or recreating or sharing passwords or
+        sublicensing or sharing in any manner which is not in accordance with
+        these terms, is a misuse of the platform or service or product and CSLTD
+        reserves its rights to act in such manner as to protect its loss of
+        revenue or reputation or claim damages including sping your service or
+        access and reporting to relevant authorities. In the event you are found
+        to be copying or misusing or transmitting or crawling any data or
+        photographs or graphics or any information available on UnexoIndia.com
+        for any purpose other than that being a bonafide Purpose, we reserve the
+        right to take such action that we deem fit including sping access and
+        claiming damages
+      </p>
+      <br />
+      <p>
+        The site is a public site with free access and Crystal Software assumes
+        no liability for the quality and genuineness of responses. Crystal
+        software. cannot monitor the responses that a person may receive in
+        response to information he/she has displayed on the site. The
+        individual/company would have to conduct its own background checks on
+        the bonafide nature of all response(s).
+      </p>
+      <br />
+      <p>
+        You give us permission to use the information about actions that you
+        have taken on UnexoIndia.com in connection with ads, offers and other
+        content (whether sponsored or not) that we display across our services,
+        without any compensation to you. We use data and information about you
+        to make relevant suggestions and recommendation to you and others.
+      </p>
+      <br />
+      <p>
+        The platform may contain links to third party websites, these links are
+        provided solely as convenience to You and the presence of these links
+        should not under any circumstances be considered as an endorsement of
+        the contents of the same, if You chose to access these websites you do
+        so at your own risk.
+      </p>
+      <br />
+      <p>
+        Whilst using this platform an obligation is cast upon you to only
+        provide true and correct information and in the case of creating a
+        profile you undertake to at all times keep the information up to date.
+        Crystal software. will not be liable on account of any inaccuracy of
+        information on this web site. It is the responsibility of the visitor to
+        further research the information on the site. Any breach of privacy or
+        of the information provided by the consumer to Crystal software. to be
+        placed on the website by technical or any other means is not the
+        responsibility of Crystal software. Crystal software. does not guarantee
+        confidentiality of information provided to it by any person
+        acquiring/using all/any information displayed on the UnexoIndia.com
+        website or any of its other websites / domains owned and operated by
+        Crystal software.
+      </p>
+      <br />
+      <p>
+        Crystal software. does not share personally identifiable data of any
+        individual with other companies / entities without obtaining permission
+        except with those acting as our agents.. Crystal software. shall share
+        all such information that it has in its possession in response to legal
+        process, such as a court order or subpoena. The user shall not utilize
+        the services offered by UnexoIndia.com/CSLTD in any manner so as to
+        impair the interests and functioning of UnexoIndia.com/CSLTD . The user
+        undertakes not to duplicate, download publish, modify and distribute
+        material on UnexoIndia.com unless specifically authorized by CSLTD in
+        this regard.
+      </p>
+      <br />
+      <p>
+        The user undertakes to use UnexoIndia.com for his/her own purposes.
+        Using content from UnexoIndia.com for derivative works with a commercial
+        motive without prior written consent from CSLTD is strictly prohibited.
+      </p>
+      <br />
+      <p>
+        Users undertake that the services offered by UnexoIndia.com/ CSLTD shall
+        not be utilized to upload, post, email, transmit or otherwise make
+        available either directly or indirectly, any unsolicited bulk e-mail or
+        unsolicited commercial e-mail. CSLTD reserves the right to filter and
+        monitor and block the emails sent by you/user using the servers
+        maintained by CSLTD to relay emails. All attempts shall be made by CSLTD
+        and the user to abide by International Best Practices in containing and
+        eliminating Spam.
+      </p>
+      <br />
+      <p>
+        Users shall not spam the platform maintained by UnexoIndia.com / CSLTD
+        or indiscriminately and repeatedly post jobs/forward mail
+        indiscriminately etc. Any conduct of the user in violation of this
+        clause shall entitle CSLTD to forthwith terminate all services to the
+        user without notice and to forfeit any amounts paid by him.
+      </p>
+      <br />
+      <p>
+        The user shall not upload, post, transmit, publish, or distribute any
+        material or information that is unlawful, or which may potentially be
+        perceived as being harmful, threatening, abusive, harassing, defamatory,
+        libelous, vulgar, obscene, or racially, ethnically, or otherwise
+        objectionable.
+      </p>
+      <br />
+      <p>
+        The user expressly states that the resume/insertion or information/ data
+        being fed into the network of Crystal software. by the user is correct
+        and complete in all respects and does not contain any false, distorted,
+        manipulated, fraudulent or misleading facts or averments. Crystal
+        software. expressly disclaims any liability arising out of the said
+        resume insertion/information/ data so fed into the network of Crystal
+        software. by the user. Further, the user agrees to indemnify Crystal
+        software. for all losses incurred by Crystal software. due to any false,
+        distorted, manipulated, defamatory, libelous, vulgar, obscene,
+        fraudulent or misleading facts or otherwise objectionable averments made
+        by the user on the network of Crystal Software.
+      </p>
+      <br />
+      <p>
+        The User is solely responsible for maintaining confidentiality of the
+        User password and user identification and all activities and
+        transmission performed by the User through his user identification and
+        shall be solely responsible for carrying out any online or off-line
+        transaction involving credit cards / debit cards or such other forms of
+        instruments or documents for making such transactions and Crystal
+        software. assumes no responsibility or liability for their improper use
+        of information relating to such usage of credit cards / debit cards used
+        by the subscriber online / off-line.
+      </p>
+      <br />
+      <p>
+        The User/Subscriber/Visitor to UnexoIndia.com and/or its affiliated
+        websites does hereby specifically agree that he/she shall, at all times,
+        comply with the requirements of the Information Technology Act, 2000 as
+        also rules, regulations, guidelines, bye laws and notifications made
+        thereunder, while assessing or feeding any resume/ insertion or
+        information/data into the computers, computer systems or computer
+        network of Crystal Software. The said User/ subscriber/ visitor to
+        UnexoIndia.com and/or its affiliated websites does further unequivocally
+        declare that in case he violates any provisions of the Information
+        Technology Act, 2000 and/or rules, regulations, guidelines, byelaws and
+        notifications made thereunder, he shall alone be responsible for all his
+        acts, deeds and things and that he alone shall be liable for civil and
+        criminal liability there under or under any other law for the time being
+        in force.
+      </p>
+      <br />
+      <p>
+        The User is solely responsible for obtaining, at his own cost, all
+        licenses, permits, consents, approvals and intellectual property or
+        other rights as may be required by the user for using the Service.
+      </p>
+      <br />
+      <p>
+        THE USER REPRESENTS, WARRANTS AND COVENANTS THAT ITS USE OF
+        UNEXOINDIA.COM SHALL NOT BE DONE IN A MANNER SO AS TO:
+      </p>
+      <ol style="margin-left: 1rem">
+        <li>
+          Violate any applicable local, provincial, state, national or
+          international law, statute, ordinance, rule or regulation.
+        </li>
+        <li>
+          Interfere with or disrupt computer networks connected to
+          Unexoindia.com.
+        </li>
+        <li>
+          Impersonate any other person or entity, or make any misrepresentation
+          as to your employment by or affiliation with any other person or
+          entity.
+        </li>
+        <li>
+          Forge headers or in any manner manipulate identifiers in order to
+          disguise the origin of any user information.
+        </li>
+        <li>
+          Interfere with or disrupt the use of UnexoIndia.com by any other user,
+          nor "stalk", threaten, or in any manner harass another user.
+        </li>
+        <li>
+          Use UnexoIndia.com in such a manner as to gain unauthorized entry or
+          access to the computer systems of others.
+        </li>
+        <li>
+          Reproduce, copy, modify, sell, store, distribute or otherwise exploit
+          for any commercial purposes UnexoIndia.com, or any component thereof
+          (including, but not limited to any materials or information accessible
+          through UnexoIndia.com).
+        </li>
+        <li>
+          Use content from the Site for derivative works with a commercial
+          motive without prior written consent of the CSLTD.
+        </li>
+        <li>
+          Use any device, software or routine to interfere or attempt to
+          interfere with the proper working of UnexoIndia.com; or
+        </li>
+        <li>
+          Impose an unreasonable or disproportionately large load on
+          UnexoIndia.com infrastructure
+        </li>
+        <li>
+          Spam UnexoIndia.com/CSLTD by indiscriminately and repeatedly posting
+          content or forwarding mail that may be considered spam etc.
+        </li>
+        <li>
+          Access data not intended for you or log into server or account that
+          you are not authorized to access
+        </li>
+        <li>
+          Constitute an act of reverse engineering, decompiling, disassembling,
+          deciphering or otherwise attempting to derive the source code for the
+          Site or any related technology or any part thereof
+        </li>
+        <li>
+          Engage in "framing," "mirroring," or otherwise simulating the
+          appearance or function of the Site
+        </li>
+        <li>
+          Attempt to probe, scan or test the vulnerability of a system or
+          network;
+        </li>
+        <li>
+          Use automated means to crawl and/or scrape content from UnexoIndia.com
+          and to manually scrape content from UnexoIndia.com;
+        </li>
+        <li>
+          The Site uses technological means to exclude Robots etc. from crawling
+          it and scraping content. You undertake not to circumvent these
+          methods.
+        </li>
+        <li>
+          Access the Site except through the interfaces expressly provided by
+          CSLTD.
+        </li>
+        <li>
+          Attempt or breach security or authentication measures without proper
+          authorization
+        </li>
+        <li>
+          Providing deeplinks into UnexoIndia.com without prior permission of
+          CSLTD is prohibited. Extracting data from UnexoIndia.com using any
+          automated process such as spiders, crawlers etc. or through any manual
+          process for a purpose which has not been authorised in writing
+        </li>
+        <li>
+          Upload, post, email, transmit or otherwise make available either
+          directly or indirectly, any unsolicited bulk e-mail or unsolicited
+          commercial e-mail.
+        </li>
+        <li>
+          Subscribers shall under no circumstance sublicense, assign, or
+          transfer the License, and any attempt at such sublicense, assignment
+          or transfer is void.
+        </li>
+        <li>
+          Constitute hosting, modifying, uploading, posting, transmitting,
+          publishing, or distributing any material or information
+          <ol>
+            <li>For which you do not have all necessary rights and licenses</li>
+            <li>
+              Which infringes, violates, breaches or otherwise contravenes the
+              rights of any third party, including any copyright, trademark,
+              patent, rights of privacy or publicity or any other proprietary
+              right;
+            </li>
+            <li>
+              Which contains a computer virus, or other code, files or programs
+              intending in any manner to disrupt or interfere with the
+              functioning of UnexoIndia.com, or that of other computer systems
+            </li>
+            <li>
+              That is grossly harmful, harassing, invasive of another's privacy,
+              hateful, disparaging, relating to money laundering or unlawful, or
+              which may potentially be perceived as being harmful, threatening,
+              abusive, harassing, defamatory, libelous/blasphemous, vulgar,
+              obscene, or racially, ethnically, or otherwise unlawful in any
+              manner whatsoever.
+            </li>
+            <li>
+              Which constitutes or encourages conduct that would constitute a
+              criminal offence, give rise to other liability, or otherwise
+              violate applicable law
+            </li>
+            <li>
+              That deceives or misleads the addressee about the origin of such
+              messages or communicates any information which is grossly
+              offensive or menacing in nature
+            </li>
+            <li>
+              That belongs to another person and to which the user does not have
+              any right to
+            </li>
+            <li>That harm minors in any way</li>
+            <li>
+              That threatens the unity, integrity, defence, security or
+              sovereignty of India, friendly relations with foreign states, or
+              public order or causes incitement to the commission of any
+              cognisable offence or prevents investigation of any offence or is
+              insulting any other nation.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <br />
+      <p>
+        The user shall not infringe on any intellectual property rights of any
+        person / entity or retain information / download any information from
+        any computer system or otherwise with an intention to do so.
+      </p>
+      <br />
+      <p>
+        Crystal software. will make best efforts to do so but does not warrant
+        that any of the web sites or any affiliate site(s) or network system
+        linked to it is free of any operational errors nor does it warrant that
+        it will be free of any virus, computer contaminant, worm, or other
+        harmful components. The subscription of a user shall be subject to
+        Quotas as applicable and as advised. E-Mails provided as part of contact
+        details are expected to be genuine and access to such email accounts is
+        available to authorised personnel only.
+      </p>
+      <br />
+      <p>
+        Crystal software. shall not be liable for any loss or damage sustained
+        by reason of any disclosure (inadvertent or otherwise) of any
+        information concerning the user's account and / or information relating
+        to or regarding online transactions using credit cards / debit cards and
+        / or their verification process and particulars nor for any error,
+        omission or inaccuracy with respect to any information so disclosed and
+        used whether or not in pursuance of a legal process or otherwise.
+      </p>
+      <br />
+      <p>
+        Payments for the services offered by UnexoIndia.com shall be on a 100%
+        advance basis. Refund if any will be at the sole discretion of Crystal
+        Software. CSLTD offers no guarantees whatsoever for the accuracy or
+        timeliness of the refunds reaching the Customers card/bank accounts.
+        CSLTD gives no guarantees of server uptime or applications working
+        properly. All is on a best effort basis and liability is limited to
+        refund of amount only. CSLTD undertakes no liability for free services.
+        CSLTD reserves its right to amend / alter or change all or any
+        disclaimers or terms of agreements at any time without any prior notice.
+        All terms / disclaimers whether specifically mentioned or not shall be
+        deemed to be included if any reference is made to them.
+      </p>
+      <br />
+      <p>
+        Unless otherwise specified and notwithstanding anything contained in any
+        other agreement or arrangement, by whatever name called, the performance
+        obligation of CSLTD (service provider) is to provide access of its
+        on-line portal to the customer for the duration of the subscription
+        period & reference to any usage, by whatever name called or any other
+        performance obligation, if any, is to provide the upper limit for
+        consumption, which by itself, does not create any additional performance
+        obligation upon CSLTD
+      </p>
+      <br />
+      <p>
+        Subscriber/user acknowledges and agrees that CSLTD /UnexoIndia.com, at
+        its sole discretion and without prejudice to other rights and remedies
+        that it may have under the applicable laws, shall be entitled to set off
+        the amount paid or payable by a subscriber/user against any amount(s)
+        payable by Subscriber/user to CSLTD under any other agreement or
+        commercial relationship towards other products/services.
+      </p>
+      <br />
+      <p>
+        Crystal software. further reserves its right to post the data on the
+        website UnexoIndia.com or on such other affiliated sites and
+        publications as Crystal software. may deem fit and proper at no extra
+        cost to the subscriber / user.
+      </p>
+      <br />
+      <p>
+        The subscription / agreement between CSLTD and the subscriber / user is
+        not a "non-poach agreement" nor can the same be termed or used as an
+        alternative to "non-poach agreement" in as much as CSLTD /
+        UnexoIndia.com is a public site and all information posted by CSLTD goes
+        to the public domain except information / data which is specifically
+        assigned a non-public / private character.
+      </p>
+      <br />
+      <p>
+        Any agreement for a subscription / usage entered into by CSLTD does not
+        confer exclusivity of service on any subscriber / user.
+      </p>
+      <br />
+      <p>
+        Crystal software will not be party to any legal proceedings between a
+        user (e.g. a subscriber) and a party contracted through the site. In
+        case Crystal software. is implicated in any legal proceedings, costs
+        will be recovered from the party that names Crystal software. Crystal
+        Software however will abide with any court order served on it through
+        due process. CSLTD controls and operates this Platform from its
+        headquarters in Noida and makes no representation that the materials on
+        UnexoIndia.com are appropriate or available for use in other locations.
+        If you use this Website from other locations, you are responsible for
+        compliance with applicable local laws including but not limited to the
+        export and import regulations of other countries.
+      </p>
+      <br />
+      <p>
+        In case a person using the world wide web/internet receives a spam or
+        virus which includes a link to UnexoIndia.com or to any other site
+        maintained, operated or owned by CSLTD , it should not be held
+        responsible for the same. CSLTD assumes no responsibility for such
+        mails.
+      </p>
+      <br />
+      <p>
+        The services provided by the websites maintained, operated or owned by
+        CSLTD do not extend to acting as an agent (express or implied) on behalf
+        of any subscriber or user.
+      </p>
+      <br />
+      <p>
+        CSLTD has no agents and does not operate through any agents save for
+        those specifically mentioned on the home page of the website.
+      </p>
+      <br />
+      <p>
+        The Terms and conditions mentioned above regulate the usage of
+        UnexoIndia.com. Any person using UnexoIndia.com in violation of the
+        stipulations contained in the Terms and Conditions of UnexoIndia.com
+        shall render himself/herself liable to appropriate action in a court of
+        law both civil and criminal.
+      </p>
+      <br />
+      <p>
+        BY ACCEPTING THESE TERMS AND CONDITIONS, YOU AGREE TO INDEMNIFY AND
+        OTHERWISE HOLD HARMLESS CSLTD , ITS DIRECTORS, OFFICERS, EMPLOYERS,
+        AGENTS, SUBSIDIARIES, AFFILIATES AND OTHER PARTNERS FROM ANY DIRECT,
+        INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR EXEMPLARY DAMAGES
+        ARISING OUT OF, RELATING TO, OR RESULTING FROM YOUR USE OF THE SERVICES
+        OBTAINED THROUGH UNEXOINDIA.COM INCLUDING BUT NOT LIMITED TO INFORMATION
+        PROVIDED BY YOU OR ANY OTHER MATTER RELATING TO UNEXOINDIA.COM. ANY
+        REFERENCE TO DUTIES AND TAXES ETC IN THESE TERMS OF USE SHALL INCLUDE
+        GOODS AND SERVICES TAX (HEREIN REFERRED AS GST) FROM THE DATE GST LAW IS
+        IMPLEMENTED IN INDIA. ANY ADDITIONAL TAX LIABILITY ARISING ON ACCOUNT OF
+        INTRODUCTION OF GST (WHETHER ON ACCOUNT OF INCREASE IN RATE OR ANY
+        CHANGE BROUGHT IN BY THE NEW TAX REGIME) WOULD BE RECOVERED OVER AND
+        ABOVE THE AGREED CONTRACT PRICE / SERVICE FEE.
+      </p>
+      <br />
+      <p>
+        If any dispute arises between a user/users and CSLTD arising out of use
+        of UnexoIndia.com or thereafter, in connection with the validity,
+        interpretation, implementation or alleged breach of any provision of
+        these Terms and Conditions, the dispute shall be referred to a sole
+        arbitrator who shall be an independent and neutral third party
+        identified by the Company. Decision of the arbitrator shall be final and
+        binding on both the parties to the dispute. The place of arbitration
+        shall be New Delhi, India. The Arbitration & Conciliation Act, 1996 as
+        amended, shall govern the arbitration proceedings.
+      </p>
+      <br />
+      <p>
+        These Terms and Conditions shall be governed by the laws of Republic of
+        India. The exclusive forum for any disputes arising out of or relating
+        to these Terms of Use shall be a court of law located in New Delhi,
+        India
+      </p>
+      <br />
+      <p>
+        CSLTD andCrystal software. are used interchangeably and are synonymous.
+      </p>
+      <br />
+      <p>
+        The user of UnexoIndia.com is subject to the Privacy Policy available
+        through this link.
+      </p>
+      <br />
+      <p>
+        In case of non compliance of these Terms and Conditions or Privacy
+        Policy CSLTD may terminate usage rights and take down any offending
+        information that might might have been uploaded by such subscriber/user.
+      </p>
+      <br />
+      <b>
+        ADDITIONALLY, BASIS SERVICES CHOSEN, CERTAIN PRODUCT/SERVICE SPECIFIC
+        CONDITIONS MAY APPLY.
+      </b>
+      <br />
+      <h5>Job Seekers</h5>
+      <ol style="margin-left: 1rem">
+        <li>
+          UnexoFastForward Services / Resume Posting / Submission of Resume /
+          Resume Upload / Resume Manager
+        </li>
+        <li>Resume Display</li>
+        <li>RecruiterConnection</li>
+        <li>Resume Writing</li>
+        <li>Applications by Non Registered Users</li>
+        <li>Job Search and Resume Services on SMS</li>
+        <li>UnexoIndia.com Security Center</li>
+      </ol>
+      <br />
+      <h5>Recruiters</h5>
+      <ol style="margin-left: 1rem">
+        <li>Classified Job listing (single)</li>
+        <li>Classified Subscriptions for various period</li>
+        <li>Hot Vacancies (single)</li>
+        <li>Hot Vacancies Subscriptions</li>
+        <li>Job Gallery</li>
+        <li>Best Places to Work</li>
+        <li>Manual Shortlisting</li>
+        <li>Display of Banners</li>
+        <li>e-Apps</li>
+        <li>Resdex</li>
+        <li>Insta Hire</li>
+        <li>Unexo India</li>
+      </ol>
+      <br />
+      <ol style="margin-left: 1rem">
+        <li>
+          Unexo India FastForward Services / Resume Posting / Submission of
+          Resume / Resume Upload / Resume Manager by registering your resume on
+          UnexoIndia.com, you agree to the following terms
+          <ol>
+            <li>
+              The resume/ insertion or information/data fed by the user can be
+              updated by the user alone, free of cost.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              resume/ insertion or information/data is fed by the user
+            </li>
+            <li>
+              Crystal Software neither guarantees nor offers any warranty about
+              the credentials bonafides, status or otherwise of the prospective
+              employer/organization which downloads the resume/ insertion or
+              information/data and uses it to contact the user
+            </li>
+            <li>
+              Crystal Software would not be held liable for loss of any data
+              technical or otherwise, or of the resume/ insertion or
+              information/data or particulars supplied by user due to acts of
+              god as well as reasons beyond its control like corruption of data
+              or delay or failure to perform as a result of any cause(s) or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strikes, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              distributed denial of service attacks, virus attacks, war and
+              natural calamities
+            </li>
+            <li>
+              It shall be sole prerogative and responsibility of the user to
+              check the authenticity of all or any response received pursuant to
+              the resume/ insertion or information/data being fed into the
+              network system of Crystal Software by the user, for going out of
+              station or in station for any job or interview. Crystal Software
+              assumes no responsibility in respect thereof and expressly
+              disclaims any liability for any act, deed or thing which the user
+              may so do, pursuant to the receipt of the response, if any, to the
+              resume/ insertion or information/ date being fed into the network
+              system of Crystal Software.
+            </li>
+            <li>
+              Uploading of multiple resumes beyond a reasonable limit by the
+              same individual, using the same or different accounts shall
+              entitle Crystal Software to remove the Resumes without notice to
+              the subscriber.This service is only meant for candidates looking
+              for suitable jobs. Any usage with commercial intent is prohibited.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject and delete any
+              resume/ insertion or information/data fed in by the user without
+              assigning any reason.
+            </li>
+            <li>
+              This free service entitles the user alone i.e the same person, to
+              add modify or change the data/information fed in by him but does
+              not entitle him to use the free service to feed fresh insertion or
+              information/data /resume of another person in place of the
+              insertion or information/data already fed in by such user.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of resume in order to fit resume in its
+              database.
+            </li>
+            <li>
+              The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to access all the information
+              received through UnexoIndia.com, but the sole responsibility of
+              the safe custody of the password shall be that of the subscriber
+              and Crystal Software shall not be responsible for data loss/theft
+              of data/corruption of data or the wrong usage/misuse of the
+              password and any damage or leak of information and its
+              consequential usage by a third party. Crystal Software undertakes
+              to take all reasonable precautions at its end to ensure that there
+              is no leakage/misuse of the password granted to the subscriber.
+              When you indicate your interest in a Job Listing on
+              UnexoIndia.com, you are sending your CV and application
+              information including relevant documents to UnexoIndia.com, and
+              you are requesting and authorizing UnexoIndia.com to make
+              available such application information to the applicable
+              Employer(s) for such Job Listing(s).
+            </li>
+            <li>
+              In addition, by using UnexoIndia.com, you agree that
+              UnexoIndia.com is not responsible for the content of the
+              Employer's application form, messages, screener questions, testing
+              assessments; required documents, or their format or method of
+              delivery.
+            </li>
+            <li>
+              You consent to your application, documents and any responses sent
+              to you by the Employer or vice versa through UnexoIndia.com being
+              processed and analysed by UnexoIndia.com according to these terms
+              of use and Unexo India.com Privacy Policy. UnexoIndia.com shall
+              store and process such information regardless of whether a job
+              vacancy has been filled. UnexoIndia.com may use your application
+              materials (including public CVs and responses to employer's
+              questions) to determine whether you may be interested in a Job
+              Listing, and UnexoIndia.com may reach out to you about such Job
+              Listing.
+            </li>
+            <li>
+              Information you post in public areas of Unexo sites or
+              applications or make visible in the resume and profile database
+              may be accessed, used, and stored by others around the world,
+              including those in countries that might not have legislation that
+              guarantees adequate protection of personal information as defined
+              by your country of residence. While UnexoIndia.com takes measures
+              to safeguard your information from unauthorized access or
+              inappropriate use, UnexoIndia.com does not control these third
+              parties and we are not responsible for their use of information
+              you give to us. Accordingly, you should not post sensitive
+              information or any other information you would not want made
+              public, to any portion of UnexoIndia.com or application or to a
+              public website.
+            </li>
+            <li>
+              In order to use UnexoIndia.com, you may sign in using your
+              Facebook/Google login. If you do so, you authorize us to access
+              and use certain Facebook/Google account information, including but
+              not limited to your public Facebook profile and posts. For more
+              details regarding the information we collect from you and how we
+              use it, please visit our Privacy Policy
+            </li>
+            <li>
+              It shall be the sole responsibility of the user to ensure that it
+              uses the privacy setting options as it deems fit to debar / refuse
+              access of the data fed by it, to such corporate entities
+              individuals or consultants. Crystal Software shall not be
+              responsible for such insertions / data being accessed by its
+              subscribers or users whose access has not been specifically
+              blocked /debarred by the user while using the privacy settings.
+            </li>
+            <li>
+              Even though you may have marked your profile as unsearchable, on
+              viewing a UnexoIndiaprofile when you are logged into your
+              UnexoIndia.com account, a snapshot of your profile maybe made
+              visible to the recruiter.
+            </li>
+            <li>
+              Although Crystal Software will make all possible efforts to adhere
+              to these privacy settings, it will not be responsible for a resume
+              being seen by a blocked user for any reason. For best privacy
+              settings it is recommended that you do not allow your resume to be
+              searched at all.
+            </li>
+            <li>
+              The user represents that he/she is not a minor and is not under
+              any legal or other disability which limits his/her ability to
+              comply with these Terms or to install and use the services
+              subscribed and purchased with minimal risk of harm to you or
+              others. You further represent that you are not purchasing the
+              products/services for resale to others and will not do so without
+              Crystal Software (India) Limited's prior written consent.
+            </li>
+            <li>
+              All changes / modifications made by the user to the data /
+              information shall be effected and will come into operation only
+              after 24-48 hours of such changes / modifications being made.
+            </li>
+            <li>
+              On registration you agree to: a) Making your resume searchable to
+              clients of CSLTD who subscribe to RESDEX (Resume Database Access).
+              You may be contacted by subscribers of RESDEX via email, telephone
+              (even though you may have registered with NDNC) and/or post. If
+              you wish to modify this setting and make yourself non-searchable,
+              you may reset this in the Privacy Setting section of your resume.
+              We recommend that you read the privacy settings carefully and
+              CSLTD will not be held responsible for contacts/mails received by
+              you. b) Receive job alerts (mails detailing jobs that match your
+              profile as entered on UnexoIndia.com) via email. You may remove
+              yourself from the job alert email database by resetting this
+              option in the Privacy Setting section of your resume c) Receive
+              promotional mailers/ special offers. You may remove yourself from
+              the promotional mailer email database by resetting this option on
+              the Privacy Setting section of your resume.
+            </li>
+            <li>
+              The user agreement between a user/subscriber and CSLTD will be
+              treated as having been terminated in the following events: ( i )
+              On completion of the term for which the user/subscriber engages
+              the services of the website; or ( ii ) In case the user/subscriber
+              violates any of the conditions of this agreement or any other
+              agreement entered into by him with CSLTD , however, such
+              termination will be at the option and discretion of CSLTD ; or (
+              iii )On writing and on such terms as agreed to by the parties
+              mutually.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Resume Display
+          <ol>
+            <li>
+              In case necessary inputs required by us for commencing the
+              services are not received by us within 30 days of the payment, the
+              order shall stand cancelled and the any amounts paid shall be
+              appropriated.
+            </li>
+            <li>
+              The payment for service once subscribed to by the subscriber is
+              not refundable and any amount paid shall stand appropriated.
+            </li>
+            <li>
+              The amount paid entitles the subscriber alone to the service by
+              Crystal Software for a period of subscription opted for from the
+              date of up-linking of the resume on the website UnexoIndia.com or
+              such other mirror or parallel site(s) as Crystal Software may deem
+              fit and proper but such web host shall be without any extra cost
+              to the subscriber / user
+            </li>
+            <li>
+              The resume displayed can be updated by the subscriber alone free
+              of cost
+            </li>
+            <li>
+              Notwithstanding anything contained herein, through Resume Display
+              service your resume is made available from the home page of
+              UnexoIndia.com and can be by freely accessed by anyone.
+            </li>
+            <li>
+              Additionally, through this service your resume is also made a part
+              of Unexo India.com proprietary database, accessed only by
+              companies/recruiter registered with us. Please log into your
+              account and set the visibility of the resume as desired by you,
+              here you can selectively block a company/recruiter from accessing
+              your resume. (Please note that the confidentiality settings of the
+              resume which has been made part of the exclusive database is
+              independent of the confidentiality settings of the resume made
+              part of the free search service)
+            </li>
+            <li>
+              Crystal Software offers neither guarantee nor warranties that
+              there would be a satisfactory response or any response at all once
+              the resume is put on display.
+            </li>
+            <li>
+              Crystal Software neither guarantees nor offers any warranty about
+              the credentials of the prospective employer/organization which
+              down loads the information and uses it to contact the prospective
+              employee / visitor / user / subscriber.
+            </li>
+            <li>
+              Crystal Software would not be held liable for loss of any data
+              technical or otherwise, and particulars supplied by subscribers
+              due to reasons beyond its control like corruption of data or delay
+              or failure to perform as a result of any causes or conditions that
+              are beyond Crystal Software's reasonable control including but not
+              limited to strikes, riots, civil unrest, Govt. policies, tampering
+              of data by unauthorized persons like hackers, war and natural
+              calamities.
+            </li>
+            <li>
+              It shall be the sole prerogative and responsibility of the
+              individual to check the authenticity of all or any response
+              received pursuant to the resume being displayed by Crystal
+              Software for going out of station or in station for any job /
+              interview and Crystal Software assumes no responsibility in
+              respect thereof.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, refund if any shall be on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from subscriber or from a
+              third party on behalf of the subscriber.
+            </li>
+            <li>
+              This subscription is not transferable i.e. it is for the same
+              person throughout the period of subscription.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of resume in order to fit the resume in its
+              database.
+            </li>
+            <li>
+              The liability, if any, of Crystal Software is limited to the
+              extent of the amount paid by the subscriber
+            </li>
+            <li>
+              The subscriber shall be assigned password(s) by Crystal Software
+              to enable the subscriber to access all the information received
+              through its site UnexoIndia.com, but the sole responsibility of
+              the safe custody of the password shall be that of the subscriber
+              and Crystal Software shall not be responsible for data loss/theft
+              or data/corruption or the wrong usage/misuse of the password and
+              any damage or leak of information and its consequential usage by a
+              third party. Crystal Software undertakes to take all reasonable
+              precautions at its end to ensure that there is no leakage/misuse
+              of the password granted to the subscriber
+            </li>
+            <li>
+              The subscriber undertakes that the data/information provided by
+              him is true and correct in all respects
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Recruiter Connection
+          <ol>
+            <li>
+              The payment for service once subscribed to by the subscriber is
+              not refundable and any amount paid shall stand appropriated
+            </li>
+            <li>
+              Through RecruiterConnection, the subscriber can buy credits to
+              send messages to the recruiter of his/her choice
+            </li>
+            <li>
+              If the recruiter does not view the message sent to him/her within
+              15 days, the period being subject to change without prior notice,
+              then the credit would be returned to the jobseeker. Credits will
+              be returned only once
+            </li>
+            <li>
+              All the credits are valid for one year from the date of purchase.
+            </li>
+            <li>
+              After contacting a recruiter, the jobseeker cannot send a message
+              to the same recruiter for 30 days, the period being subject to
+              change without prior notice.
+            </li>
+            <li>
+              Using the service, the jobseeker would be able to send a message
+              of maximum 500 characters along with a subject line of maximum 200
+              characters
+            </li>
+            <li>
+              Crystal Software offers neither guarantee nor warranties that
+              there would be a satisfactory response or any response at all once
+              the message is sent to the recruiter
+            </li>
+            <li>
+              Crystal Software neither guarantees nor offers any warranty about
+              the credentials of the prospective recruiter/organization which
+              sees the message and down loads the information and uses it to
+              contact the prospective employee / visitor / user / subscriber.
+            </li>
+            <li>
+              It shall be the sole prerogative and responsibility of the
+              individual to check the authenticity of all or any response
+              received pursuant to the connect message for going out of station
+              or in station for any job / interview and Crystal Software assumes
+              no responsibility in respect thereof.
+            </li>
+            <li>
+              This subscription is not transferable i.e. it is for the same
+              person throughout the period of subscription.
+            </li>
+            <li>
+              The subscriber undertakes that the data/information provided by
+              him is true and correct in all respects.
+            </li>
+            <li>
+              This service shall not be utilized by the user for
+              uploading/transmitting content which is illegal or objectionable
+              in any manner
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Resume Writing
+          <ol>
+            <li>
+              In case necessary inputs required by us for commencing the
+              services are not received by us within 30 days of the payment, the
+              order shall stand cancelled and the any amounts paid shall be
+              appropriated
+            </li>
+            <li>
+              The subscriber shall certify that the information/data supplied by
+              it to Crystal Software is accurate and correct
+            </li>
+            <li>
+              The subscriber shall give reasonable time to Crystal Software for
+              writing of resumes
+            </li>
+            <li>
+              The subscriber must respond to the queries raised (sent by email)
+              by Crystal Software within 7 days of such a query being raised
+              failing which, Crystal Software shall stand absolved of all its
+              obligation, if any
+            </li>
+            <li>
+              The subscription amount once paid for by the subscribers is not
+              refundable and all amount(s) paid on behalf of the subscriber
+              shall stand appropriated.
+            </li>
+            <li>
+              The liability, if any, of Crystal Software is limited to the
+              extent of the amount paid by the subscriber.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              resume is written and used by the subscriber to apply for jobs
+            </li>
+            <li>
+              Crystal Software shall not be held liable for loss of any data
+              technical or otherwise, information, particulars supplied by
+              subscriber due to reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strikes, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason, but in such an eventuality, any amount so paid for, shall
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from subscriber or from a
+              third party on behalf of the subscriber.
+            </li>
+            <li>
+              This subscription is not transferable i.e. it is for the same
+              person throughout the period of subscription.
+            </li>
+            <li>
+              The subscriber shall be assigned password(s) by Crystal Software
+              to enable the subscriber to access all the information received
+              through UnexoIndia.com, but the sole responsibility of the safe
+              custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website.
+            </li>
+            <li>
+              Content and Images( Visuals) in visual resume are provided by
+              Subscriber. Crystal Software India Limited disclaims all
+              warranties against infringement.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Jobs on the Move (Jobs4U) & Priority Applicant
+          <ol>
+            <li>
+              The payment for service once subscribed to by the subscriber is
+              not refundable and any amount paid shall stand appropriated.
+            </li>
+            <li>
+              The amount paid entitles the subscriber alone to the service by
+              Crystal Software for a period of subscription opted for from the
+              date of sending the first job SMS.
+            </li>
+            <li>
+              Crystal Software uses an automated algorithm to match jobs against
+              the keywords/attributes present in the profile submitted by the
+              user, and hence offers no guarantee nor warranties that the jobs
+              sent in the job SMS will be relevant to the profile.
+            </li>
+            <li>
+              Crystal Software neither guarantees nor offers any warranty about
+              the credentials of the prospective employer/organization whose
+              details are sent in the Job SMS.
+            </li>
+            <li>
+              By opting for this service you are agreeing to receive details of
+              Jobs from UnexoIndia.com, on your mobile, till the tenure of the
+              service
+            </li>
+            <li>
+              Crystal Software will try its utmost best to try and deliver all
+              SMS sent, however, it does not take any responsibility for SMSes
+              not delivered (which may be on account of phones being out of
+              order, operator network problems, SIM not being used anymore
+              etcetera). It does take the responsibility of the SMSes leaving
+              its vendor SMS gateway
+            </li>
+            <li>
+              Crystal Software will not be responsible in any way for failure of
+              any backend technology of SMS applications at the Operators end
+              and resultant inability of a user to receive SMS
+            </li>
+            <li>
+              Crystal Software reserves the right to regulate number of SMSes
+              sent out to a particular user in a single day
+            </li>
+            <li>
+              The service will be delivered on the mobile number provided at the
+              time of purchase of the service, and will continue on the new
+              number if changed by the user.
+            </li>
+            <li>
+              If there are no jobs found matching the user's profile, an
+              intimation SMS & email is sent to the user, on the 7th day and the
+              user is asked for changing/editing his profile.
+            </li>
+            <li>
+              Crystal Software would not be held liable for loss of any data
+              technical or otherwise, and particulars supplied by subscribers
+              due to reasons beyond its control like corruption of data or delay
+              or failure to perform as a result of any causes or conditions that
+              are beyond Crystal Software's reasonable control including but not
+              limited to strikes, riots, civil unrest, Govt. policies, tampering
+              of data by unauthorized persons like hackers, war and natural
+              calamities.
+            </li>
+            <li>
+              It shall be the sole prerogative and responsibility of the
+              individual to check the authenticity of all or any response
+              received pursuant to the resume being displayed by Crystal
+              Software for going out of station or in station for any job /
+              interview and Crystal Software assumes no responsibility in
+              respect thereof.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, refund if any shall be on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from subscriber or from a
+              third party on behalf of the subscriber.
+            </li>
+            <li>
+              This subscription is not transferable i.e. it is for the same
+              person throughout the period of subscription.
+            </li>
+            <li>
+              The liability, if any, of Crystal Software is limited to the
+              extent of the amount paid by the subscriber
+            </li>
+            <li>
+              The subscriber shall be assigned password (s) by Crystal Software
+              to enable the subscriber to access all the information received
+              through its site UnexoIndia.com, but the sole responsibility of
+              the safe custody of the password shall be that of the subscriber
+              and Crystal Software shall not be responsible for data loss/theft
+              or data/corruption or the wrong usage/misuse of the password and
+              any damage or leak of information and its consequential usage by a
+              third party. Crystal Software undertakes to take all reasonable
+              precautions at its end to ensure that there is no leakage/misuse
+              of the password granted to the subscriber.
+            </li>
+            <li>
+              The subscriber undertakes that the data/information provided by
+              him is true and correct in all respects.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website.
+            </li>
+            <li>
+              If you would like to s the service before the due date, please
+              write an email to service@unexoindia.com
+            </li>
+          </ol>
+        </li>
+        <li>
+          Interview Pro
+          <ol>
+            <li>
+              The payment for service once subscribed to by the subscriber is
+              not refundable and any amount paid shall stand appropriated.
+            </li>
+            <li>
+              The user understands that:
+              <ol>
+                <li>
+                  Services once subscribed can only be activated post the
+                  subscriber having uploaded his/her updated profile.
+                </li>
+                <li>
+                  The Industry expert who conducts the interview can only do so
+                  once, service has been activated and the resume of the
+                  user/subscriber has been shared by the user/subscriber
+                </li>
+                <li>
+                  The user understands that this is a time based product to be
+                  utilized within a specified period of time. Once subscribed
+                  therefore the Interview Pro product must be activated and
+                  utilized by him/her within a reasonable period of time of the
+                  same being subscribed.
+                </li>
+              </ol>
+            </li>
+            <li>
+              Crystal software. does not share personally identifiable data of
+              any individual with other companies/entities without obtaining
+              permission. Crystal software. may share all such information that
+              it has in its possession for its own purposes including sending
+              promotional mailers etc and in response to legal process, such as
+              a court order or subpoena
+            </li>
+            <li>
+              The user undertakes that he/she will not disseminate
+              false/objectionable/offensive material using these services
+            </li>
+            <li>
+              Crystal Software would not be held liable for loss of any data
+              technical or otherwise, and particulars supplied by subscribers
+              due to reasons beyond its control like corruption of data or delay
+              or failure to perform as a result of any causes or conditions that
+              are beyond Crystal Software's reasonable control including but not
+              limited to strikes, riots, civil unrest, Govt. policies, tampering
+              of data by unauthorized persons like hackers, war and natural
+              calamities. Crystal Software will commence providing services only
+              upon receipt of amount/charges upfront either from subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              This subscription is not transferable i.e. it is for the same
+              person throughout the period of subscription.
+            </li>
+            <li>
+              The liability, if any, of Crystal Software is limited to the
+              extent of the amount paid by the subscriber.
+            </li>
+            <li>
+              The subscriber shall be assigned password (s) by Crystal Software
+              to enable the subscriber to access all the information received
+              through its site UnexoIndia.com, but the sole responsibility of
+              the safe custody of the password shall be that of the subscriber
+              and Crystal Software shall not be responsible for data loss/theft
+              or data/corruption or the wrong usage/misuse of the password and
+              any damage or leak of information and its consequential usage by a
+              third party. Crystal Software undertakes to take all reasonable
+              precautions at its end to ensure that there is no leakage/misuse
+              of the password granted to the subscriber.
+            </li>
+            <li>
+              The subscriber undertakes that the data/information provided by
+              him is true and correct in all respects.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Applications by Non Registered Users
+          <ol>
+            <li>
+              The user undertakes that the data/information being provided by
+              him/her in the resume is true and correct in all respects.
+            </li>
+            <li>
+              Crystal software. does not share personally identifiable data of
+              any individual with other companies/entities without obtaining
+              permission. Crystal software. may share all such information that
+              it has in its possession for its own purposes including sending
+              promotional mailers etc and in response to legal process, such as
+              a court order or subpoena.
+            </li>
+            <li>
+              The user undertakes that he/she will not disseminate
+              false/objectionable/offensive material using these services.
+            </li>
+            <li>
+              This interface shall be exclusively for the purposes of bona fide
+              job applications; usage of the interface in any other fashion is
+              strictly prohibited.
+            </li>
+            <li>
+              Crystal Software neither guarantees nor offers any warranty about
+              the credentials bonafides, status or otherwise of the prospective
+              employer/organization which downloads the resume/ insertion or
+              information/data and uses it to contact the user.
+            </li>
+            <li>
+              The user shall not infringe on any intellectual property rights of
+              any person/entity or retain information/download any information
+              from any computer system or otherwise with an intention to do so
+            </li>
+            <li>
+              The User/subscriber/visitor to UnexoIndia.com or affiliated
+              site(s) is prohibited from introducing/posting or transmitting
+              information or software, which contains a computer virus, or a
+              contaminant, worm or other harmful components on the internet or
+              on UnexoIndia.com site or sub-domains or on any affiliate sites or
+              any other network system
+            </li>
+            <li>
+              Crystal software. will not be party to any legal proceedings
+              between a user (e.g. a subscriber) and a party contracted through
+              the site. In case Crystal software. is implicated in any legal
+              proceedings, costs will be recovered from the party that names
+              Crystal software. Crystal Software however will abide with any
+              court order served on it through due process.
+            </li>
+            <li>
+              When you indicate your interest in a Job Listing on
+              UnexoIndia.com, you are sending your CV and application
+              information including relevant documents to UnexoIndia.com, and
+              you are requesting and authorizing UnexoIndia.com to make
+              available such application information to the applicable
+              Employer(s) for such Job Listing(s).
+            </li>
+            <li>
+              In addition, by using UnexoIndia.com, you agree that
+              UnexoIndia.com is not responsible for the content of the
+              Employer's application form, messages, screener questions, testing
+              assessments; required documents, or their format or method of
+              delivery.
+            </li>
+            <li>
+              You consent to your application, documents and any responses sent
+              to you by the Employer or vice versa through UnexoIndia.com being
+              processed and analysed by UnexoIndia.com according to these terms
+              of use and Unexo India.com Privacy Policy. UnexoIndia.com shall
+              store and process such information regardless of whether a job
+              vacancy has been filled. UnexoIndia.com may use your application
+              materials (including public CVs and responses to employer's
+              questions) to determine whether you may be interested in a Job
+              Listing, and UnexoIndia.com may reach out to you about such Job
+              Listing.
+            </li>
+            <li>
+              Information you post in public areas of Unexo sites or
+              applications or make visible in the resume and profile database
+              may be accessed, used, and stored by others around the world,
+              including those in countries that might not have legislation that
+              guarantees adequate protection of personal information as defined
+              by your country of residence. While UnexoIndia.com takes measures
+              to safeguard your information from unauthorized access or
+              inappropriate use, UnexoIndia.com does not control these third
+              parties and we are not responsible for their use of information
+              you give to us. Accordingly, you should not post sensitive
+              information or any other information you would not want made
+              public, to any portion of UnexoIndia.com or application or to a
+              public website.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Job Search & Resume Services on SMS
+          <ol>
+            <li>
+              The subscriber availing this service shall be deemed to have
+              consented to be bound by all the applicable terms and conditions
+              of this service.
+            </li>
+            <li>
+              Decision of Crystal Software regarding all transactions under this
+              service shall be final and binding and no correspondence shall be
+              entertained in this regard.
+            </li>
+            <li>
+              Crystal Software reserves the right to extend, cancel,
+              discontinue, prematurely withdraw, change, alter or modify this
+              service or any part thereof including charges, at its sole
+              discretion at anytime as may be required in view of business
+              exigencies and/or regulatory or statutory changes.
+            </li>
+            <li>
+              Your mobile phone number (MSISDN) will be used during the
+              transmission of text messages through the mobile service
+              provider's server for SMS Service.
+            </li>
+            <li>
+              The membership is for your personal use only. You cannot transfer,
+              assign or authorize your membership to any other person.
+            </li>
+            <li>
+              The subscriber understands that he/she can avail SMS Services at
+              his/her discretion and the said service shall be availed in such
+              options as are made available by Crystal Software from time to
+              time.
+            </li>
+            <li>
+              This service is subject to guidelines/directions issued by Telecom
+              Regulatory Authority of India or any other statutory authority
+              from time to time.
+            </li>
+            <li>
+              The SMS or its contents once sent for availing the SMS services
+              shall be treated as final and the same cannot be withdrawn,
+              changed or retrieved subsequently under any circumstances.
+            </li>
+            <li>
+              WAP Services enable you to access our Services and to submit
+              and/or receive Content through your wireless Device. Your access
+              to our WAP Services may be dependent on the wireless Device you
+              use to access the applicable WAP services.
+            </li>
+            <li>
+              Subscription Services provide you with access to certain Content
+              for a selected period of time, which will be as indicated and
+              chosen by you prior to purchase. The frequency with which you will
+              receive the relevant Content will be notified to you at the time
+              you subscribe for the service.
+            </li>
+            <li>
+              You will not post or transmit any content that is abusive,
+              obscene, sexually oriented or against national interest. Crystal
+              Software reserves the right to suspend your profile if any
+              prohibitive or objectionable content is found and may further
+              initiate appropriate legal proceedings against you.
+            </li>
+            <li>
+              The Service is an additional service offered by Crystal Software.
+              The functions of the Service are dependent on the Operator owning
+              the network to facilitate this service (Operator), for which
+              Crystal Software does not undertake any responsibility for failure
+              of this network transmission or failure of message transmission
+              for any reasons whatsoever. From time to time, Crystal Software
+              may include additional features and services.
+            </li>
+            <li>
+              Crystal Software reserves the right to modify/delete the profile
+              contents at its own discretion without prior notice if the
+              contents of profile are deemed unfit for broadcast.
+            </li>
+            <li>
+              Crystal Software is not responsible for authenticity of the
+              content arising thereto.
+            </li>
+            <li>
+              The subscriber must maintain such minimum balance in his/her
+              prepaid account as is specified by Crystal Software for availing
+              the particular option offered under these services. All incidental
+              costs/taxes/levies, if any, related to the VAS shall be entirely
+              borne by the customer
+            </li>
+            <li>
+              The users specifically note and agree that the content and service
+              or part thereof may be varied, added, withdrawn, withheld or
+              suspended by Crystal Software at its sole discretion without prior
+              notice to the users.
+            </li>
+            <li>
+              Crystal Software shall not be liable for any costs, loss or damage
+              (whether direct or indirect), or for loss of revenue, loss of
+              profits or any consequential loss whatsoever as a result of the
+              user using the Service.
+            </li>
+            <li>
+              No reversal of deducted charges shall be allowed under any
+              circumstances.
+            </li>
+            <li>
+              The users shall remain solely responsible for all content,
+              information, data originated from the users and transmitted via
+              the Service (content), and the users shall accordingly indemnify
+              Crystal Software and / or the Operator, against all third party
+              claims relating to the users content or due to the users act,
+              negligence or omission.
+            </li>
+            <li>
+              You are bound by the terms and conditions as mentioned herein and
+              as stated on the site.
+            </li>
+            <li>
+              Message delivery is conditional to Mobile operator's technical
+              infrastructure and its network uptime.
+            </li>
+            <li>
+              By using various SMS based services from Crystal Software like Job
+              Search, Job Alert, Unexo forum Chat, Career services etc , you
+              agree to receive phone calls, messages etc. from Crystal Software
+              and/or its associates tailored to provide with better job
+              opportunities.
+            </li>
+            <li>
+              Subscribing or using various paid/free services of Crystal
+              Software on SMS/Voice/WAP either directly or indirectly doesn't in
+              any manner guarantee the user a job.
+            </li>
+            <li>
+              Crystal Software and/or its respective suppliers make no
+              representations about the suitability, reliability, availability,
+              timeliness, lack of viruses or other harmful components and
+              accuracy of the information, software, products, services and
+              related graphics contained within the, Crystal Software
+              sites/services for any purpose. All such information, software,
+              products, services and related graphics are provided "as is"
+              without warranty of any kind. Crystal Software and/or its
+              respective suppliers hereby disclaim all warranties and conditions
+              with regard to this information, software, products, services and
+              related graphics, including all implied warranties and conditions
+              of merchantability, fitness for a particular purpose, workmanlike
+              effort, title and non-infringement. Crystal Software shall not be
+              responsible or liable for any consequential damages arising
+              thereto
+            </li>
+            <li>
+              By agreeing to register at UnexoIndia.com, a user allows Crystal
+              Software to get in touch with him/her from time to time on events
+              or offers regarding jobs and ancillary services on mobile. This
+              can include exciting offers, information, as well as promotions.
+            </li>
+            <li>
+              The subscriber shall comply with all directions/instructions etc.
+              issued by the Company relating to the network, the services and
+              any/all matters connected therewith and provide the Company all
+              other and further information and co-operation as the Company may
+              require from time to time.
+            </li>
+            <li>
+              Registration presumes that the users have read, understood and
+              accepted the terms and conditions.
+            </li>
+            <li>This service is live in India only.</li>
+          </ol>
+        </li>
+      </ol>
+      <br />
+      <h4>Recruiter</h4>
+      <br />
+      <p>
+        Additional Terms applicable to Recruiters "You" accessing any portion of
+        the website UnexoIndia.com:
+      </p>
+      <ol style="margin-left: 1rem">
+        <li>
+          You will comply with all applicable data protection laws in relation
+          to the processing of personal data; and not process personal data in
+          an unlawful manner and excessive with regard to agreed purposes as
+          defined in the privacy policy and this terms and conditions
+        </li>
+        <li>
+          You shall implement adequate technical and organizational controls to
+          protect the shared personal data obtained from the Company against
+          unauthorised or unlawful processing and against accidental loss,
+          destruction, damage, alteration or disclosure
+        </li>
+        <li>
+          You agree to provide reasonable assistance as is necessary to
+          facilitate the handling of any Data Security Breach (as relevant under
+          privacy laws applicable) in an expeditious and compliant manner
+        </li>
+        <li>
+          You agree that the responsibility for complying with a data subject
+          /data principal request lies with the Party which holds/processes the
+          Personal Data collected/shared
+        </li>
+        <li>
+          You warrant and represent that the institution shall not disclose or
+          transfer Personal Data obtained from the Company to any sub-processors
+          without ensuring that adequate and equivalent safeguards to the
+          Personal Data.
+        </li>
+        <li>
+          You shall retain or process shared Personal Data for no longer than is
+          necessary to carry out the agreed purposes.
+        </li>
+        <li>
+          You shall act as an independent Data Controller in respect of shared
+          personal data obtained from the Company once the data is collected by
+          You and You shall be responsible for its secure use at all times.
+        </li>
+      </ol>
+      <br />
+      <ol style="margin-left: 1rem">
+        <li>
+          Classified Job listing (single)
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user.
+            </li>
+            <li>
+              The insertion so displayed in the classified section of
+              UnexoIndia.com shall be for a fixed period (currently 30 days),
+              which period is subject to change without notice. Every instance
+              of refreshing and existing listing entitles you to and additional
+              fixed period (currently 30 days) starting from the date on which
+              the listing is refreshed and shall be counted as fresh posting.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database.
+            </li>
+            <li>
+              The Subscriber/Recruiter will provide up to a maximum of 2 email
+              id's for vacancies posted on UnexoIndia.com in the Classified
+              section to collect response(s) if any. The contact information
+              given by the subscriber for all listing should be the same and the
+              subscriber cannot give multiple contact information/data for the
+              purpose of listing.
+            </li>
+            <li>
+              All information intimated by the subscriber / recruiter and
+              displayed by Crystal Software on UnexoIndia.com becomes public
+              knowledge and Crystal Software may at its sole discretion include
+              the vacancy intimated by a subscriber for display on
+              UnexoIndia.com in any other media including the print media at no
+              extra costs to the subscriber and Crystal Software shall not be
+              held liable for usage/publicity of such information.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any at all response once the
+              job is put on display.
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense.
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data,
+              technical or otherwise, information, particulars supplied by the
+              subscriber, due the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities.
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              The subscriber/Recruiter shall be deemed to give an undertaking to
+              Crystal Software that the jobs sought to be advertised on the
+              classified section of UnexoIndia.com are in existence, are genuine
+              and that the subscriber / recruiter has the authority to advertise
+              for such jobs.
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on the classified section of
+              UnexoIndia.com for processing of applications / responses from
+              such person.
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of the classified
+              section of UnexoIndia.com at any time without assigning any reason
+              and without giving any notice.
+            </li>
+            <li>
+              The subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or
+              individual. Usage from third party premises/networks without prior
+              written permission of CSLTD is not permitted.
+            </li>
+            <li>
+              The subscriber shall be assigned password (s) by Crystal Software
+              to enable the subscriber to post vacancies on the site in agreed
+              upon section(s), but the sole responsibility of the safe custody
+              of the password shall be that of the subscriber and Crystal
+              Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Classified Subscriptions for various period
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user
+            </li>
+            <li>
+              Each insertion so displayed in the classified section of
+              UnexoIndia.com shall be for a fixed period (currently 30 days),
+              which period is subject to change without notice. Every instance
+              of refreshing and existing listing entitles you to and additional
+              fixed period (currently 30 days) starting from the date on which
+              the listing is refreshed and shall be counted as a fresh posting.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database
+            </li>
+            <li>
+              The Subscriber/Recruiter will provide up to a maximum of 2 email
+              id's for vacancies posted on UnexoIndia.com in the Classified
+              section to collect response(s) if any. The contact information
+              given by the subscriber for all listing should be the same and the
+              subscriber cannot give multiple contact information/data for the
+              purpose of listing.
+            </li>
+            <li>
+              All information intimated by the client and displayed by Crystal
+              Software on UnexoIndia.com becomes public knowledge and Crystal
+              Software may at its sole discretion include the vacancy intimated
+              by a client for display on UnexoIndia.com in any other media
+              including the print media at no extra costs to the client and
+              Crystal Software cannot be held liable for usage/publicity of such
+              information.
+            </li>
+            <li>
+              Crystal Software offers no guarantee or warranties that there
+              would be a satisfactory response or any response at all once the
+              job is put on display.
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense.
+            </li>
+            <li>
+              Crystal Software would not be held liable for loss of any data
+              whether of technical nature or otherwise or all or any ,
+              information or particulars supplied by the customers due to the
+              reasons beyond its control like corruption of data or delay or
+              failure to perform as a result of any causes or conditions that
+              are beyond Crystal Software's reasonable control including but not
+              limited to strike, riots, civil unrest, Govt. policies, tampering
+              of data by unauthorized persons like hackers, war and natural
+              calamities.
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the classified
+              section of UnexoIndia.com are in existence, are genuine and that
+              the subscriber has the authority to advertise the jobs
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on the classified section of
+              UnexoIndia.com for processing of such person
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of the classified
+              section of UnexoIndia.com at any time without assigning any reason
+              and without giving any notice
+            </li>
+            <li>
+              The subscriber to this service shall be entitled to such number of
+              listings during the period of subscription as may be agreed upon
+            </li>
+            <li>
+              The subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+            </li>
+            <li>
+              Only one office of one corporate entity / firm will be entitled to
+              use this service and in case other offices of the same company/
+              associated companies, want to use the said service, then, they
+              shall have to pay additional subscription charges for the service
+            </li>
+            <li>
+              The subscriber shall be assigned password (s) by Crystal Software
+              to enable the subscriber to post vacancies on the site in agreed
+              upon section(s), but the sole responsibility of the safe custody
+              of the password shall be that of the subscriber and Crystal
+              Software shall not be responsible for data loss/theft of data or
+              corruption of data or the wrong usage/misuse of the password and
+              any damage or leak of information and its consequential usage by a
+              third party. Crystal Software undertakes to take all reasonable
+              precautions at its end to ensure that there is no leakage/misuse
+              of the password granted to the subscriber
+            </li>
+            <li>
+              Only insertions with contact information registered with Crystal
+              Software will be displayed on the site
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website.
+            </li>
+            <li>
+              All disputes arising out of the transactions between a user and
+              Crystal Software will be resolved in accordance with the laws of
+              India as applicable.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Hot Vacancies (single)
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user.
+            </li>
+            <li>
+              Each insertion so displayed in the classified and hot vacancies
+              and section of UnexoIndia.com shall be for a fixed period
+              (currently 30 days), which period is subject to change without
+              notice.Every instance of refreshing and existing listing entitles
+              you to and additional fixed period (currently 30 days) starting
+              from the date on which the listing is refreshed and shall be
+              counted as fresh posting.
+            </li>
+            <li>
+              The Subscriber / Recruiter can select up to a maximum of 2 email
+              id's per job, out of unlimited email id's configured for the
+              account, to receive applications on email.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database.
+            </li>
+            <li>
+              All information intimated by the subscriber and displayed by
+              Crystal Software on UnexoIndia.com becomes public knowledge and
+              Crystal Software may at its sole discretion include the vacancy
+              intimated by a client for display on UnexoIndia.com in any other
+              media including the print media at no extra costs to the client
+              and Crystal Software shall not be held liable for usage/publicity
+              of such information / data.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              job vacancy is put on display.
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense.
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              whether technical or otherwise or for loss of information or
+              particulars supplied by the subscriber due to the reasons beyond
+              its control like corruption of data or delay or failure to perform
+              as a result of any causes or conditions that are beyond Crystal
+              Software's reasonable control including but not limited to strike,
+              riots, civil unrest, Govt. policies, tampering of data by
+              unauthorized persons like hackers, war and natural calamities.
+            </li>
+            <li>
+              The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the 'Hot
+              Vacancies' and 'Classified' sections of UnexoIndia.com are in
+              existence, genuine and the subscriber has the authority to
+              advertise the said jobs vacancies.
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs / vacancies advertised on the 'Hot Vacancy' and
+              'Classified' sections of UnexoIndia.com for processing of such
+              person.
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of the `Hot
+              Vacancies' and `Classified' sections of UnexoIndia.com at any time
+              without assigning any reason and without giving any prior notice.
+            </li>
+            <li>
+              The subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or
+              individual. Usage from third party premises/networks without prior
+              written permission of CSLTD is not permitted.
+            </li>
+            <li>
+              The subscriber shall be assigned password (s) by Crystal Software
+              to enable the subscriber to post vacancies on UnexoIndia.com site
+              in agreed upon section(s), but the sole responsibility of the safe
+              custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Hot Vacancies Subscriptions
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user.
+            </li>
+            <li>
+              Each insertion so displayed in the hot vacancies and classified
+              vacancy section of the site UnexoIndia.com shall be for a fixed
+              period (currently 30 days), which period is subject to change
+              without prior notice.
+            </li>
+            <li>
+              The Subscriber / Recruiter can select up to a maximum of 2 email
+              id's per job, out of unlimited email id's configured for the
+              account, to receive applications on email.
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              All information intimated by the client and displayed by Crystal
+              Software on UnexoIndia.com becomes public knowledge and Crystal
+              Software may at its sole discretion include the vacancy intimated
+              by a client for display on UnexoIndia.com in any other media
+              including the print media at no extra costs to the client and
+              Crystal Software cannot be held liable for usage/publicity of such
+              information.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              job vacancy is put on display
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense.
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities.
+            </li>
+            <li>
+              The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the `Hot
+              Vacancies' and `Classified' sections of UnexoIndia.com are in
+              existence, genuine and the subscriber has the authority to
+              advertise the jobs.
+            </li>
+            <li>
+              Crystal Software will commence providing the services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on the 'Hot Vacancy' and 'Classified'
+              sections of UnexoIndia.com for processing of such person.
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of the classified
+              and/or Hot Vacancies section of UnexoIndia.com at any time without
+              assigning any reason and without giving any notice.
+            </li>
+            <li>
+              The subscriber to this service shall be entitled to such number of
+              listings during the period of subscription as may be agreed upon.
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or
+              individual.
+            </li>
+            <li>
+              The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to post vacancies on the site in
+              agreed upon section(s), but the sole responsibility of the safe
+              custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Job Gallery
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user.
+            </li>
+            <li>
+              Each insertion so displayed in the classified and hot vacancies
+              section of UnexoIndia.com shall be for a fixed period (currently
+              30 days), which period is subject to change without notice.
+            </li>
+            <li>
+              The Subscriber/Recruiter will provide up to a maximum of 2 email
+              id's for vacancies posted on UnexoIndia.com either in the
+              classified and hot vacancies section to collect response(s) if
+              any. In the case of Hot Vacancies, these 2 email id's can be
+              selected from out of the unlimited email id's that may be
+              configured for the account. However in the case of a classified
+              listing, the contact information given by the subscriber for all
+              listing should be the same and the subscriber cannot give multiple
+              contact information/data for the purpose of listing.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software.
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same.
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              job vacancy is put on display.
+            </li>
+            <li>
+              All information intimated by the client and displayed by Crystal
+              Software on UnexoIndia.com becomes public knowledge and Crystal
+              Software may at its sole discretion include the vacancy intimated
+              by a client for display on UnexoIndia.com in any other media
+              including the print media at no extra costs to the client and
+              Crystal Software cannot be held liable for usage/publicity of such
+              information.
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense.
+            </li>
+            <li>
+              1Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities.
+            </li>
+            <li>
+              1The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the 'Job
+              Gallery' `Hot Vacancies' and `Classified' sections of
+              UnexoIndia.com are in existence, genuine and the subscriber has
+              the authority to advertise the jobs.
+            </li>
+            <li>
+              1Crystal Software will commence providing the services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              1The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on the 'Job Gallery' 'Hot Vacancy' and
+              'Classified' sections of UnexoIndia.com for processing of such
+              person.
+            </li>
+            <li>
+              1Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of any section of
+              UnexoIndia.com at any time without assigning any reason and
+              without giving any notice
+            </li>
+            <li>
+              1The subscriber to this service shall be entitled to such number
+              of listings during the period of subscription as may be agreed
+              upon.
+            </li>
+            <li>
+              1This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or
+              individual.
+            </li>
+            <li>
+              1This service entitles one company/entity alone to put up a Micro
+              site within the domain of UnexoIndia.com having a maximum size of
+              10 K during the validity period of subscription.
+            </li>
+            <li>
+              1The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to post vacancies on the site in
+              agreed upon section(s), but the sole responsibility of the safe
+              custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              1The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Best Places to Work
+          <ol>
+            <li>
+              Crystal Software shall place the information relating to vacancies
+              in the Hot Vacancies & such other Classified sections on the
+              website UnexoIndia.com or such other mirror or parallel site(s) or
+              in allied publications as Crystal Software may deem fit and proper
+              but such additional web hosting shall be without any extra cost to
+              the subscriber / user.
+            </li>
+            <li>
+              Each insertion so displayed in the classified hot vacancies and
+              other section(s) of UnexoIndia.com shall be for a fixed period
+              (currently 30 days), which period is subject to change without
+              notice
+            </li>
+            <li>
+              The Subscriber/Recruiter will provide up to a maximum of 2 email
+              id's for vacancies posted on UnexoIndia.com either in the
+              classified and hot vacancies section to collect response(s) if
+              any. In the case of Hot Vacancies, these 2 email id's can be
+              selected from out of the unlimited email id's that may be
+              configured for the account. However in the case of a classified
+              listing, the contact information given by the subscriber for all
+              listing should be the same and the subscriber cannot give multiple
+              contact information/data for the purpose of listing.
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason either before uploading or after uploading the vacancy
+              details, but in such an eventuality, any amount so paid for, may
+              be refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software
+            </li>
+            <li>
+              By posting/uploading a job posting on the website you confirm that
+              you have obtained all licenses/permits as are necessary for
+              recruitment and to indemnify CSLTD against all claims, damages
+              arising out of actions/claims that may be made in relation to the
+              same
+            </li>
+            <li>
+              Crystal Software has the right to make all such
+              modifications/editing of the vacancy details in order to fit its
+              database
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              job vacancy is put on display
+            </li>
+            <li>
+              All information intimated by the client and displayed by Crystal
+              Software on UnexoIndia.com becomes public knowledge and Crystal
+              Software may at its sole discretion include the vacancy intimated
+              by a client for display on UnexoIndia.com in any other media
+              including the print media at no extra costs to the client and
+              Crystal Software cannot be held liable for usage/publicity of such
+              information
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense
+            </li>
+            <li>
+              The subscriber may also be offered other services, including use
+              of the e-Apps, access to Resdex (Resume Database) for the period
+              of subscription and banners on a "run of the website" basis as
+              agreed with Crystal Software
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber
+            </li>
+            <li>
+              The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the 'Best Places
+              to Work' `Hot Vacancies' and `Classified' sections of
+              UnexoIndia.com are in existence, genuine and the subscriber has
+              the authority to advertise the jobs.
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on the 'Best Places to Work' 'Hot
+              Vacancy' and 'Classified' sections of UnexoIndia.com for
+              processing of such person
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of any section of
+              UnexoIndia.com at any time without assigning any reason and
+              without giving any notice
+            </li>
+            <li>
+              The subscriber to this service shall be entitled to such number of
+              listings during the period of subscription as may be agreed upon
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+            </li>
+            <li>
+              This service entitles one company/entity alone to put up a Micro
+              site within the domain of UnexoIndia.com having a maximum size of
+              50 K during the validity period of subscription
+            </li>
+            <li>
+              The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to post vacancies on the site in
+              agreed upon section(s), but the sole responsibility of the safe
+              custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her or
+              on his behalf on the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Manual Shortlisting
+          <ol>
+            <li>
+              Crystal Software agrees to provide the service to the subscriber
+              only for the duration and the number of vacancies contracted for,
+              to the best of its ability and Crystal Software shall in no way be
+              held liable for any information received by the subscriber and it
+              shall be the sole responsibility of the subscriber to check,
+              authenticate and verify the information/response received at its
+              own cost and expense.
+            </li>
+            <li>
+              Crystal Software will make best efforts to use the parameters
+              provided by the subscriber to short list, but takes no
+              responsibility for the accuracy of the short listing based on the
+              parameters for selection as specified by the subscriber
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber. The payment for
+              service once subscribed to by the subscriber is not refundable and
+              any amount paid shall stand appropriated.
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+            <li>
+              It is the responsibility of Job Seekers to verify the correctness
+              and authenticity of the claims made by recruiters. We merely act
+              as facilitators and do not as agents for any recruiter.
+            </li>
+            <li>
+              Payments to recruiters are not advised and shall be at your own
+              risk.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Display of Banners
+          <ol>
+            <li>
+              Crystal Software agrees to provide the service to the subscriber
+              only for the duration or the number of impressions contracted for,
+              to the best of its ability.
+            </li>
+            <li>
+              Crystal Software will display the banners on all the
+              relevant/specified sections of the site on a rotation basis
+            </li>
+            <li>
+              Crystal Software reserves its right to reject any insertion or
+              information/data provided by the subscriber without assigning any
+              reason, but in such an eventuality, any amount so paid for, may be
+              refunded to the subscriber on a pro-rata basis at the sole
+              discretion of Crystal Software
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all once the
+              banners are put on display
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+            </li>
+            <li>
+              The subscriber/Recruiter/Advertiser must give an undertaking to
+              Crystal Software that there will be no fee charged from any person
+              who responds to jobs advertised on UnexoIndia.com for processing
+              of applications / responses from such person
+            </li>
+            <li>
+              The User of these services does not claim any copyright, Trade
+              Mark or other Intellectual Property Right over the data uploaded
+              by him/her on the website. The Banners displayed on Unexo shall be
+              prepared as per the instructions received from the users, Crystal
+              Software shall not be responsible for the users misappropriation
+              of the Trade Mark/ Copyright or any other Intellectual Property
+              Right sought to be passed of as that of the user.
+            </li>
+          </ol>
+        </li>
+        <li>
+          e-Apps
+          <ol>
+            <li>
+              Crystal Software agrees to provide the service to the subscriber
+              only for the duration contracted for to the best of its ability.
+            </li>
+            <li>
+              Crystal Software reserves its right to suspend/terminate the
+              services contracted for by the subscriber either prior to or
+              during the contracted period without assigning any reason. In such
+              an eventuality, any amount so paid for by the subscriber for this
+              service, may be refunded by Crystal Software to the subscriber at
+              the discretion of Crystal Software.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all subscriber
+              for applications received using the e-Apps software
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber
+            </li>
+            <li>
+              The subscriber/Recruiter shall give an undertaking to Crystal
+              Software that the jobs sought to be advertised on the
+              UnexoIndia.com are in existence, genuine and the subscriber has
+              the authority to recruit /advertise for such vacancies
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of any section of
+              UnexoIndia.com at any time without assigning any reason and
+              without giving any notice
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who
+              responds to jobs advertised on UnexoIndia.com for processing of
+              such person
+            </li>
+            <li>
+              Applications against jobs listed on UnexoIndia.com (Hot Vacancy /
+              Classified) Jobs will be available for a period of 90 days post
+              the date on which an application in response to the job listing
+              was received. Application shall be deleted post this period and
+              Crystal Software shall not be liable for restoring the said data.
+              This period may be extended in case the Subscriber opts for
+              appropriate higher variants.
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+            </li>
+            <li>
+              The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to access all the information
+              received through the software, but the sole responsibility of the
+              safe custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him/her on
+              the website
+            </li>
+          </ol>
+        </li>
+        <li>
+          Resdex
+          <ol>
+            <li>
+              Crystal Software agrees to provide the service to the subscriber
+              only for the duration contracted for to the best of its ability
+            </li>
+            <li>
+              Crystal Software reserves its right to suspend/terminate the
+              services contracted for by the subscriber either prior to or
+              during the contracted period without assigning any reason. In such
+              an eventuality, any amount so paid for by the subscriber for this
+              service, may be refunded by Crystal Software at a prorata basis to
+              the subscriber at its discretion. 2A. The subscriber shall be
+              entitled to 1 user name / password to access the resdex service
+              alone and additional user names / passwords may be provided by
+              Crystal Software on such terms and conditions as may be mutually
+              agreed upon.
+            </li>
+            <li>
+              Crystal Software offers no guarantee nor warranties that there
+              would be a satisfactory response or any response at all subscriber
+              for applications received using the RESDEX software.
+            </li>
+            <li>
+              Crystal Software shall in no way be held liable for any
+              information received by the subscriber and it shall be the sole
+              responsibility of the subscriber to check, authenticate and verify
+              the information/response received at its own cost and expense
+            </li>
+            <li>
+              Any actions taken by an employer/recruiter on the basis of the
+              background check report or otherwise, is the emplyer's/recruiter's
+              responsibility alone and Crystal Software will not be liable in
+              any manner for the consequences of such action taken by the user
+            </li>
+            <li>
+              Crystal Software would not be held liable for any loss of data
+              technical or otherwise, information, particulars supplied by the
+              customers due to the reasons beyond its control like corruption of
+              data or delay or failure to perform as a result of any causes or
+              conditions that are beyond Crystal Software 's reasonable control
+              including but not limited to strike, riots, civil unrest, Govt.
+              policies, tampering of data by unauthorized persons like hackers,
+              war and natural calamities.
+            </li>
+            <li>
+              Only the activities performed in last 365 days on a profile mapped
+              to a Resdex Requirement will be retained. The older activities
+              shall be automatically deleted. For the purposes of this clause,
+              Resdex Requirements includes, but is not limited to activities
+              including profile viewed, called, emailed, and added to folder
+            </li>
+            <li>
+              Crystal Software will commence providing services only upon
+              receipt of amount/charges upfront either from the subscriber or
+              from a third party on behalf of the subscriber.
+            </li>
+            <li>
+              The subscriber/Recruiter
+              <ol>
+                <li>
+                  shall give an undertaking to Crystal Software that the jobs
+                  sought to be filled through UnexoIndia.com are in existence,
+                  genuine and the subscriber has the authority to recruit
+                  /advertise for such vacancies. Also the subscriber undertakes
+                  that the database will be used to contact candidates for jobs
+                  only
+                </li>
+                <li>
+                  shall ensure compliance with all applicable laws for the
+                  protection of the personal details of the users whose profiles
+                  are accessed by them through UnexoIndia.com including but not
+                  limited to compliance the Telecom Commercial Communications
+                  Customer Preference Regulations, 2010 as also rules,
+                  regulations, guidelines, bye laws and notifications made there
+                  under, while accessing or feeding any resume/ insertion or
+                  information/data into the computers, computer systems or
+                  computer networks of Crystal Software .
+                </li>
+              </ol>
+            </li>
+            <li>
+              Crystal Software reserves its right to change the look, feel,
+              design, prominence, depiction, classification of any section of
+              UnexoIndia.com at any time without assigning any reason and
+              without giving any notice.
+            </li>
+            <li>
+              The subscriber/Recruiter must give an undertaking to Crystal
+              Software that there will be no fee charged from any person who is
+              contacted through RESDEX for processing of such person.
+            </li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+              concern
+            </li>
+            <li>
+              The subscriber shall be assigned a password (s) by Crystal
+              Software to enable the subscriber to access all the information
+              received through the software, but the sole responsibility of the
+              safe custody of the password shall be that of the subscriber and
+              Crystal Software shall not be responsible for data loss/theft of
+              data/corruption of data or the wrong usage/misuse of the password
+              and any damage or leak of information and its consequential usage
+              by a third party. Crystal Software undertakes to take all
+              reasonable precautions at its end to ensure that there is no
+              leakage/misuse of the password granted to the subscriber.
+            </li>
+            <li>
+              The information on Crystal Software is for use by its subscribers
+              alone and does not authorize the subscriber to download and use
+              the data for commercial purposes. In case any one is found to be
+              in violation of this then Crystal Software at its discretion may
+              suspend its service/subscription and also may take such action as
+              it may be advised
+            </li>
+            <li>
+              The subscriber shall not use / circulate / forward a person's
+              resume hosted on the Unexoindia Network / Resumes to his / her
+              current employer as mentioned by the person in his / her resume
+            </li>
+            <li>
+              The User of these services does not claim any copyright or other
+              Intellectual Property Right over the data uploaded by him or on
+              his behalf on the website or supplied to CSLTD
+            </li>
+          </ol>
+          <br />
+          <h5>ANTI SPAM POLICY</h5>
+          <p>
+            The use and access to RESDEX database is subject to this policy. The
+            services provided to you are aimed at providing recruitment
+            solutions and should be restricted to contacting suitable candidates
+            for genuine jobs in existence.
+          </p>
+          <p>
+            Mailing practices such as transmitting marketing and promotional
+            mailers/ Offensive messages/ messages with misleading subject lines
+            in order to intentionally obfuscate the original message, are
+            strictly prohibited.
+          </p>
+          <p>
+            We reserve the right to terminate services, without prior notice, to
+            the originator of Spam. No refund shall be admissible under such
+            circumstances.
+          </p>
+          <p>
+            Following is an illustrative (not exhaustive) list of the kinds of
+            messages which can be classified as spam:
+          </p>
+          <ol>
+            <li>
+              Unsolicited Bulk Messages/Unsolicited Commercial Communications
+            </li>
+            <li>
+              Voice Calls/SMS to telephone numbers registered on the National
+              Consumer Preference Register.
+            </li>
+            <li>Non Job related mails.</li>
+            <li>Messages with misleading subject lines.</li>
+            <li>Blank Messages</li>
+            <li>Extra ordinary High Number of mails</li>
+            <li>Mails soliciting payments.</li>
+            <li>Misleading/Fraudulent mails</li>
+          </ol>
+          <p>
+            Users agree to indemnify and hold harmless Crystal Software (India)
+            Limited from any damages or claims arising out of usage of their
+            RESDEX accounts for transmitting spam Users are advised to change
+            their passwords frequently in order to reduce the possibility of
+            misuse of their accounts.
+          </p>
+          <p>
+            To seek more information and to report Spam. Please mail us at:
+            unicompsoftware@gmail.com
+          </p>
+        </li>
+        <li>
+          Insta Hire
+          <ol>
+            <li>
+              SMS packs once bought will have minimum validity for a period of 3
+              months but cannot be refunded or exchanged for any other
+              UnexoIndia.com products.
+            </li>
+            <li>
+              SMS packs will not be clubbed with any other UnexoIndia.com
+              products.
+            </li>
+            <li>
+              Insta recruit (from resdex*) can only be used as long as recruiter
+              has a live subscription to the resdex. Incase subscription to
+              resdex* has expired then recruiter will not be able to send SMS
+              until resdex is renewed (even if the recruiter has balance smses).
+            </li>
+            <li>
+              Howeversmses not used will remain with the recruiter and the
+              recruiter can use the same once he renews the resdex*.
+            </li>
+            <li>
+              In Insta recruit, recruiters can sms only those candidates on that
+              search page that show up post conducting search.
+            </li>
+            <li>
+              A minimum of 1000 sms need to be purchased in one go and therafter
+              in multiples threreof.
+            </li>
+            <li>
+              Recruiters at all times should try and ensure that smses are being
+              sent to relevant candidates to get maximum response
+            </li>
+            <li>
+              Crystal Software reserves the right to scan all content being sent
+              out on sms and block smses if necessary if content of the SMS is
+              deemed as spam or any non-recruitment content whatsoever.
+            </li>
+            <li>
+              Crystal Software reserves the right to regulate number of smses
+              sent out to a particular profile on a particular day (this is to
+              safeguard consumer interests in case consumer is getting spammed
+              by some recruiter)
+            </li>
+            <li>
+              While Crystal Software will try its utmost best to try and deliver
+              all SMS sent out, it does not take any responsibility for smses
+              not delivered (which may be on account of phones being out of
+              order, operator network problems, sims not being used anymore
+              etcâ.). It does take the responsibility of the smses leaving its
+              vendor sms gateway.
+            </li>
+            <li>
+              Crystal Software reserves the right to change, withdraw, terminate
+              the scope and scale of service at any point of time, without any
+              reason whatsoever.
+            </li>
+            <li>
+              Smses being sent out after 7 in the night will cue up in the
+              Crystal Software system and will be delivered to candidates after
+              8 in the morning (this is in keeping with telecom regulations)
+            </li>
+            <li>The service is available across all operators in India only</li>
+            <li>
+              This subscription is neither re-saleable nor transferable by the
+              subscriber to any other person, corporate body, firm or individual
+              concern. Usage from third party premises/networks without prior
+              written permission of CSLTD is not permitted
+            </li>
+            <li>
+              * For candidates who will reply to these smses, VAS rates as
+              levied by their respective operator would be applicable. For
+              further details please contact your respective mobile operator.
+            </li>
+          </ol>
+        </li>
+        <li>
+          Unexo India
+          <ol>
+            <li>
+              The UnexoIndiaprofile may be updated/edited etc. by the user
+              alone. The user shall not upload, post, transmit, publish, or
+              distribute any material or information that is unlawful, or which
+              may potentially be perceived as being harmful, threatening,
+              abusive, harassing, defamatory, libellous, vulgar, obscene, or
+              racially, ethnically, or otherwise objectionable.
+            </li>
+            <li>
+              Uploading of multiple profiles by the same recruiter using the
+              same or different accounts shall entitle Crystal Software to
+              remove the profiles without notice to the subscriber.
+            </li>
+            <li>
+              CSLTD reserves its right to reject and delete any profile or
+              information/data fed in by the user without assigning any reason.
+            </li>
+            <li>
+              The sole responsibility of the safe custody of the log in details
+              shall be that of the user and CSLTD shall not be responsible for
+              data loss/theft of data/corruption of data or the wrong
+              usage/misuse of the password and any damage or leak of information
+              and its consequential usage by a third party. CSLTD undertakes to
+              take all reasonable precautions at its end to ensure that there is
+              no leakage/misuse of the password created by the user/recruiter.
+            </li>
+            <li>
+              CSLTD shall in no way be held liable for any information received
+              by the user and it shall be the sole responsibility of the user to
+              check, authenticate and verify the information/response received
+              at its own cost and expense.
+            </li>
+            <li>
+              The user represents that he/she is not a minor and is not under
+              any legal or other disability which limits his/her ability to
+              comply with these Terms or to install and use the services
+              subscribed and purchased with minimal risk of harm to you or
+              others.
+            </li>
+            <li>
+              All changes / modifications made by the user to the data /
+              information shall be effected and will come into operation only
+              after 24-48 hours of such changes / modifications being made.
+            </li>
+            <li>
+              On registration you agree:
+              <ol>
+                <li>
+                  to make your profile available for display in the public
+                  domain.
+                </li>
+                <li>
+                  and understand that when you post a job on UnexoIndia.com or
+                  trigger an email to a job seeker through RESDEX, a snapshot of
+                  your public profile on Unexo India may automatically get
+                  inserted into the posting/mail (existing or new job listing on
+                  UnexoIndia.com).
+                </li>
+                <li>
+                  that you have the requisite authority to upload the job
+                  listings that are posted through the profile created by you in
+                  this section of UnexoIndia.comi.e.Unexo India.
+                </li>
+                <li>
+                  and understand that CSLTD may place the information relating
+                  to vacancies posted by me through my Unexo India account in
+                  the any of Classified sections on the website UnexoIndia.com
+                  or such other mirror or parallel site(s) or in allied
+                  publications as CSLTD may deem fit and proper.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <br />
+      <p>
+        <b>Note: </b>
+        The terms in this agreement may be changed by Crystal Software at any
+        time. Crystal Software is free to offer its services to any
+        client/prospective client without restriction.
+      </p>
+      <a (click)="TcSwitchClose()">X</a>
+    </div>
+  </div>
+  <div class="unexo__bg--clip"></div>
+  <div class="unexo__bg--clip-child"></div>
+  <div class="unexo__slider unexo__hr--bg"></div>
+  <div class="unexo__login--card" style="overflow-x: hidden">
+    <div class="unexo_login" style="overflow-x: hidden" id="login">
+      <form #HrLogIn="ngForm" (ngSubmit)="hrLogin(HrLogIn)">
+        <img
+          class="unexo__form--logo"
+          src="../../../assets/images/UnexoLogo.png"
+          alt="unexo logo"
+        />
+        <h2>HR LogIn</h2>
+        <input
+          type="email"
+          name="email"
+          ngModel
+          required
+          #email="ngModel"
+          placeholder="Enter Email"
+          email
+        />
+        <div class="form_validate" *ngIf="email.invalid && email.touched">
+          Enter a Valid Email.
+        </div>
+        <div class="unexopassword1">
+          <input
+            id="pass"
+            [type]="showPassword1 ? 'text' : 'password'"
+            name="password"
+            ngModel
+            required
+            #password="ngModel"
+            placeholder="Enter password"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"
+          />
+          <i
+            [ngClass]="
+              showPassword1
+                ? 'far fa-eye unexopasswordlogo1'
+                : 'far fa-eye-slash unexopasswordlogo1'
+            "
+            id="unexopasswordlogo1"
+            (click)="togglepassword1()"
+          ></i>
+          <div
+            class="form_validate"
+            *ngIf="password.invalid && password.touched"
+          >
+            Password minimum length should be 8 digits And should include
+            atleast one lowercase,one uppercase,one number and one special
+            charcater and no spaces allowed.
+          </div>
+        </div>
+        <div class="unexo__button--container mb-4">
+          <button
+            class="unexo__primary--btn btn--width"
+            type="submit"
+            [disabled]="!HrLogIn.valid"
+          >
+            LogIn
+          </button>
+          <button
+            class="unexo__primary--btn btn--width"
+            type="button"
+            (click)="SignUpSwitch()"
+          >
+            Sign Up
+          </button>
+        </div>
+        <div class="unexo-signup-ques">
+          <p>Not Yet Registered?</p>
+          &nbsp;
+        </div>
+        <a style="margin: auto" routerLink="/forgot-password"
+          >Forgot password?</a
+        >
+      </form>
+    </div>
+
+    <div class="unexo_signup" style="overflow-x: hidden" id="signup">
+      <form #HrSignUp="ngForm" (ngSubmit)="hrSignup(HrSignUp)">
+        <img
+          class="unexo__form--logo"
+          src="../../../assets/images/UnexoLogo.png"
+          alt="unexo logo"
+        />
+        <h2>HR SignUp</h2>
+        <input
+          type="text"
+          name="firstName"
+          ngModel
+          minlength="3"
+          maxlength="20"
+          placeholder="First Name"
+          #firstName="ngModel"
+          pattern="^[a-zA-Z ]*$"
+          required
+        />
+        <div
+          class="form_validate"
+          *ngIf="firstName.invalid && firstName.touched"
+        >
+          First Name is required . <br />
+          Numbers & Special Characters Not Allowed. <br />
+          Minimum length Should be 3.
+        </div>
+        <input
+          type="text"
+          name="lastName"
+          ngModel
+          minlength="3"
+          maxlength="20"
+          placeholder="Last Name"
+          #lastName="ngModel"
+          pattern="^[a-zA-Z ]*$"
+          required
+        />
+        <div class="form_validate" *ngIf="lastName.invalid && lastName.touched">
+          Last Name is required . <br />
+          Numbers & Special Characters Not Allowed. <br />
+          Minimum length Should be 3.
+        </div>
+        <input
+          type="email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          placeholder="Email"
+          email
+          required
+        />
+        <div class="form_validate" *ngIf="email.invalid && email.touched">
+          Enter a Valid Email.
+        </div>
+        <input
+          type="number"
+          name="phoneNo"
+          ngModel
+          id="phoneNo"
+          #phoneNo="ngModel"
+          placeholder="Mobile No"
+          pattern="^[0-9]{10}$"
+          minlength="10"
+          maxlength="10"
+          required
+        />
+        <div class="form_validate" *ngIf="phoneNo.invalid && phoneNo.touched">
+          Enter a Valid 10 digit Mobile No.
+        </div>
+        <div id="unexopassword2">
+          <input
+            id="pass2"
+            [type]="showPassword2 ? 'text' : 'password'"
+            name="password"
+            ngModel
+            #password="ngModel"
+            placeholder="Password"
+            required
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"
+          />
+          <i
+            [ngClass]="showPassword2 ? 'far fa-eye ' : 'far fa-eye-slash'"
+            id="unexopasswordlogo2"
+            (click)="togglepassword2()"
+          ></i>
+          <div
+            class="form_validate"
+            *ngIf="password.invalid && password.touched"
+          >
+            Password minimum length should be 8 digits And should include
+            atleast one lowercase,one uppercase,one number and one special
+            charcater and no spaces allowed.
+          </div>
+        </div>
+        <div id="unexopassword2">
+          <input
+            id="pass1"
+            [type]="showPassword2 ? 'text' : 'password'"
+            name="confirmPassword"
+            ngModel
+            #confirmPassword="ngModel"
+            placeholder="Confirm Password"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}"
+            required
+          />
+          <i
+            [ngClass]="showPassword2 ? 'far fa-eye ' : 'far fa-eye-slash'"
+            id="unexopasswordlogo2"
+            (click)="togglepassword2()"
+          ></i>
+          <div
+            class="form_validate"
+            *ngIf="confirmPassword.invalid && confirmPassword.touched"
+          >
+            Password minimum length should be 8 digits And should include
+            atleast one lowercase,one uppercase,one number and one special
+            charcater and no spaces allowed.
+          </div>
+        </div>
+        <div class="form_validate" *ngIf="matchPassword">
+          Password did not match.
+        </div>
+        <!-- <input type="text" ngModel name="referralCode" maxlength="20" placeholder="Referral Code"> -->
+        <input type="text" [(ngModel)]="hr" name="userType" hidden />
+        <div
+          style="
+            transform: scale(0.77);
+            -webkit-transform: scale(0.77);
+            transform-origin: 100 100;
+            -webkit-transform-origin: 100 100;
+          "
+        >
+          <re-captcha
+            (resolved)="resolved($event)"
+            siteKey="6LeyFuIZAAAAAPruOXL6x_X8OXCwDnXxC3zItyp7"
+            required
+          >
+          </re-captcha>
+        </div>
+        <div class="unexo__tc">
+          <input
+            type="checkbox"
+            [(ngModel)]="checkBoxValue"
+            name="checkboxvalue"
+          />
+          <span style="font-size: 1.2rem"
+            >I agree to the
+            <a (click)="TcSwitch()">&nbsp; terms & conditions.</a></span
+          >
+        </div>
+        <div class="form_validate" *ngIf="!checkBoxValue">
+          <br />
+          Please Agree To The T&C.
+        </div>
+        <div class="form_validate" *ngIf="verifyCaptcha">
+          <br />
+          Please Tick The Recaptcha Box.
+        </div>
+        <br />
+        <div class="unexo__button--container mb-1">
+          <button
+            class="unexo__primary--btn btn--width"
+            type="submit"
+            [disabled]="!HrSignUp.valid"
+          >
+            SignUp
+          </button>
+
+          <button
+            class="unexo__primary--btn btn--width"
+            type="button"
+            (click)="LogInSwitch()"
+          >
+            Log In
+          </button>
+        </div>
+      </form>
+      <div class="unexo-signup-ques">
+        <p>Already Member?</p>
+        &nbsp;
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

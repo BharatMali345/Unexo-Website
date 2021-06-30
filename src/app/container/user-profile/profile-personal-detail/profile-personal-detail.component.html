@@ -1,0 +1,99 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header main_profile-header-flex">
+      <div class="main_profile-header-container">
+        <h1>Personal Details</h1>
+        <h5>CSPL NETWORK</h5>
+        <h5>CENTER FOR SKILL PERSONAL AND LABOUR NETWORK</h5>
+      </div>
+
+      <div class="unexo_label-holder">
+        <button class="unexo__primary--btn" type="button" (click)=" editPersonalDetail()"><i
+            class="fas fa-edit"></i></button>
+        <label class="unexo_label">Edit Form</label>
+      </div>
+
+    </div>
+    <div *ngFor="let profiledata of data;">
+      <div class="main_profile-section ">
+
+        <div class="row main_profile-section-bg ">
+
+          <div class="col-md-2">
+            <div class="img_container">
+              <img src="{{profiledata.imageUrl}}" alt="">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <p>Name:</p>
+            <h3>{{profiledata.name}}</h3>
+          </div>
+          <div class="col-md-4">
+            <p>Email:</p>
+            <h3>{{profiledata.email}}</h3>
+          </div>
+          <div class="col-md-2">
+            <p>Mobile No:</p>
+            <h3>{{profiledata.phoneNo}}</h3>
+          </div>
+        </div>
+
+
+        <div class="row unexo__padding">
+          <div class="col-md-3">
+            <p>Age:</p>
+            <h3>{{profiledata.age}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>Birth Place:</p>
+            <h3>{{profiledata.birthPlace}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>DOB:</p>
+            <h3>{{profiledata.dob}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>Height(In Cm):</p>
+            <h3>{{profiledata.height}}</h3>
+          </div>
+        </div>
+
+        <div class="row unexo__padding">
+          <div class="col-md-3">
+            <p>UIN:</p>
+            <h3>{{profiledata.uin}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>Skill Category:</p>
+            <h3>{{profiledata.skillCategory}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>Pincode:</p>
+            <h3>{{profiledata.pincode}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>State Code:</p>
+            <h3>{{profiledata.stateCode}}</h3>
+          </div>
+        </div>
+        <div class="row unexo__padding">
+
+          <div class="col-md-3">
+            <p>District Code:</p>
+            <h3>{{profiledata.districtCode}}</h3>
+          </div>
+          <div class="col-md-3">
+            <p>Tehsil Code:</p>
+            <h3>{{profiledata.tehsilCode}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

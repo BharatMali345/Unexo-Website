@@ -1,0 +1,15 @@
+.unexo_mat-paginator {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: -1.5rem !important;
+  color: var(--primary-color);
+}
+mat-paginator ::ng-deep button[type="button"] {
+  background-color: white !important;
+  color: black;
+  border-radius: none;
+}
+button[type="submit"],
+button[type="button"] {
+  font-size: 1rem;
+}

@@ -1,0 +1,22 @@
+<mat-card class="unexo__notifications--panel">
+  <h1 class="  unexo__notifications--content  notifications--h1">Notifications</h1>
+  <div class="unexo__parent " *ngFor="let notifications of data;let i=index;">
+    <div [ngClass]="i%2===0?'unexo__notifications--content notifications__bg':'unexo__notifications--content' ">
+      <div>
+        <i class="fas fa-briefcase mr-2"></i>
+        <b>{{notifications.preText }}</b> {{
+        notifications.text}} <b>{{notifications.postText }}</b>
+      </div>
+      <button class="unexo__primary--btn" style="font-size: 1rem;" (click)="routeToJobDetails(notifications.jobId)"><i
+          class="far fa-eye mr-2"></i>View</button>
+    </div>
+
+  </div>
+  <mat-paginator class="unexo_mat-paginator" #paginator [pageSize]="pageSize" [pageSizeOptions]="[20,30,50]"
+    [showFirstLastButtons]="true" [length]="totalSize" [pageIndex]="currentPage"
+    (page)="pageEvent = getusernotifications($event)">
+  </mat-paginator>
+</mat-card>
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

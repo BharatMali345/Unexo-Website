@@ -1,0 +1,20 @@
+mat-card {
+  cursor: pointer;
+}
+button[type="submit"],
+button[type="button"] {
+  padding: 0rem 1.6rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: white;
+  outline: none;
+}
+.unexo_mat-paginator {
+  font-size: 1.6rem;
+  margin-top: -1.5rem !important;
+}
+mat-paginator ::ng-deep button[type="button"] {
+  background-color: white !important;
+  color: black;
+  border-radius: none;
+}

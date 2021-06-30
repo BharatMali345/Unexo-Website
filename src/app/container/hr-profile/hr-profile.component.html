@@ -1,0 +1,57 @@
+<div class="p-5">
+
+  <mat-card class="unexo_dashboard-holder">
+    <div class="unexo_dashboard">
+      <p>
+        <span style="font-size: 2rem;">
+          {{HrService.username}}
+
+        </span>
+        <br>
+        Your Profile is {{progressbarvalue}}% Complete.
+      </p>
+
+      <div class="unexo_label-holder mb-2">
+        <i class="fas fa-bell" style="font-size: 2rem; cursor: pointer;" (click)="toUserNotifications()"></i>
+        <div class="unexo__notifications-badge"></div>
+        <label class="unexo_label" style="left:-200%">Notifications</label>
+      </div>
+    </div>
+
+    <mat-progress-bar mode="determinate" [value]="progressbarvalue"></mat-progress-bar>
+
+  </mat-card>
+  <div class="row no-gutters">
+    <div class="col-lg-3">
+      <div class="admin_header-container ">
+
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h1>Hr Panel</h1>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-selection-list [multiple]="false">
+              <mat-list-option (click)="routeToPostJob()">
+                <p><a> <i class="fas fa-business-time"></i> Post a Job</a></p>
+              </mat-list-option>
+              <mat-list-option (click)="routeToViewPostedJobs()">
+                <p><a> <i class="far fa-eye"></i> My Posted Jobs</a></p>
+              </mat-list-option>
+              <mat-list-option *ngIf="userstatus==0" routerLink="/hr-profile/details">
+                <p><a> <i class="fas fa-id-card"></i> My Personal Details </a></p>
+              </mat-list-option>
+              <mat-list-option *ngIf="userstatus==1" (click)="editMode()">
+                <p><a><i class="fas fa-id-card"></i> My Personal Details </a> </p>
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

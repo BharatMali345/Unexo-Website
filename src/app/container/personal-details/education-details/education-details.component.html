@@ -1,0 +1,172 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1>EDUCATIONAL DETAILS FORM</h1>
+    <!-- <br><br>
+    <h5>CSPL NETWORK</h5>
+    <h5>CENTER FOR SKILLED PERSONNEL AND LABOUR NETWORK</h5> -->
+  </div>
+  <div class="main_personal-resume-content">
+    <form [formGroup]="educationalDetailsForm" (ngSubmit)="onSubmit()">
+      <div class="main_personal-resume-content-subheader">
+        <hr>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="highestQualification">Highest Qualification:<sup class="unexo__required">*</sup></label>
+              <select id="highestQualification" required formControlName="highestQualification"
+                (change)="onChangeQualification($event.target.value)">
+                <option value="Doctorate/PhD">Doctorate/PhD
+                </option>
+                <option value="Masters/Post-Graduation">Masters/Post-Graduation
+                </option>
+                <option value="Graduation/Diploma">Graduation/Diploma
+                </option>
+                <option value="12th">12th
+                </option>
+                <option value="10th">10th
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="specialization">Specialization/Medium<sup class="unexo__required">*</sup></label>
+              <select id="specialization" required formControlName="specialization">
+                <option *ngFor="let option of specsArray" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="passingYear">Year Of Passing<sup class="unexo__required">*</sup></label>
+              <select id="passingYear" required formControlName="passingYear">
+                <option *ngFor="let option of years" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="course">Course/Board<sup class="unexo__required">*</sup></label>
+              <select id="course" required formControlName="course" (change)="onChangeCourse($event.target.value)">
+                <option *ngFor="let option of courseArray" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+            <div class="resume_form-group">
+              <label for="school">School/College/University:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="school" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" formControlName="school"
+                [ngClass]="f.school.errors">
+              <div class="form_validate" *ngIf="f.school.invalid &&f.school.touched  && f.school.errors.required">
+                This Field is required.
+              </div>
+              <div class="form_validate" *ngIf="f.school.invalid &&f.school.touched  && f.school.errors.pattern">
+                No Numbers and special characters allowed.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="marks">Percentage/CGPA/Grade:<sup class="unexo__required">*</sup></label>
+              <input type="text" id="marks" formControlName="marks" [ngClass]="f.marks.errors" required>
+              <div class="form_validate" *ngIf="f.marks.invalid &&f.marks.touched  && f.marks.errors.required">
+                This Field is required.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="main_personal-resume-content-subheader" style="background-color: #f0efef;">
+        <h2 style="font-weight: 600; font-size: 1.6rem;"> Academic Achievements</h2>
+
+        <button class="unexo__primary--btn" type="button" value="Add" (click)="add()">Add</button>
+        <input type="text" name="userId" hidden>
+
+        <div formArrayName="academic">
+          <ng-container *ngFor="let ingredientCtrl of educationalDetailsForm.get('academic').controls let i = index"
+            [formGroupName]="i">
+
+            <div class="main_personal-resume-content-subheader">
+              <div class="resume_form-group">
+                <input type="text" formControlName="achievements">
+                <button class="unexo__primary--btn" type="button" (click)="deleteItem(i)" value="Delete">Delete</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset()" value="Reset">Reset</button> -->
+          <button class="unexo__primary--btn" *ngIf="personalDetailService.editMode()" type="submit"
+            [disabled]="!educationalDetailsForm.valid" value="Save & Next">Update & Proceed</button>
+          <button class="unexo__primary--btn" *ngIf="!personalDetailService.editMode()" type="submit"
+            [disabled]="!educationalDetailsForm.valid" value="Save & Next">Save & Proceed</button>
+
+        </div>
+      </div>
+    </form>
+
+
+
+    <!-- <form [formGroup]="data" (ngSubmit)="onSubmit()">
+      <div class="main_personal-resume-content-header">
+        <h2> Education Background</h2>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="resume_form-group">
+          <label for="highestQualification">Highest Qualification:</label>
+          <input type="text" id="highestQualification" formControlName="highestQualification"
+            [ngClass]="f.highestQualification.errors">
+          <div class="form_validate"
+            *ngIf="f.highestQualification.invalid &&f.highestQualification.touched  && f.highestQualification.errors.required">
+            This Field is required.
+          </div>
+        </div>
+        <div class="resume_form-group">
+          <label for="school">School/College:</label>
+          <input type="text" id="school" formControlName="school" [ngClass]="f.school.errors">
+          <div class="form_validate" *ngIf="f.school.invalid &&f.school.touched  && f.school.errors.required">
+            This Field is required.
+          </div>
+        </div>
+        <div class="resume_form-group">
+          <label for="major">Major:</label>
+          <input type="text" id="major" formControlName="major">
+        </div>
+      </div>
+      <div class="main_personal-resume-content-header">
+        <h2> Academic Achievements</h2>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <button type="button" value="Add" (click)="add()">Add</button>
+        <input type="text" name="userId" hidden>
+
+        <div formArrayName="academic">
+          <ng-container *ngFor="let d of data.get('academic').controls;let i = index" [formGroupName]="i">
+
+            <div class="main_personal-resume-content-subheader">
+              <div class="resume_form-group">
+                <input type="text" formControlName="achievements">
+                <button type="button" (click)="deleteItem(i)" value="Delete">Delete</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <button type="button" (click)="onReset()" value="Reset">Reset</button>
+          <button type="submit" [disabled]="!data.valid" value="Save & Next">Save</button>
+        </div>
+      </div>
+    </form> -->
+
+
+
+
+
+
+  </div>
+</div>

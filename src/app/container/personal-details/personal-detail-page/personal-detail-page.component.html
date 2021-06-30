@@ -1,0 +1,360 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1>PERSONAL DETAILS FORM</h1>
+    <br>
+    <h5>CSPL NETWORK</h5>
+    <h5>CENTER FOR SKILLED PERSONNEL AND LABOUR NETWORK</h5>
+  </div>
+  <div class="main_personal-resume-content">
+    <div *ngFor="let data of pdData;">
+      <form *ngIf="personaldetailService.editMode()" #PersonalDetails="ngForm"
+        (ngSubmit)="submitPersonalDetails(PersonalDetails)">
+        <div class="main_personal-resume-content-subheader" style="background-color: #f0efef;">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="resume_form-group">
+                <label for="stateCode">State Code: <sup class="unexo__required">*</sup></label>
+                <select name="stateCode" id="stateCode" (change)="onChangeStateCode($event.target.value)" required
+                  [(ngModel)]="data.stateCode">
+                  <option *ngFor="let option of personaldetailService.states" [value]="option.key">{{option.key
+                    }}&nbsp;{{option.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="resume_form-group">
+                <label for="districtCode">District Code:<sup class="unexo__required">*</sup></label>
+                <select name="districtCode" id="districtCode" required [(ngModel)]="data.districtCode">
+                  <option *ngFor="let option of districts;let i=index;" [value]="option">{{option}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="resume_form-group">
+                <label for="talukaCode">Taluka/Tehsil Code:<sup class="unexo__required">*</sup></label>
+                <input type="number" [(ngModel)]="data.tehsilCode" id="talukaCode" name="talukaCode"
+                  #talukaCode="ngModel" maxlength="8" required>
+              </div>
+              <div class="form_validate" *ngIf="talukaCode.invalid && talukaCode.touched">
+                Taluka Code is required.
+              </div>
+            </div>
+            <div class="col-lg-3">
+
+              <div class="resume_form-group">
+                <label for="skillCategory">Skill Category:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="20" [(ngModel)]="data.skillCategory" id="skillCategory"
+                  name="skillCategory" #skillCategory="ngModel" required>
+              </div>
+              <div class="form_validate" *ngIf="skillCategory.invalid && skillCategory.touched">
+                Skill Category Field is required.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="main_personal-resume-content-subheader">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+                <label for="name">Name:<sup class="unexo__required">*</sup></label>
+                <input type="text" maxlength="15" [(ngModel)]="data.name" id="name" name="name" #name="ngModel"
+                  pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" required>
+                <div class="form_validate" *ngIf="name.invalid && name.touched">
+                  Name is required and No Numbers and special characters allowed..
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="resume_form-group">
+                    <label for="dob">D.O.B:<sup class="unexo__required">*</sup></label>
+                    <input type="date" [(ngModel)]="data.dob" (change)="calculateAge1()" name="dob" id="dob1"
+                      [max]="maximumDate" #dob="ngModel" required onkeydown="return false">
+                    <div class="form_validate" *ngIf="dob.invalid && dob.touched">
+                      Enter Your Date Of Birth.
+                    </div>
+                  </div>
+                  <div class="resume_form-group">
+                    <label for="mobileNo">Mobile No:<sup class="unexo__required">*</sup></label>
+                    <input type="number" [(ngModel)]="data.phoneNo" id="mobileNo" name="mobileNo" pattern="^[0-9]{10}$"
+                      #mobileNo="ngModel" required>
+                    <div class="form_validate" *ngIf="mobileNo.invalid && mobileNo.touched">
+                      Enter A Valid Mobile No.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="resume_form-group">
+                    <label for="height">Height: <sub>(In Cm)</sub> <sup class="unexo__required">*</sup></label>
+                    <input type="text" maxlength="6" pattern="^\d*(\.\d{0,2})?$" [(ngModel)]="data.height" id="height"
+                      name="height" #height="ngModel" required>
+                    <div class="form_validate" *ngIf="height.invalid && height.touched">
+                      Enter Your Height and Height Must Not Contain Numbers more than 6 and only two decimal places
+                      allowed.
+                    </div>
+                  </div>
+                  <div class="resume_form-group">
+                    <label for="email">Email:<sup class="unexo__required">*</sup></label>
+                    <input type="email" [(ngModel)]="data.email" [readonly]="true" name="email" id="email"
+                      #email="ngModel" required email>
+                    <div class="form_validate" *ngIf="email.invalid && email.touched">
+                      Enter a Valid Email
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="address">Address:<sup class="unexo__required">*</sup></label>
+                <textarea name="address" [(ngModel)]="data.address" id="address" cols="50" rows="1" required
+                  #address="ngModel"></textarea>
+                <div class="form_validate" *ngIf="address.invalid && address.touched">
+                  Enter Your Address.
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-lg-3">
+              <div class="resume_form-group">
+                <label for="age">Age:<sup class="unexo__required">*</sup></label>
+                <input type="number" [(ngModel)]="myage1" name="age" id="age" #age="ngModel" maxlength="3" required>
+                <div class="form_validate" *ngIf="age.invalid && age.touched">
+                  Age is required.
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="resume_form-group">
+                    <label for="birthPlace">Birth Place:<sup class="unexo__required">*</sup></label>
+                    <input type="text" maxlength="15" [(ngModel)]="data.birthPlace" name="birthPlace" id="birthPlace"
+                      pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" #birthPlace="ngModel" required>
+                    <div class="form_validate" *ngIf="birthPlace.invalid && birthPlace.touched">
+                      Birth Place is required and No Numbers and special characters allowed..
+                    </div>
+                  </div>
+
+
+
+
+                  <div class="resume_form-group">
+                    <label for="pincode">Pincode:<sup class="unexo__required">*</sup></label>
+                    <input type="number" [(ngModel)]="data.pincode" pattern="^[1-9][0-9]{5}$" id="pincode"
+                      name="pincode" #pincode="ngModel" required>
+                    <div class="form_validate" *ngIf="pincode.invalid && pincode.touched">
+                      Enter A Valid Pincode.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-3" style="overflow-x: hidden;">
+              <div class="resume_form-group">
+
+                <label for="file" style="cursor: pointer;" id="photo"><b>Upload Image<sup
+                      class="unexo__required">*</sup></b></label>
+
+                <input type="file" accept="image/*" (change)="setFiles($event)" name="image" ngModel required
+                  #image="ngModel" id="file" style="background-color: #cacaca;">
+                <!-- <img id="output" width="100" height="100" style="object-fit: contain;" /><br> -->
+                <div class="form_validate" *ngIf="image.invalid && image.touched">
+                  Photo is required. Click on Upload Image Text.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="button-cont">
+            <button *ngIf="!limitexcedded" type="submit" class="unexo__primary--btn" [disabled]="!PersonalDetails.valid"
+              value="Save & Next">Update
+              & Proceed </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <form *ngIf="!personaldetailService.editMode()" #PersonalDetails="ngForm"
+      (ngSubmit)="submitPersonalDetails(PersonalDetails)">
+      <div class="main_personal-resume-content-subheader" style="background-color: #f0efef;">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="resume_form-group">
+              <label for="stateCode">State Code:<sup class="unexo__required">*</sup></label>
+              <select name="stateCode" id="stateCode" (change)="onChangeStateCode($event.target.value)" required
+                ngModel>
+                <option *ngFor="let option of personaldetailService.states" [value]="option.key">{{option.key
+                  }}&nbsp;{{option.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="resume_form-group">
+              <label for="districtCode">District Code:<sup class="unexo__required">*</sup></label>
+              <select name="districtCode" id="districtCode" required ngModel>
+                <option *ngFor="let option of districts;let i=index;" [value]="option">{{option}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="resume_form-group">
+              <label for="talukaCode">Taluka/Tehsil Code:<sup class="unexo__required">*</sup></label>
+              <input type="number" ngModel id="talukaCode" name="talukaCode" #talukaCode="ngModel" maxlength="8"
+                required>
+            </div>
+            <div class="form_validate" *ngIf="talukaCode.invalid && talukaCode.touched">
+              Taluka Code is required.
+            </div>
+          </div>
+          <div class="col-lg-3">
+
+            <div class="resume_form-group">
+              <label for="skillCategory">Skill Category:<sup class="unexo__required">*</sup></label>
+              <input type="text" ngModel id="skillCategory" name="skillCategory" #skillCategory="ngModel" maxlength="20"
+                required>
+            </div>
+            <div class="form_validate" *ngIf="skillCategory.invalid && skillCategory.touched">
+              Skill Category Field is required.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="main_personal-resume-content-subheader">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+              <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+              <label for="name">Name:<sup class="unexo__required">*</sup></label>
+              <input type="text" ngModel id="name" maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" name="name"
+                #name="ngModel" required>
+              <div class="form_validate" *ngIf="name.invalid && name.touched">
+                Name is required and No Numbers and special characters allowed..
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="resume_form-group">
+                  <label for="dob">D.O.B:<sup class="unexo__required">*</sup></label>
+                  <input type="date" ngModel name="dob" id="dob" #dob="ngModel" (change)="calculateAge()" required
+                    onkeydown="return false">
+                  <div class="form_validate" *ngIf="dob.invalid && dob.touched">
+                    Enter Your Date Of Birth.
+                  </div>
+                </div>
+                <div class="resume_form-group">
+                  <label for="email">Email:<sup class="unexo__required">*</sup></label>
+                  <input type="email" [(ngModel)]="emailid" [readonly]="true" name="email" id="email" #email="ngModel"
+                    required email>
+                  <div class="form_validate" *ngIf="email.invalid && email.touched">
+                    Enter a Valid Email
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="resume_form-group">
+                  <label for="height">Height: <sub>(In Cm)</sub><sup class="unexo__required">*</sup></label>
+                  <input type="text" maxlength="6" pattern="^\d*(\.\d{0,2})?$" ngModel id="height" name="height"
+                    #height="ngModel" required>
+                  <div class="form_validate" *ngIf="height.invalid && height.touched">
+                    Enter Your Height and Height Must Not Contain Numbers more than 6 and only two decimal places
+                    allowed.
+
+                  </div>
+                </div>
+                <div class="resume_form-group">
+                  <label for="mobileNo">Mobile No:<sup class="unexo__required">*</sup></label>
+                  <input type="number" [(ngModel)]="phoneNo" id="mobileNo" name="mobileNo" pattern="^[0-9]{10}$"
+                    #mobileNo="ngModel" required>
+                  <div class="form_validate" *ngIf="mobileNo.invalid && mobileNo.touched">
+                    Enter A Valid Mobile No.
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="resume_form-group">
+              <label for="address">Address:<sup class="unexo__required">*</sup></label>
+              <textarea name="address" ngModel id="address" cols="50" rows="1" required #address="ngModel"></textarea>
+              <div class="form_validate" *ngIf="address.invalid && address.touched">
+                Enter Your Address.
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-lg-3">
+            <div class="resume_form-group">
+              <label for="age">Age:<sup class="unexo__required">*</sup></label>
+              <input type="number" [(ngModel)]="myage" name="age" id="age" #age="ngModel" maxlength="3" required>
+              <div class="form_validate" *ngIf="age.invalid && age.touched">
+                Age is required.
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="resume_form-group">
+                  <label for="birthPlace">Birth Place:<sup class="unexo__required">*</sup></label>
+                  <input type="text" ngModel maxlength="15" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" name="birthPlace"
+                    id="birthPlace" #birthPlace="ngModel" required>
+                  <div class="form_validate" *ngIf="birthPlace.invalid && birthPlace.touched">
+                    Birth Place is required and No Numbers and special characters allowed.
+                  </div>
+                </div>
+                <div class="resume_form-group">
+                  <label for="pincode">Pincode:<sup class="unexo__required">*</sup></label>
+                  <input type="number" ngModel id="pincode" name="pincode" #pincode="ngModel" pattern="^[1-9][0-9]{5}$"
+                    required>
+                  <div class="form_validate" *ngIf="pincode.invalid && pincode.touched">
+                    Enter A Valid Pincode.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+          <div class="col-lg-3">
+            <div class="resume_form-group">
+
+
+              <input type="file" accept="image/*" (change)="setFiles($event)" name="image" ngModel required
+                #image="ngModel" id="file" style="background-color: #cacaca; display: none;">
+              <img id="output" width="100" height="100" style="object-fit: contain;" /><br>
+              <label for="file" style="cursor: pointer;" id="photo"><b>Upload Image<sup
+                    class="unexo__required">*</sup></b></label>
+
+              <div class="form_validate" *ngIf="image.invalid && image.touched">
+                Photo is required. Click on Upload Image Text.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" value="Reset" (click)="onReset(PersonalDetails)">Reset</button> -->
+          <button class="unexo__primary--btn" *ngIf="!limitexcedded" type="submit" [disabled]="!PersonalDetails.valid"
+            value="Save & Next">Save &
+            Proceed</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

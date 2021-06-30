@@ -1,0 +1,35 @@
+.header_cta a {
+  font-size: 1.6rem;
+  color: white;
+  font-weight: 600;
+  margin: 0rem 1rem;
+  display: inline-block;
+  cursor: default;
+}
+.header_cta .user_info a:hover {
+  text-decoration: none;
+}
+.user_info {
+  display: flex;
+  align-items: center;
+}
+#rc {
+  position: relative;
+  cursor: pointer;
+}
+#rc label {
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  background-color: black;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  color: white;
+  display: none;
+  z-index: 99;
+  font-size: 1.4rem;
+  width: 15rem;
+}
+#rc:hover label {
+  display: block;
+}

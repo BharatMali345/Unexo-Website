@@ -1,0 +1,116 @@
+<!-- <div *ngIf="!personalDetailsService.editMode()" class="wrapper">
+  <div class="sidebar">
+    <h3><a routerLink="/home"><i class="fas fa-home"></i> Personal Resume</a></h3>
+    <ul>
+      <li><a [routerLink]="myUserStatus===0 ?['/personal-details']:null"
+          [class.disabled]="myUserStatus===0 ? null: true"><i class="fas fa-user"></i>Personal Details</a>
+      </li>
+      <li><a [routerLink]="myUserStatus===1 ?['education']:null" [class.disabled]="myUserStatus===1 ? null: true"><i
+            class="fas fa-graduation-cap"></i>Educational
+          Details</a></li>
+      <li><a [routerLink]="myUserStatus===2 ?['work']:null" [class.disabled]="myUserStatus===2 ? null: true"><i
+            class="fas fa-briefcase"></i>Work Experience</a></li>
+      <li><a [routerLink]="myUserStatus===3 ?['employer']:null" [class.disabled]="myUserStatus===3 ? null: true"><i
+            class="fas fa-address-book"></i>Employer
+          Perspective</a>
+      </li>
+      <li><a [routerLink]="myUserStatus===4 ?['family']:null" [class.disabled]="myUserStatus===4 ? null: true"><i
+            class="fas fa-users"></i>About
+          Family</a></li>
+      <li><a [routerLink]="myUserStatus===5 ?['bank']:null" [class.disabled]="myUserStatus===5 ? null: true"><i
+            class="fas fa-university"></i>Bank Account Details</a>
+      </li>
+      <li><a [routerLink]="myUserStatus===6 ?['documents']:null" [class.disabled]="myUserStatus===6 ? null: true"><i
+            class="fas fa-file-upload"></i>Attach Documents</a>
+      </li>
+
+
+    </ul>
+
+    <div class="form_validated">
+      <ul>
+
+
+        <li *ngIf="myUserStatus===0">Fill in all the forms to complete your registration.</li>
+        <li *ngIf="myUserStatus===1">You Have Filled Till Personal Details Form.Fill in the remaining form to complete
+          your
+          registration.</li>
+        <li *ngIf="myUserStatus===2">You Have Filled Till Education Details Form.Fill in the remaining form to complete
+          your
+          registration.</li>
+        <li *ngIf="myUserStatus===3">You Have Filled Till Work Experience Form.Fill in the remaining form to complete
+          your
+          registration.</li>
+        <li *ngIf="myUserStatus===4">You Have Filled Till Employer Perspective Form.Fill in the remaining form to
+          complete
+          your registration.</li>
+        <li *ngIf="myUserStatus===5">You Have Filled Till About Family Form.Fill in the remaining form to complete your
+          registration.</li>
+        <li *ngIf="myUserStatus===6">You Have Filled Till Bank Account Details Form.Fill in the remaining form to
+          complete
+          your registration.</li>
+        <li *ngIf="myUserStatus===7">Registration Completed.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="personalDetailsService.editMode()" class="wrapper">
+  <div class="sidebar">
+    <h3><a routerLink="/home"><i class="fas fa-home"></i> Personal Resume</a></h3>
+    <ul>
+      <li><a routerLink="/personal-details"><i class="fas fa-user"></i>Personal Details</a>
+      </li>
+      <li><a routerLink="education" routerLinkActive="active"><i class="fas fa-graduation-cap"></i>Educational
+          Details</a></li>
+      <li><a routerLink="work" routerLinkActive="active"><i class="fas fa-briefcase"></i>Work Experience</a></li>
+      <li><a routerLink="employer" routerLinkActive="active"><i class="fas fa-address-book"></i>Employer
+          Perspective</a>
+      </li>
+      <li><a routerLink="family" routerLinkActive="active"><i class="fas fa-users"></i>About
+          Family</a></li>
+      <li><a routerLink="bank" routerLinkActive="active"><i class="fas fa-university"></i>Bank Account Details</a>
+      </li>
+      <li><a routerLink="documents" routerLinkActive="active"><i class="fas fa-file-upload"></i>Attach Documents</a>
+      </li>
+
+
+    </ul>
+
+
+
+  </div>
+</div> -->
+<div class="p-5">
+
+  <div class="btn_holder">
+    <button class="unexo__primary--btn" *ngIf="myUserStatus >=2 || personalDetailsService.editMode()" type="button"
+      (click)="personalDetailsService.cancelEditMode()">My Profile</button>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-3 mb-3">
+      <div class="unexo__side--dashboard">
+        <h2>QUICK LINKS</h2>
+        <hr>
+        <a routerLinkActive="active">Personal Details</a>
+
+        <a routerLinkActive="active">Educational
+          Details</a>
+
+        <a *ngIf="authService.userStatus()>=2" routerLink="work" routerLinkActive="active">Work
+          Experience</a>
+
+        <a *ngIf="authService.userStatus()>=2" routerLink="employer" routerLinkActive="active">Employer
+          Perspective</a>
+
+      </div>
+    </div>
+    <div class="col-lg-9 ">
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+</div>

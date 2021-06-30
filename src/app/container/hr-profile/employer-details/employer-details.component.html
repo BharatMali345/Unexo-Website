@@ -1,0 +1,88 @@
+<div class="main_profile-container ">
+
+  <div class="main_profile ">
+    <div class="text-right mb-4 unexo__padding">
+      <button type="button" class="unexo__primary--btn" (click)="approvalstatus(1)"><i
+          class="fas fa-check"></i></button> &nbsp; <button type="button" class="unexo__primary--btn"
+        (click)="approvalstatus(0)"><i class="fas fa-times"></i></button>&nbsp;
+      <button type="button" class="unexo__primary--btn" (click)=" routeBack()"><i
+          class="fas fa-arrow-left"></i></button>
+    </div>
+
+    <div class="main_profile-header unexo__padding">
+      <h2 class="text-center"> Employer Details</h2>
+    </div>
+    <hr>
+    <div *ngIf="nodata">
+      <!-- <button type="button" style="font-size: 1.6rem;" (click)=" editEmployerDetails()">Add Employer Details</button> -->
+    </div>
+    <div *ngIf="!nodata">
+      <div class="main_profile-section">
+        <div class="row unexo__padding">
+          <div class="col-md-6">
+            <p>Industry Name:</p>
+            <h3>{{data && data.industryName}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Functional Area:</p>
+            <h3>{{data && data.functionalArea}}</h3>
+          </div>
+        </div>
+        <div class="row unexo__padding">
+          <div class="col-md-6">
+            <p>Skills:</p>
+            <h3>{{data && data.itSkills}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Shift:</p>
+            <h3>{{data && data.shift}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Expected Salary:</p>
+            <h3>{{data && data.salary}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Joining Date:</p>
+            <h3>{{data && data.joiningDate}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>End Date:</p>
+            <h3>{{data && data.endDate}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Job Type:</p>
+            <h3>{{data && data.jobType}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Role:</p>
+            <h3>{{data && data.role}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Designation:</p>
+            <h3>{{data && data.designation}}</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Experience:</p>
+            <h3>{{data && data.experience}} Years</h3>
+          </div>
+          <div class="col-md-6">
+            <p>Languages:</p>
+            <h3>{{data && data.languages}}</h3>
+          </div>
+          <div *ngFor="let data1 of data && data.skillAbilities;let i= index;" class="col-md-6">
+            <p>Main Abilities:</p>
+            <h3>{{data1.mainabilities}}</h3>
+          </div>
+          <div *ngFor="let data1 of data && data.otherAbilities;let i= index;" class="col-md-6">
+            <p>Other Abilities:</p>
+            <h3>{{data1.otherabilities}}</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

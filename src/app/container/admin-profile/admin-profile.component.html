@@ -1,0 +1,32 @@
+<div class="p-5">
+
+
+  <div class="row no-gutters">
+    <div class="col-lg-3">
+      <div class="admin_header-container ">
+
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h1>Admin Panel</h1>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-selection-list [multiple]="false">
+              <mat-list-option routerLink="/admin-profile">
+                <p><a><i class="fas fa-user"></i> Candidates List</a> </p>
+              </mat-list-option>
+              <mat-list-option routerLink="/admin-profile/hr-list">
+                <p> <a><i class="fas fa-user-tie"></i> Hr List</a> </p>
+              </mat-list-option>
+
+            </mat-selection-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

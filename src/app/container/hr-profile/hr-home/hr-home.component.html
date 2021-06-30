@@ -1,0 +1,315 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<mat-card class="mat__card--container">
+
+
+  <div class="main_personal-resume-heading">
+
+    <h1 class="text-center mt-5 unexo__h1">Hr Personal Details Form</h1>
+  </div>
+  <form *ngIf="!personaldetailService.editMode()" #HRDetailsForm="ngForm" (ngSubmit)="onSubmit(HRDetailsForm)">
+    <div class="row" style="width: 100%;">
+      <input type="text" hidden name="userId" [(ngModel)]="myUserId">
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Name<sup class="unexo__required">*</sup></label>
+          <input type="text" required #name="ngModel" ngModel name="name">
+          <div class="form_validate" *ngIf="name.invalid && name.touched && name.errors">Name is required Field.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Email<sup class="unexo__required">*</sup></label>
+          <input type="email" name="email" [(ngModel)]="emailid" [readonly]="true" #email="ngModel" required email>
+          <div class="form_validate" *ngIf="email.invalid && email.touched">Please Enter a Valid Email.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Date Of Birth<sup class="unexo__required">*</sup></label>
+          <input type="date" (change)="calculateAge()" required ngModel #dob="ngModel" [max]="maximumDate" id="dobhr"
+            name="dob">
+          <div class="form_validate" *ngIf="dob.invalid && dob.touched">Date Of Birth is a Required Field.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Mobile No:<sup class="unexo__required">*</sup></label>
+          <input type="number" required name="mobileNo" [readonly]="true" pattern="^[0-9]{10}$" [(ngModel)]="phoneNo"
+            #mobileNo="ngModel">
+          <div class="form_validate" *ngIf="mobileNo.invalid && mobileNo.touched">
+            Please enter a valid 10 digit Mobile No.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Age<sup class="unexo__required">*</sup></label>
+          <input type="number" required [(ngModel)]="myage" #age="ngModel" name="age">
+          <div class="form_validate" *ngIf="age.invalid && age.touched">Age is a Required Field.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Current Employer At<sup class="unexo__required">*</sup></label>
+          <input type="text" name="employer" ngModel #employer="ngModel" required>
+          <div class="form_validate" *ngIf="employer.invalid && employer.touched">
+            Current Employer is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Current Designation<sup class="unexo__required">*</sup></label>
+          <input type="text" name="designation" ngModel #designation="ngModel" required>
+          <div class="form_validate" *ngIf="designation.invalid && designation.touched">
+            Current Designation is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>State<sup class="unexo__required">*</sup></label>
+          <select name="stateCode" id="stateCode" (change)="onChangeStateCode($event.target.value)" required ngModel
+            #stateCode="ngModel">
+            <option *ngFor="let option of personaldetailService.states" [value]="option.key">{{option.name}}
+            </option>
+          </select>
+          <div class="form_validate" *ngIf="stateCode.invalid && stateCode.touched">
+            State Code is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div>
+          <label>Role in Hiring<sup class="unexo__required">*</sup></label>
+          <select name="role" ngModel #role="ngModel" required placeholder="Choose an Option">
+            <option value=" I Hire For My Clients">
+              I Hire For My Clients
+            </option>
+            <option value=" I Hire For My Team">
+              I Hire For My Team
+            </option>
+            <option value=" I Hire For My Company">
+              I Hire For My Company
+            </option>
+            <option value="Others">
+              Others
+            </option>
+          </select>
+          <div class="form_validate" *ngIf="role.invalid && role.touched">
+            Role in Hiring is a required Field.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>District<sup class="unexo__required">*</sup></label>
+          <select name="districtCode" #districtCode="ngModel" id="districtCode" required ngModel>
+            <option *ngFor="let option of districts;let i=index;" [value]="option">{{option}}
+            </option>
+          </select>
+          <div class="form_validate" *ngIf="districtCode.invalid && districtCode.touched">
+            District Code is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Pin Code<sup class="unexo__required">*</sup></label>
+          <input type="number" name="pinCode" ngModel #pinCode="ngModel" required>
+          <div class="form_validate" *ngIf="pinCode.invalid && pinCode.touched">
+            Pin Code is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="example-full-width">
+          <label>Address<sup class="unexo__required">*</sup></label>
+          <textarea name="address" ngModel #address="ngModel" required></textarea>
+          <div class="form_validate" *ngIf="address.invalid && address.touched">
+            Address is a required Field.
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <button class="unexo__primary--btn" type="button" (click)="image.click()">
+          <label style="font-size: 1.6rem; color: white;"><i class="fas fa-upload"></i>&nbsp;Upload Your Photo<sup
+              class="unexo__required">*</sup></label>
+          <input type="file" accept="image/*" (change)="setFiles($event)" name="image" ngModel required #image id="file"
+            style="display: none;">
+        </button>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-lg-12">
+        <div class="button-cont">
+          <button *ngIf="!limitexcedded" class="unexo__primary--btn" [disabled]="HRDetailsForm.invalid && limitexcedded"
+            color="accent" type="submit">Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <form *ngIf="personaldetailService.editMode()" #HRDetailsForm="ngForm" (ngSubmit)="onSubmit(HRDetailsForm)">
+    <div *ngFor="let data of pdData;">
+      <div class="row" style="width: 100%;">
+        <input type="text" hidden name="userId" [(ngModel)]="myUserId">
+        <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Name<sup class="unexo__required">*</sup></label>
+            <input type="text" required #name="ngModel" [(ngModel)]="data.name" name="name">
+            <div class="form_validate" *ngIf="name.invalid && name.touched && name.errors">Name is required Field.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Email<sup class="unexo__required">*</sup></label>
+            <input type="email" name="email" [(ngModel)]="data.email" [readonly]="true" #email="ngModel" required email>
+            <div class="form_validate" *ngIf="email.invalid && email.touched">Please Enter a Valid Email.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Date Of Birth<sup class="unexo__required">*</sup></label>
+            <input type="date" (change)="calculateAge1()" [readonly]="true" required [(ngModel)]="data.dob"
+              #dob="ngModel" name="dob" id="dobhr1">
+            <div class="form_validate" *ngIf="dob.invalid && dob.touched">Date Of Birth is a Required Field.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Mobile No:<sup class="unexo__required">*</sup></label>
+            <input type="number" required name="mobileNo" [readonly]="true" pattern="^[0-9]{10}$"
+              [(ngModel)]="data.phoneNo" #mobileNo="ngModel">
+            <div class="form_validate" *ngIf="mobileNo.invalid && mobileNo.touched">
+              Please enter a valid 10 digit Mobile No.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Age<sup class="unexo__required">*</sup></label>
+            <input type="number" required [(ngModel)]="data.age" [readonly]="true" #age="ngModel" name="age">
+            <div class="form_validate" *ngIf="age.invalid && age.touched">Age is a Required Field.</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Current Employer At<sup class="unexo__required">*</sup></label>
+            <input type="text" name="employer" [(ngModel)]="data.employer" #employer="ngModel" required>
+            <div class="form_validate" *ngIf="employer.invalid && employer.touched">
+              Current Employer is a required Field.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Current Designation<sup class="unexo__required">*</sup></label>
+            <input type="text" name="designation" [(ngModel)]="data.designation" #designation="ngModel" required>
+            <div class="form_validate" *ngIf="designation.invalid && designation.touched">
+              Current Designation is a required Field.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>State<sup class="unexo__required">*</sup></label>
+            <select name="stateCode" id="stateCode" (change)="onChangeStateCode($event.target.value)" required
+              [(ngModel)]="value" #stateCode="ngModel">
+              <option *ngFor="let option of personaldetailService.states" [value]="option.key">{{option.name}}
+              </option>
+            </select>
+            <div class="form_validate" *ngIf="stateCode.invalid && stateCode.touched">
+              State Code is a required Field.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div>
+            <label>Role in Hiring<sup class="unexo__required">*</sup></label>
+            <select name="role" [(ngModel)]="data.role" #role="ngModel" required placeholder="Choose an Option">
+              <option value=" I Hire For My Clients">
+                I Hire For My Clients
+              </option>
+              <option value=" I Hire For My Team">
+                I Hire For My Team
+              </option>
+              <option value=" I Hire For My Company">
+                I Hire For My Company
+              </option>
+              <option value="Others">
+                Others
+              </option>
+            </select>
+            <div class="form_validate" *ngIf="role.invalid && role.touched">
+              Role in Hiring is a required Field.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>District<sup class="unexo__required">*</sup></label>
+            <select name="districtCode" #districtCode="ngModel" id="districtCode" required
+              [(ngModel)]="data.districtCode">
+              <option *ngFor="let option of districts;let i=index;" [value]="option">{{option}}
+              </option>
+            </select>
+            <div class="form_validate" *ngIf="districtCode.invalid && districtCode.touched">
+              District Code is a required Field.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="example-full-width">
+            <label>Pin Code<sup class="unexo__required">*</sup></label>
+            <input type="number" name="pinCode" [(ngModel)]="data.pinCode" #pinCode="ngModel" required>
+            <div class="form_validate" *ngIf="pinCode.invalid && pinCode.touched">
+              Pin Code is a required Field.
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="example-full-width">
+            <label>Address<sup class="unexo__required">*</sup></label>
+            <textarea name="address" [(ngModel)]="data.address" #address="ngModel" required></textarea>
+            <div class="form_validate" *ngIf="address.invalid && address.touched">
+              Address is a required Field.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <button class="unexo__primary--btn" type="button" (click)="image.click()">
+            <label style="font-size: 1.6rem; color: white;"><i class="fas fa-upload"></i>&nbsp; Upload Your
+              Photo<sup class="unexo__required">*</sup></label>
+            <input type="file" accept="image/*" (change)="setFiles($event)" name="image" ngModel required #image
+              id="file" style="display: none;">
+          </button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="col-lg-12">
+          <div class="button-cont">
+            <button *ngIf="!limitexcedded" class="unexo__primary--btn" [disabled]="HRDetailsForm.invalid" color="accent"
+              type="submit">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

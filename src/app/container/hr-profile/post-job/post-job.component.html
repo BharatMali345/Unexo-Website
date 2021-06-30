@@ -1,0 +1,273 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<mat-card class="mat__card--container">
+
+  <div class="main_personal-resume-heading">
+
+    <h1 class="text-center mt-5 unexo__h1">Post Job</h1>
+  </div>
+  <form [formGroup]="postJobForm" (ngSubmit)="onSubmit()">
+    <div class="row" style="width: 100%;">
+      <input type="text" hidden formControlName="userId">
+      <input *ngIf="personalDetailService.editMode()" type="text" hidden formControlName="editMode">
+
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Job Title <sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="jobTitle" pattern="^[a-zA-Z0-9 .]*$"
+            [ngClass]="f.jobTitle.errors">
+          <div class="form_validate" *ngIf="f.jobTitle.invalid &&f.jobTitle.touched  && f.jobTitle.errors.required
+        ">Job Title is required.
+          </div>
+          <div class="form_validate" *ngIf="f.jobTitle.invalid &&f.jobTitle.touched  && f.jobTitle.errors.pattern">
+            No Special Characters Allowed.
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Company Name <sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="companyName" pattern="^[a-zA-Z0-9 .]*$"
+            [ngClass]="f.companyName.errors">
+          <div class="form_validate"
+            *ngIf="f.companyName.invalid &&f.companyName.touched  && f.companyName.errors.required">Company
+            Name
+            is required Field.</div>
+          <div class="form_validate"
+            *ngIf="f.companyName.invalid &&f.companyName.touched  && f.companyName.errors.pattern">
+            No Special Characters Allowed.
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Experience Required <sub>(In Years)</sub><sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="expYears" pattern="^[0-9 -]*$" [ngClass]="f.expYears.errors">
+          <div class="form_validate" *ngIf="f.expYears.invalid &&f.expYears.touched  && f.expYears.errors.required">
+            Experience
+            Required(In
+            Years) is required Field.</div>
+          <div class="form_validate" *ngIf="f.expYears.invalid &&f.expYears.touched  && f.expYears.errors.pattern">
+            No Special Characters and Alphabets Allowed. Except -
+          </div>
+          <mat-hint>Use - To Separate Experience Years</mat-hint>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Salary<sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="salary" pattern="^[0-9 -]*$" [ngClass]="f.salary.errors">
+          <div class="form_validate" *ngIf="f.salary.invalid &&f.salary.touched  && f.salary.errors.required">Salary is
+            required Field.
+          </div>
+          <div class="form_validate" *ngIf="f.salary.invalid &&f.salary.touched  && f.salary.errors.pattern">
+            No Special Characters and Alphabets Allowed. Except -
+          </div>
+          <mat-hint>Use - To Separate Salary Range</mat-hint>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Job Location <sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="jobLocation" pattern="^[a-zA-Z ,]*$"
+            [ngClass]="f.jobLocation.errors">
+          <div class="form_validate"
+            *ngIf="f.jobLocation.invalid &&f.jobLocation.touched  && f.jobLocation.errors.required">Job
+            Location
+            is required Field.</div>
+          <div class="form_validate"
+            *ngIf="f.jobLocation.invalid &&f.jobLocation.touched  && f.jobLocation.errors.pattern">
+            Only Alphabets Allowed
+          </div>
+          <!-- <mat-hint>Use Alphabets Only</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Openings<sup class="unexo__required">*</sup></label>
+          <input type="number" required formControlName="openings" [ngClass]="f.openings.errors">
+          <div class="form_validate" *ngIf="f.openings.invalid &&f.openings.touched  && f.openings.errors.required">
+            Opening is required
+            Field.</div>
+          <!-- <mat-hint>Use Only Numbers</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Max Applicants<sup class="unexo__required">*</sup></label>
+          <input type="number" required formControlName="maxApplicants" [ngClass]="f.maxApplicants.errors">
+          <div class="form_validate"
+            *ngIf="f.maxApplicants.invalid &&f.maxApplicants.touched  && f.maxApplicants.errors.required">Max
+            Applicants is required Field.</div>
+          <!-- <mat-hint>Use Only Numbers</mat-hint> -->
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Industry Type<sup class="unexo__required">*</sup></label>
+          <select formControlName="industryType" (change)="onChangeSubIndustry($event.target.value)" id="industryName"
+            [ngClass]="f.industryType.errors" required>
+            <option *ngFor="let option of Industaries" [value]="option.industryName">{{option.industryName}}
+            </option>
+          </select>
+          <div class="form_validate"
+            *ngIf="f.industryType.invalid &&f.industryType.touched  && f.industryType.errors.required">
+            Industry Type is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Functional Area<sup class="unexo__required">*</sup></label>
+          <select formControlName="functionalArea" id="functionalArea" [ngClass]="f.functionalArea.errors" required>
+            <option *ngFor="let option of subIndustry;let i=index;" [value]="option">{{option}}
+            </option>
+          </select>
+          <div class="form_validate"
+            *ngIf="f.functionalArea.invalid &&f.functionalArea.touched  && f.functionalArea.errors.required">
+            Functional Area is a required Field.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Employment Type <sup class="unexo__required">*</sup></label>
+          <select formControlName="employmentType" id="employmentType" [ngClass]="f.employmentType.errors" required>
+            <option value="Permanent">Permanent
+            </option>
+            <option value="Permanent">Contractual
+            </option>
+            <div class="form_validate"
+              *ngIf="f.employmentType.invalid &&f.employmentType.touched  && f.employmentType.errors.required">
+              Employment Type is a required Field.
+            </div>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Under Graduate<sup class="unexo__required">*</sup></label>
+          <input type="text" required formControlName="underGraduate" pattern="^[a-zA-Z0-9 .]*$"
+            [ngClass]="f.underGraduate.errors">
+          <div class="form_validate"
+            *ngIf="f.underGraduate.invalid &&f.underGraduate.touched  && f.underGraduate.errors.required">
+            Under Graduate is required Field.</div>
+          <div class="form_validate"
+            *ngIf="f.underGraduate.invalid &&f.underGraduate.touched  && f.underGraduate.errors.pattern">
+            No Special Characters Allowed.
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Post Graduate</label>
+          <input type="text" formControlName="postGraduate" pattern="^[a-zA-Z0-9 .]*$"
+            [ngClass]="f.postGraduate.errors">
+          <div class="form_validate"
+            *ngIf="f.postGraduate.invalid &&f.postGraduate.touched  && f.postGraduate.errors.pattern">
+            No Special Characters Allowed.
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="example-full-width">
+          <label>Company's Website</label>
+          <input type="text" formControlName="websiteCompany" pattern="^[a-zA-Z0-9 .]*$"
+            [ngClass]="f.websiteCompany.errors">
+          <div class="form_validate"
+            *ngIf="f.websiteCompany.invalid &&f.websiteCompany.touched  && f.websiteCompany.errors.pattern">
+            No Special Characters Allowed.
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="example-full-width">
+          <label>Role<sup class="unexo__required">*</sup></label>
+          <textarea required formControlName="role" pattern="^[a-zA-Z0-9 .,\r\n]*$"
+            [ngClass]="f.role.errors"></textarea>
+          <div class="form_validate" *ngIf="f.role.invalid &&f.role.touched  && f.role.errors.required">
+            Role is required Field.</div>
+          <div class="form_validate" *ngIf="f.role.invalid &&f.role.touched  && f.role.errors.pattern">
+            No Special Characters Allowed except (, .) .
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="example-full-width">
+          <label>Skill Requirements<sup class="unexo__required">*</sup></label>
+          <textarea required formControlName="skillRequirements" pattern="^[a-zA-Z0-9 .,\r\n]*$"
+            [ngClass]="f.skillRequirements.errors"></textarea>
+          <div class="form_validate"
+            *ngIf="f.skillRequirements.invalid &&f.skillRequirements.touched  && f.skillRequirements.errors.required">
+            Skill Requirements is required Field.</div>
+          <div class="form_validate"
+            *ngIf="f.skillRequirements.invalid &&f.skillRequirements.touched  && f.skillRequirements.errors.pattern">
+            No Special Characters Allowed except (, .) .
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="example-full-width">
+          <label>Applicant Responsibilities</label>
+          <textarea [ngClass]="f.applicantResponsibilities.errors" formControlName="applicantResponsibilities"
+            pattern="^[a-zA-Z0-9 .,\r\n]*$"></textarea>
+          <div class="form_validate"
+            *ngIf="f.applicantResponsibilities.invalid &&f.applicantResponsibilities.touched  && f.applicantResponsibilities.errors.pattern">
+            No Special Characters Allowed except (, .) .
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="example-full-width">
+          <label>About Company<sup class="unexo__required">*</sup></label>
+          <textarea required formControlName="aboutCompany" pattern="^[a-zA-Z0-9 .,\r\n]*$"
+            [ngClass]="f.aboutCompany.errors"></textarea>
+          <div class="form_validate"
+            *ngIf="f.aboutCompany.invalid &&f.aboutCompany.touched  && f.aboutCompany.errors.required">
+            Skill Requirements is required Field.</div>
+          <div class="form_validate"
+            *ngIf="f.aboutCompany.invalid &&f.aboutCompany.touched  && f.aboutCompany.errors.pattern">
+            No Special Characters Allowed except (, .) .
+          </div>
+          <!-- <mat-hint>Special Characters Not Allowed.</mat-hint> -->
+        </div>
+      </div>
+
+      <div class="col-lg-12 mb-5">
+
+        <button class="unexo__primary--btn" type="button" value="Add" (click)="addKeySkills()"><i
+            class="fas fa-plus"></i>&nbsp; Add Key Skills</button>
+        <div formArrayName="keySkills">
+
+          <ng-container *ngFor="let ingredientCtrl of postJobForm.get('keySkills').controls let i = index"
+            [formGroupName]="i">
+
+            <div>
+              <br>
+              <input pattern="^[a-zA-Z0-9 .]*$" type="text" formControlName="skills">
+            </div>
+            <button class="unexo__primary--btn" type="button" (click)="deleteKeySkills(i)" value="Delete"><i
+                class="fas fa-minus"></i> &nbsp;Delete</button>
+          </ng-container>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="button-cont">
+          <button class="unexo__primary--btn" [disabled]="postJobForm.invalid" color="accent"
+            type="submit">Post</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

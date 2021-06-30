@@ -1,0 +1,174 @@
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="main_personal-resume">
+  <div class="main_personal-resume-heading">
+    <h1 style="text-decoration: underline;">BANK DETAILS FORM</h1>
+    <br><br>
+    <h2>CSPL NETWORK</h2>
+    <h1>CENTER FOR SKILLED PERSONNEL AND LABOUR NETWORK</h1>
+  </div>
+  <div class="main_personal-resume-content">
+    <form *ngIf="!personaldetailService.editMode()" #BankForm="ngForm" (ngSubmit)="submitBankForm(BankForm)">
+      <div class="main_personal-resume-content-header">
+        <h2>Bank Account Detail </h2>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="beneficiaryName">
+                Beneficiary’s Name:</label>
+              <input type="text" maxlength="30" id="beneficiaryName" name="beneficiaryName" ngModel required
+                #beneficiaryName="ngModel">
+            </div>
+            <div class="form_validate" *ngIf="beneficiaryName.invalid && beneficiaryName.touched">
+              Beneficiary's Name is required.
+            </div>
+            <div class="resume_form-group">
+              <label for="bankName">Bank Name:</label>
+              <input type="text" maxlength="50" id="bankName" name="bankName" ngModel required #bankName="ngModel">
+              <div class="form_validate" *ngIf="bankName.invalid && bankName.touched">
+                Bank Name is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="branchAddress">Branch address:</label>
+              <input type="text" maxlength="30" id="branchAddress" name="branchAddress" required ngModel
+                #branchAddress="ngModel">
+              <div class="form_validate" *ngIf="branchAddress.invalid && branchAddress.touched">
+                Branch Address is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="nomination">Nomination:</label>
+              <input type="text" maxlength="30" id="nomination" name="nomination" ngModel required
+                #nomination="ngModel">
+              <div class="form_validate" *ngIf="nomination.invalid && nomination.touched">
+                Nomination is required.
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="resume_form-group">
+              <label for="bankAccountNo">Bank Account No:</label>
+              <input type="text" maxlength="30" id="bankAccountNo" name="bankAccountNo" ngModel required
+                #bankAccountNo="ngModel">
+              <div class="form_validate" *ngIf="bankAccountNo.invalid && bankAccountNo.touched">
+                Bank Account Number is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="accountType">Account Type:</label>
+              <input type="text" maxlength="30" id="accountType" name="accountType" required ngModel
+                #accountType="ngModel">
+              <div class="form_validate" *ngIf="accountType.invalid && accountType.touched">
+                Bank Account Type is required.
+              </div>
+            </div>
+            <div class="resume_form-group">
+              <label for="ifscCode"> Branch IFSC code:</label>
+              <input type="text" maxlength="30" id="ifscCode" name="ifscCode" required ngModel #ifscCode="ngModel">
+              <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+              <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+              <div class="form_validate" *ngIf="ifscCode.invalid && ifscCode.touched">
+                IFSC Code is required.
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="main_personal-resume-content-subheader">
+        <div class="button-cont">
+          <!-- <button type="button" (click)="onReset(BankForm)" value="Reset">Reset</button> -->
+          <button type="submit" [disabled]="!BankForm.valid" value="Save & Next">Save & Proceed</button>
+        </div>
+
+      </div>
+    </form>
+
+    <div *ngFor="let data of bdData;">
+      <form *ngIf="personaldetailService.editMode()" #BankForm="ngForm" (ngSubmit)="submitBankForm(BankForm)">
+        <div class="main_personal-resume-content-header">
+          <h2>Bank Account Detail </h2>
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <label for="beneficiaryName">
+                  Beneficiary’s Name:</label>
+                <input type="text" maxlength="30" id="beneficiaryName" name="beneficiaryName"
+                  [(ngModel)]="data.beneficiaryName" required #beneficiaryName="ngModel">
+              </div>
+              <div class="form_validate" *ngIf="beneficiaryName.invalid && beneficiaryName.touched">
+                Beneficiary's Name is required.
+              </div>
+              <div class="resume_form-group">
+                <label for="bankName">Bank Name:</label>
+                <input type="text" maxlength="50" id="bankName" name="bankName" [(ngModel)]="data.bankName" required
+                  #bankName="ngModel">
+                <div class="form_validate" *ngIf="bankName.invalid && bankName.touched">
+                  Bank Name is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="branchAddress">Branch address:</label>
+                <input type="text" maxlength="30" id="branchAddress" name="branchAddress" required
+                  [(ngModel)]="data.branchAddress" #branchAddress="ngModel">
+                <div class="form_validate" *ngIf="branchAddress.invalid && branchAddress.touched">
+                  Branch Address is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="nomination">Nomination:</label>
+                <input type="text" maxlength="30" id="nomination" name="nomination" [(ngModel)]="data.nomination"
+                  required #nomination="ngModel">
+                <div class="form_validate" *ngIf="nomination.invalid && nomination.touched">
+                  Nomination is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="resume_form-group">
+                <label for="bankAccountNo">Bank Account No:</label>
+                <input type="text" maxlength="30" id="bankAccountNo" name="bankAccountNo"
+                  [(ngModel)]="data.bankAccountNo" required #bankAccountNo="ngModel">
+                <div class="form_validate" *ngIf="bankAccountNo.invalid && bankAccountNo.touched">
+                  Bank Account Number is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="accountType">Account Type:</label>
+                <input type="text" maxlength="30" id="accountType" name="accountType" required
+                  [(ngModel)]="data.accountType" #accountType="ngModel">
+                <div class="form_validate" *ngIf="accountType.invalid && accountType.touched">
+                  Bank Account Type is required.
+                </div>
+              </div>
+              <div class="resume_form-group">
+                <label for="ifscCode"> Branch IFSC code:</label>
+                <input type="text" maxlength="30" id="ifscCode" name="ifscCode" required [(ngModel)]="data.ifscCode"
+                  #ifscCode="ngModel">
+                <input type="text" [(ngModel)]="myUserId" name="userId" hidden>
+                <input type="text" *ngIf="personaldetailService.editMode()" [(ngModel)]="isTrue" name="editMode" hidden>
+                <div class="form_validate" *ngIf="ifscCode.invalid && ifscCode.touched">
+                  IFSC Code is required.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="main_personal-resume-content-subheader">
+          <div class="button-cont">
+            <!-- <button type="button" (click)="onReset(BankForm)" value="Reset">Reset</button> -->
+            <button type="submit" [disabled]="!BankForm.valid" value="Save & Next">Update & Proceed</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

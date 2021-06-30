@@ -1,0 +1,50 @@
+<!-- <div class="btn_holder">
+  <button type="button" (click)=" editWorkDetails()">Edit Form</button>
+</div> -->
+<div class="main_profile-container">
+  <div class="main_profile">
+    <div class="main_profile-header main_profile-header-flex">
+      <h1>Work Details</h1>
+      <div class="unexo_label-holder">
+        <button class="unexo__primary--btn" type="button" (click)=" editWorkDetails()"><i
+            class="fas fa-edit"></i></button>
+        <label class="unexo_label">Edit Form</label>
+      </div>
+    </div>
+    <div *ngIf="nodata">
+      <button class="unexo__primary--btn" type="button" style="font-size: 1.6rem;" (click)=" editWorkDetails()">Add Work
+        Details</button>
+    </div>
+    <div *ngIf="!nodata">
+      <div *ngFor="let profiledata of data;">
+        <div class="main_profile-section">
+          <div class="row unexo__padding">
+            <div class="col-md-6">
+              <p>Company Name:</p>
+              <h3>{{profiledata.companyName}}</h3>
+            </div>
+            <div class="col-md-6">
+              <p>Department:</p>
+              <h3>{{profiledata.department}}</h3>
+            </div>
+          </div>
+          <div class="row unexo__padding">
+            <div class="col-md-6">
+              <p>Job Responsibilities:</p>
+              <h3>{{profiledata.job}}</h3>
+            </div>
+            <div class="col-md-6">
+              <p>Position:</p>
+              <h3>{{profiledata.position}}</h3>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoading" class="loading_spinner-container">
+    <app-loading-spinner></app-loading-spinner>
+  </div>

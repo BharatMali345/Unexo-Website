@@ -1,0 +1,9 @@
+button[type="submit"],
+button[type="button"] {
+  outline: none;
+}
+h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: "Lato", sans-serif;
+}

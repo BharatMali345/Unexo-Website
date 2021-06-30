@@ -1,0 +1,71 @@
+<!-- <div class="forgotpass_main">
+  <div class="overflow_controller">
+    <div id="reset" class="forgotpass_container">
+      <img src="../../../assets/images/UnexoLogo.png" alt="unexo logo">
+      <h1>Investor Login</h1>
+      <form #AdminLogIn="ngForm" (ngSubmit)="adminLogin(AdminLogIn)">
+        <input type="email" name="email" ngModel required #email="ngModel" placeholder="Enter Email" email>
+        <div class="form_validate" *ngIf="email.invalid && email.touched">
+          Enter a Valid Email.
+        </div>
+        <div id="unexopassword3">
+
+          <input [type]="showPassword ? 'text' : 'password'" name="password" ngModel required #password="ngModel"
+            placeholder="Enter password"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}">
+          <i [ngClass]="showPassword?'far fa-eye ': 'far fa-eye-slash'" id="unexopasswordlogo3"
+            (click)="togglepassword()"></i>
+          <div class="form_validate" *ngIf="password.invalid && password.touched">
+            Password minimum length should be 8 digits And should include atleast one lowercase,one uppercase,one number
+            and one special charcater.
+          </div>
+        </div>
+        <button class="unexo__primary--btn" type="submit" [disabled]="!AdminLogIn.valid">LogIn</button>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div class=" unexo__frame">
+  <div class="unexo__bg--clip">
+
+  </div>
+  <div class="unexo__bg--clip-child">
+
+  </div>
+  <div class="unexo__slider unexo__investor--bg">
+
+  </div>
+  <div class="unexo__login--card">
+    <div class="unexo_login">
+
+      <form #AdminLogIn="ngForm" (ngSubmit)="adminLogin(AdminLogIn)">
+        <img class="unexo__form--logo" src="../../../assets/images/UnexoLogo.png" alt="unexo logo">
+        <h2>Investor Login</h2>
+        <input type="email" name="email" ngModel required #email="ngModel" placeholder="Enter Email" email>
+        <div class="form_validate" *ngIf="email.invalid && email.touched">
+          Enter a Valid Email.
+        </div>
+        <div id="unexopassword3">
+
+          <input id="pass" [type]="showPassword ? 'text' : 'password'" name="password" ngModel required
+            #password="ngModel" placeholder="Enter password"
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}">
+          <i [ngClass]="showPassword?'far fa-eye ': 'far fa-eye-slash'" id="unexopasswordlogo3"
+            (click)="togglepassword()"></i>
+          <div class="form_validate" *ngIf="password.invalid && password.touched">
+            Password minimum length should be 8 digits And should include atleast one lowercase,one uppercase,one number
+            and one special charcater and No spaces Allowed.
+          </div>
+        </div>
+        <button class="unexo__primary--btn" type="submit" [disabled]="!AdminLogIn.valid">LogIn</button>
+      </form>
+      <br><br><br>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="isLoading" class="loading_spinner-container">
+  <app-loading-spinner></app-loading-spinner>
+</div>

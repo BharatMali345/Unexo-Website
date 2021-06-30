@@ -1,0 +1,37 @@
+.admin_header-container {
+  padding: 1rem;
+  font-size: 1.6rem;
+  font-family: "Lato", sans-serif !important;
+}
+.admin_header-container h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+  font-family: "Lato", sans-serif !important;
+}
+p {
+  width: 100%;
+}
+button[type="submit"],
+button[type="button"] {
+  padding: 0rem 1.6rem;
+  border: none;
+  border-radius: 0.4rem;
+  color: white;
+  outline: none;
+  float: right;
+  clear: both;
+  display: table;
+  content: "";
+}
+a {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Lato", sans-serif !important;
+}
+a i {
+  padding-right: 1.5rem;
+}
