@@ -1,18 +1,17 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { NotifierService } from 'angular-notifier';
-import * as $ from 'jquery';
-import { Subscription } from 'rxjs';
-import { LocalService } from 'src/app/components/local.service';
-import { AuthService } from '../../home/auth.service';
-import { PersonalDetailsService } from '../personal-details.service';
-
+import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { NavigationEnd, Router } from "@angular/router";
+import { NotifierService } from "angular-notifier";
+import * as $ from "jquery";
+import { Subscription } from "rxjs";
+import { LocalService } from "src/app/components/local.service";
+import { AuthService } from "../../home/auth.service";
+import { PersonalDetailsService } from "../personal-details.service";
 
 @Component({
-  selector: 'app-personal-detail-page',
-  templateUrl: './personal-detail-page.component.html',
-  styleUrls: ['./personal-detail-page.component.css']
+  selector: "app-personal-detail-page",
+  templateUrl: "./personal-detail-page.component.html",
+  styleUrls: ["./personal-detail-page.component.css"],
 })
 export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
   isLoading = false;
@@ -31,12 +30,17 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
   limitexcedded = true;
   maximumDate: string;
 
-  constructor(private localservice: LocalService, public authservice: AuthService, public personaldetailService: PersonalDetailsService, private readonly notifierService: NotifierService, private router: Router) {
+  constructor(
+    private localservice: LocalService,
+    public authservice: AuthService,
+    public personaldetailService: PersonalDetailsService,
+    private readonly notifierService: NotifierService,
+    private router: Router
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         this.myUserId = this.authservice.userid();
-        this.personaldetailService.getUserPhoneNo().subscribe(res => {
-
+        this.personaldetailService.getUserPhoneNo().subscribe((res) => {
           this.phoneNo = res.phoneNo;
           this.emailid = res.email;
         });
@@ -47,12 +51,12 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
           var day = dtToday.getDate().toString();
           var year = dtToday.getFullYear() - 16;
           if (+month < 10) {
-            month = ('0' + month.toString());
+            month = "0" + month.toString();
           }
           if (+day < 10) {
-            day = ('0' + day.toString());
+            day = "0" + day.toString();
           }
-          this.maximumDate = year + '-' + month + '-' + day;
+          this.maximumDate = year + "-" + month + "-" + day;
         }
       }
     });
@@ -69,18 +73,14 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
     // }
   }
 
-
   ngOnDestroy() {
     this.navigationSubscription.unsubscribe();
   }
 
-
   ngAfterViewInit() {
-
-
     $("#mobileNo").on("input", function () {
-      var nonNumReg = /[^0-9]/g
-      $(this).val($(this).val().replace(nonNumReg, ''));
+      var nonNumReg = /[^0-9]/g;
+      $(this).val($(this).val().replace(nonNumReg, ""));
     });
 
     $(function () {
@@ -89,17 +89,14 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
       var day = dtToday.getDate().toString();
       var year = dtToday.getFullYear() - 16;
       if (+month < 10) {
-        month = ('0' + month.toString());
+        month = "0" + month.toString();
       }
       if (+day < 10) {
-        day = ('0' + day.toString());
+        day = "0" + day.toString();
       }
-      var maxDate = year + '-' + month + '-' + day;
-      $('#dob').attr('max', maxDate);
-
+      var maxDate = year + "-" + month + "-" + day;
+      $("#dob").attr("max", maxDate);
     });
-
-
 
     // $(function () {
     //   var dtToday = new Date();
@@ -116,59 +113,47 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
     //   console.log(maxDate)
     // });
 
-
-
-
-
     function readURL(input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          $('#output').attr('src', e.target.result);
-        }
+          $("#output").attr("src", e.target.result);
+        };
 
         reader.readAsDataURL(input.files[0]);
       }
     }
 
-
     $("#file").change(function () {
       readURL(this);
     });
-
-
-
-
-
   }
 
-
   calculateAge() {
-    var date = new Date($('#dob').val());
+    var date = new Date($("#dob").val());
     var now = new Date();
-    const diff = Math.abs(+(now) - +(date));
+    const diff = Math.abs(+now - +date);
     const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
     this.myage = age;
   }
   calculateAge1() {
-    var date = new Date($('#dob1').val());
+    var date = new Date($("#dob1").val());
     var now = new Date();
-    const diff = Math.abs(+(now) - +(date));
+    const diff = Math.abs(+now - +date);
     const age = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
     this.myage1 = age;
   }
 
   setFiles(event) {
-    let files = event.srcElement.files
+    let files = event.srcElement.files;
     const file = event.target.files[0];
     if (file.size > 4194304) {
       this.limitexcedded = true;
       alert("File Size exceeds More than 4Mb");
-    }
-    else {
+    } else {
       if (!files) {
-        return
+        return;
       }
       for (var i = 0; i < files.length; i++) {
         this.formData.append(i.toString(), files[i], files[i].name);
@@ -176,73 +161,73 @@ export class PersonalDetailPageComponent implements OnInit, AfterViewInit {
       this.limitexcedded = false;
       alert("File Uploaded");
     }
-
   }
-
 
   submitPersonalDetails(personalDetailsForm) {
     this.isLoading = true;
     this.formData.append("data", JSON.stringify(personalDetailsForm.value));
 
+    console.log(this.formData.get("data"));
+    console.log(this.formData.get("0"));
 
-    this.personaldetailService.addPsData(this.formData).subscribe(resData => {
-      this.isLoading = false;
-      this.router.navigate(['/personal-details/education']);
-      if (this.personaldetailService.editMode()) {
-        this.notifierService.notify("success", " Updated Successfully");
-      }
-      else {
-        localStorage.setItem('UserStatus', this.localservice.encryptData(+this.authservice.userStatus() + 1));
-        this.notifierService.notify("success", " Inserted Successfully");
-      }
-      this.formData.delete('data');
-      this.formData.delete('0');
-    },
-      errorMessage => {
+    this.personaldetailService.addPsData(this.formData).subscribe(
+      (resData) => {
+        this.isLoading = false;
+        this.router.navigate(["/personal-details/education"]);
+        if (this.personaldetailService.editMode()) {
+          this.notifierService.notify("success", " Updated Successfully");
+        } else {
+          localStorage.setItem(
+            "UserStatus",
+            this.localservice.encryptData(+this.authservice.userStatus() + 1)
+          );
+          this.notifierService.notify("success", " Inserted Successfully");
+        }
+        this.formData.delete("data");
+        this.formData.delete("0");
+      },
+      (errorMessage) => {
         this.notifierService.notify("error", errorMessage.error.status);
         this.isLoading = false;
-        this.formData.delete('data');
-        this.formData.delete('0');
-
+        this.formData.delete("data");
+        this.formData.delete("0");
       }
     );
     // this.onReset(personalDetailsForm.value);
-
-
   }
-
 
   onReset(personalDetailsForm) {
     personalDetailsForm.reset();
     this.ngOnInit();
   }
 
-
   getPersonalDetailsFormData() {
     this.isLoading = true;
-    this.personaldetailService.getPersonalDetailsData().subscribe(response => {
-      this.pdData = response;
-      this.myage1 = this.pdData[0].age;
-      this.value = this.pdData[0].stateCode.toString();
-      if (this.personaldetailService.editMode()) {
-        this.personaldetailService.getDistricts(this.value).subscribe(response => {
-          this.districts = response;
-        },
-          error => {
-          });
-      }
-    },
-      error => {
-
-      });
+    this.personaldetailService.getPersonalDetailsData().subscribe(
+      (response) => {
+        this.pdData = response;
+        this.myage1 = this.pdData[0].age;
+        this.value = this.pdData[0].stateCode.toString();
+        if (this.personaldetailService.editMode()) {
+          this.personaldetailService.getDistricts(this.value).subscribe(
+            (response) => {
+              this.districts = response;
+            },
+            (error) => {}
+          );
+        }
+      },
+      (error) => {}
+    );
     this.isLoading = false;
   }
 
   onChangeStateCode(value: string) {
-    this.personaldetailService.getDistricts(value).subscribe(response => {
-      this.districts = response;
-    },
-      error => {
-      });
+    this.personaldetailService.getDistricts(value).subscribe(
+      (response) => {
+        this.districts = response;
+      },
+      (error) => {}
+    );
   }
 }

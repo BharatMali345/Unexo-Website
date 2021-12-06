@@ -98,11 +98,18 @@ span {
   cursor: pointer;
 }
 
-.unexo__tc--box a{
+.unexo__tc--box a {
   position: absolute;
   top: 1%;
   left: 4%;
   font-weight: bold;
   color: var(--primary-color) !important;
-
+}
+.unexo__primary--btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.unexo__primary--btn:hover {
+  background-color: var(--primary-color);
+  color: white;
 }

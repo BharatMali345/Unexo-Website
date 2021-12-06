@@ -1,26 +1,70 @@
-<div [ngClass]="authService.loggedIn() ? 'unexo__header--loggedin ': 'unexo__header'">
+<div class="unexo__header">
+  <div class="unexo__header--bg" *ngIf="!authService.loggedIn()"></div>
+  <div class="unexo__header--bg2" *ngIf="authService.loggedIn()"></div>
   <div class="unexo__header--area">
     <div class="unexo__logo">
-      <a routerLink="/home"><img
-          [src]="authService.loggedIn()?'../../../assets/images/Asset 12FinalWhiteY.png':'../../../assets/images/Asset 9Final.png'"
-          alt="unexo_logo"></a>
+      <a routerLink="/home"
+        ><img
+          src="../../../assets/images/Asset 12FinalWhiteY.png"
+          alt="unexo_logo"
+      /></a>
+    </div>
+    <div class="unexo__links">
+      <a href="" class="link-un" routerLink="/home" routerLinkActive="active"
+        >Home</a
+      >
+      <a
+        href=""
+        class="link-un"
+        routerLink="/solutions"
+        routerLinkActive="active"
+        >Solutions</a
+      ><a href="" class="link-un" routerLink="/about" routerLinkActive="active"
+        >About</a
+      >
+      <a href="" class="link-un" routerLink="/career" routerLinkActive="active"
+        >Career</a
+      >
     </div>
     <ul class="unexo__header-cta">
-      <div *ngIf="authService.loggedIn()&&authService.usertype==='candidate'" class="user_info">
-        <a id="rc" *ngIf="authService.loggedIn()"
-          (click)="copyMessage(authService.myReferralCode)">{{authService.myReferralCode}} <label>My
-            Referral
-            Code</label> </a>
-        <a *ngIf="authService.loggedIn()" href="#">{{authService.referralPoints}} &nbsp;<i class="fas fa-coins"></i></a>
+      <div
+        *ngIf="authService.loggedIn() && authService.usertype === 'candidate'"
+        class="user_info"
+      >
+        <a
+          id="rc"
+          *ngIf="authService.loggedIn()"
+          (click)="copyMessage(authService.myReferralCode)"
+          >{{ authService.myReferralCode }} <label>My Referral Code</label>
+        </a>
+        <a *ngIf="authService.loggedIn()" href="#"
+          >{{ authService.referralPoints }} &nbsp;<i class="fas fa-coins"></i
+        ></a>
       </div>
-      <a *ngIf="!authService.loggedIn() && !adminurl" routerLink="admin_login"><input
-          class="unexo__primary--btn unexo__mr" type="button" value="INVESTOR LOGIN"></a>
-      <a *ngIf="!authService.loggedIn()&& !hrurl" routerLink="hr-login"><input class="unexo__primary--btn "
-          type="button" value="HR LOGIN"></a>
-      <a *ngIf="!authService.loggedIn() && !homeurl" routerLink="home"><input class="unexo__primary--btn " type="button"
-          value="CANDIDATE LOGIN"></a>
-      <a *ngIf="authService.loggedIn()" (click)="logout()" style="cursor: pointer;"><img
-          src="../../../assets/images/log-out-symbol.svg" width="40rem" height="40rem" /></a>
+      <a *ngIf="!authService.loggedIn() && !adminurl" routerLink="admin_login"
+        ><input
+          class="unexo__primary--btn unexo__mr"
+          type="button"
+          value="INVESTOR LOGIN"
+      /></a>
+      <a *ngIf="!authService.loggedIn() && !hrurl" routerLink="hr-login"
+        ><input class="unexo__primary--btn" type="button" value="HR LOGIN"
+      /></a>
+      <a *ngIf="!authService.loggedIn() && !homeurl" routerLink="home"
+        ><input
+          class="unexo__primary--btn"
+          type="button"
+          value="CANDIDATE LOGIN"
+      /></a>
+      <a
+        *ngIf="authService.loggedIn()"
+        (click)="logout()"
+        style="cursor: pointer"
+        ><img
+          src="../../../assets/images/log-out-symbol.svg"
+          width="40rem"
+          height="40rem"
+      /></a>
     </ul>
   </div>
 </div>

@@ -1,3 +1,9 @@
 .active {
   color: white !important;
 }
+.unexo__footer {
+  background-color: var(--primary-color);
+}
+.unexo__footer--mark {
+  background-color: var(--secondary-color);
+}

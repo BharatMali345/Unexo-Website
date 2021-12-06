@@ -1,0 +1,147 @@
+.unexo__candidate--background {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/happy-excited-young-business-colleagues-make-winner-gesture.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* -webkit-transform: scaleX(-1);
+  transform: scaleX(-1); */
+}
+.unexo__frame--right-content {
+  position: absolute;
+  top: 21%;
+  left: 5%;
+  width: 45%;
+  height: 65%;
+  overflow: hidden;
+  color: white;
+}
+.unexo__frame--right-content h3 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+.unexo__frame--right-content p {
+  font-size: 2rem;
+  margin-bottom: 10rem;
+}
+.unexo__primary--btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.unexo__primary--btn:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.vision_mission h2 {
+  font-size: 2rem;
+  font-weight: bolder;
+  color: black;
+}
+.vision_mission h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: black;
+}
+.vision_mission p {
+  font-size: 1.8rem;
+  color: black;
+}
+.vision_mission img {
+  width: 100%;
+  object-fit: contain;
+}
+.vision_test-box {
+  font-size: 1.6rem;
+  color: black;
+  padding: 20px;
+  border: solid 1px #e0e0e0;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.accomplishments {
+  margin-left: 0px;
+  padding: 2rem;
+  color: white;
+  font-size: 1.6rem;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/0010.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.accomplishments h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.accomplishments p {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+.accm_box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+.accm_box:hover {
+  background-color: rgba(0, 0, 0, 0.24);
+}
+.accm_box img {
+  margin-bottom: 1rem;
+  width: 4rem;
+  height: 4rem;
+}
+.accm_box h4 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.members {
+  color: black;
+  font-size: 1.6rem;
+}
+.members h4 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.members_heading {
+  padding-bottom: 1rem;
+  border-bottom: solid 2px #e0e0e0;
+  margin-bottom: 1rem;
+}
+.emp_box {
+  border: solid 1px #e0e0e0;
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+.in {
+  width: 85%;
+  margin-bottom: 1rem;
+}
+.in img {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.in h6,
+.in p {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+.emp_box p {
+  font-size: 1.2rem;
+}

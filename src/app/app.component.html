@@ -1,11 +1,13 @@
-<app-header></app-header>
-<div class="router__background">
-  <router-outlet></router-outlet>
-</div>
-<app-footer *ngIf="!authservice.loggedIn()"></app-footer>
 <div *ngIf="loading" class="loading_spinner-container">
   <app-loading-spinner></app-loading-spinner>
 </div>
 <div class="notifier">
   <notifier-container></notifier-container>
 </div>
+<div class="bg"></div>
+<app-header></app-header>
+<div class="router__background">
+  <div class="unexo__header--bg3" *ngIf="authservice.loggedIn()"></div>
+  <router-outlet></router-outlet>
+</div>
+<app-footer *ngIf="!authservice.loggedIn()"></app-footer>

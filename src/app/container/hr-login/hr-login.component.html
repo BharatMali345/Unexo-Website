@@ -103,6 +103,10 @@
 </div> -->
 
 <div class="unexo__frame">
+  <div class="unexo__header--bg1"></div>
+  <div class="unexo__candidate">
+    <div class="unexo__candidate--bg"></div>
+  </div>
   <div class="unexo__tc--cont" id="tcbox1">
     <div class="unexo__tc--box">
       <h1>TERMS OF SERVICE AGREEMENT</h1>
@@ -2962,11 +2966,17 @@
         client/prospective client without restriction.
       </p>
       <a (click)="TcSwitchClose()">X</a>
+      <div class="text-center">
+        <button class="unexo__primary--btn" (click)="TcSwitchClose()">
+          Close
+        </button>
+      </div>
     </div>
   </div>
-  <div class="unexo__bg--clip"></div>
+  <!-- <div class="unexo__bg--clip"></div>
   <div class="unexo__bg--clip-child"></div>
-  <div class="unexo__slider unexo__hr--bg"></div>
+  <div class="unexo__slider unexo__hr--bg"></div> -->
+  <div class="unexo__header--bg1"></div>
   <div class="unexo__login--card" style="overflow-x: hidden">
     <div class="unexo_login" style="overflow-x: hidden" id="login">
       <form #HrLogIn="ngForm" (ngSubmit)="hrLogin(HrLogIn)">
@@ -3228,7 +3238,24 @@
     </div>
   </div>
 </div>
-
+<div class="row">
+  <div class="col-md-6">
+    <div class="unexo__rabet-content">
+      <h3>Begin Your Journey</h3>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam eos
+        quia, laudantium molestias incidunt consequuntur! Modi distinctio neque
+        soluta dolor sequi officiis amet, atque et doloremque fuga aliquid
+        tempora unde.
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="unexo__rabet--cnt">
+      <div class="unexo__rabet--bg"></div>
+    </div>
+  </div>
+</div>
 <div *ngIf="isLoading" class="loading_spinner-container">
   <app-loading-spinner></app-loading-spinner>
 </div>

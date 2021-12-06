@@ -42,22 +42,74 @@ body {
 
 /* header */
 .unexo__header {
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
+  left: 0; */
+  position: relative;
   width: 100%;
   height: 10vh;
-  background-color: #f0efef;
+  background: transparent;
   padding: 1vh 3rem;
   z-index: 1000;
+  overflow: hidden;
+}
+.unexo__header--bg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-image: url("./assets/0010.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  z-index: -1;
+}
+
+.unexo__header--bg1 {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-image: url("./assets/0010.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  z-index: -1;
+}
+.unexo__header--bg2 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 50vh;
+  background-image: url("./assets/0011.jpg");
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  z-index: -1;
+}
+.unexo__header--bg3 {
+  position: absolute;
+  top: calc(0px - 1.8vh);
+  left: 0px;
+  width: 100%;
+  height: 50vh;
+  background-image: url("./assets/0011.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  z-index: -1;
 }
 .unexo__header--loggedin {
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
+  left: 0; */
+  position: relative;
   width: 100%;
   height: 10vh;
-  background-color: var(--primary-color);
+  background-color: transparent;
   padding: 1vh 3rem;
   z-index: 1000;
 }
@@ -103,10 +155,11 @@ body {
   color: white;
   border-radius: 25rem;
   font-family: "Lemon/Milk", sans-serif;
+  cursor: pointer;
 }
 .unexo__primary--btn:hover {
   background-color: var(--secondary-color);
-  cursor: pointer !important;
+  color: white;
 }
 .unexo__mr {
   margin-right: 1rem;
@@ -139,9 +192,31 @@ body {
   clip-path: polygon(100% 0, 99.5% 0, 68% 100%, 0 90%, 0 0);
   -webkit-clip-path: polygon(100% 0, 99.5% 0, 68% 100%, 0 100%, 0 0);
 }
-.unexo__slider {
-  margin-left: auto;
-  width: 85%;
+.unexo__candidate {
+  position: absolute;
+  top: 6%;
+  right: 10%;
+  width: 45%;
+  height: 65%;
+  clip-path: polygon(
+    0 30%,
+    15% 30%,
+    15% 0%,
+    85% 0,
+    85% 30%,
+    100% 30%,
+    100% 53%,
+    85% 53%,
+    85% 100%,
+    29% 100%,
+    29% 76%,
+    0 76%
+  );
+  overflow: hidden;
+}
+
+.unexo__candidate--bg {
+  width: 100%;
   height: 100%;
   background-image: url("./assets/images/cropped-business-man-making-notes-from-his-smartphone-calendar-organizer-min.jpg");
   background-position: center;
@@ -149,6 +224,41 @@ body {
   background-repeat: no-repeat;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+}
+/* .unexo__slider {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  margin-left: auto;
+  margin-right: 5%;
+  margin-top: 2%;
+  width: 45%;
+  height: 65%;
+  background-image: url("./assets/images/cropped-business-man-making-notes-from-his-smartphone-calendar-organizer-min.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  clip-path: polygon(
+    0 30%,
+    15% 30%,
+    15% 0%,
+    85% 0,
+    85% 30%,
+    100% 30%,
+    100% 53%,
+    85% 53%,
+    85% 100%,
+    34% 100%,
+    33% 70%,
+    0 70%
+  );
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+} */
+@media screen and (max-width: 860px) {
+  .unexo__candidate {
+    display: none;
+  }
 }
 .unexo__investor--bg {
   background-image: url("./assets/images/investorloginbg.jpg");
@@ -169,9 +279,9 @@ body {
 
 .unexo__login--card {
   position: absolute;
-  bottom: 2%;
+  top: 2%;
   left: 10%;
-  width: 40rem;
+  width: 35rem;
   /* height: 40rem; */
   height: auto;
   overflow-y: scroll;
@@ -180,6 +290,7 @@ body {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   border-radius: 0.4rem;
+  border: solid 1px #e0e0e0;
 }
 @media screen and (max-width: 400px) {
   .unexo__login--card {
@@ -432,23 +543,73 @@ input[type="button"]:focus {
   margin-top: -2.5rem;
   color: var(--secondary-color);
 }
+.unexo__rabet-content {
+  padding: 5rem;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.unexo__rabet-content h3 {
+  font-size: 3rem;
+}
+.unexo__rabet-content p {
+  font-size: 1.6rem;
+}
+.unexo__rabet--cnt {
+  padding: 5rem;
+  height: 40rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.unexo__rabet--bg {
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/businessman-with-light-bulb-his-hand.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  clip-path: polygon(
+    0 30%,
+    15% 30%,
+    15% 0%,
+    85% 0,
+    85% 23%,
+    100% 23%,
+    100% 71%,
+    80% 71%,
+    80% 100%,
+    17% 100%,
+    17% 76%,
+    0 76%
+  );
+}
+
 /* footer */
 .unexo__footer {
   padding: 5rem 0rem;
+  padding-top: 10rem;
   background-color: var(--secondary-color);
   width: 100%;
   font-size: 1.4rem;
   display: flex;
   justify-items: flex-start;
   align-items: flex-start;
+  clip-path: polygon(19% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
 }
 .unexo__footer--left {
   width: 30%;
+  padding-left: 5rem;
 }
 .unexo__footer--section {
-  width: 68%;
-  height: 22rem;
-  background-color: var(--primary-color);
+  /* width: 40%; */
+  height: 8rem;
+  /* background-image: url("assets/images/Asset\ 11FinalWhite.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; */
   /* position: relative; */
 }
 .unexo__footer--section img {
@@ -471,20 +632,19 @@ input[type="button"]:focus {
   align-items: flex-start;
   justify-content: flex-start;
   padding: 1rem;
-  text-transform: uppercase;
 }
 .footer_links-section h4 {
   font-size: 2rem;
-  color: var(--primary-color);
+  color: white;
   margin-bottom: 2rem;
   font-weight: bold;
 }
 .footer_links-section a {
   font-weight: bold;
-  color: var(--primary-color);
+  color: white;
 }
 .footer_links-section a:hover {
-  color: white;
+  color: var(--secondary-color);
   text-decoration: none;
 }
 .unexo__footer--mark {
@@ -492,7 +652,7 @@ input[type="button"]:focus {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
-  color: white;
+  /* color: white; */
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -506,7 +666,7 @@ input[type="button"]:focus {
     padding: 1rem;
   }
   .unexo__footer--section {
-    height: 15rem;
+    height: 8rem;
   }
 }
 
@@ -526,8 +686,9 @@ input[type="button"]:focus {
 .main_personal-resume {
   padding: 2rem 0rem;
   text-transform: uppercase;
-  box-shadow: lightgrey 1px 1px 8px 1px !important;
   border-radius: 0px !important;
+  background-color: white;
+  border: solid 1px #e0e0e0;
 }
 .main_personal-resume-heading {
   text-align: center;
@@ -537,6 +698,7 @@ input[type="button"]:focus {
 .main_personal-resume-heading h1,
 .main_personal-resume-heading h5 {
   font-weight: bold;
+  color: white;
 }
 .main_personal-resume-content {
   height: 100%;
@@ -759,7 +921,7 @@ a[disabled] {
   background-size: cover;
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 50vh;
   font-size: 1.6rem;
 }
 .culture-bg h1 {
@@ -853,7 +1015,7 @@ a[disabled] {
   background-size: cover;
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 50vh;
   font-size: 1.6rem;
 }
 .consulting-bg h1 {
@@ -872,7 +1034,7 @@ a[disabled] {
   background-size: cover;
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 50vh;
   font-size: 1.6rem;
 }
 .funds-bg h1 {
@@ -910,7 +1072,7 @@ a[disabled] {
   background-size: cover;
   position: relative;
   width: 100%;
-  height: 90vh;
+  height: 50vh;
   font-size: 1.6rem;
 }
 .global-bg h1 {
@@ -1001,7 +1163,8 @@ button[disabled]:hover {
 .main_profile {
   width: 100%;
   /* padding: 2rem; */
-  box-shadow: lightgrey 1px 1px 8px 1px;
+  background-color: white;
+  border: solid 1px #e0e0e0;
 }
 .main_profile h1 {
   font-weight: bold;
@@ -1140,6 +1303,7 @@ mat-form-field,
 }
 .main_profile-header-flex button:hover {
   background-color: white;
+  color: var(--primary-color);
 }
 .unexo_label-holder {
   display: inline-block;
@@ -1165,8 +1329,8 @@ mat-form-field,
 .unexo_dashboard-holder {
   margin: 1rem;
   margin-bottom: 0.5rem;
-  box-shadow: lightgrey 1px 1px 8px 1px !important;
   border-radius: 0px !important;
+  border: solid 1px #e0e0e0;
 }
 .unexo_dashboard {
   display: flex;
@@ -1180,10 +1344,11 @@ mat-form-field,
   color: var(--primary-color);
 }
 .router__background {
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
+  position: relative;
 }
 .router__background--loggedin {
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
   padding: 3rem;
 }
 .mat__card--container {
@@ -1249,8 +1414,8 @@ mat-form-field,
   top: 12vh; */
 }
 mat-card {
-  box-shadow: lightgrey 1px 1px 8px 1px !important;
   border-radius: 0px !important;
+  border: solid 1px #e0e0e0;
 }
 .mat-raised-button {
   font-weight: 600;
@@ -1266,12 +1431,13 @@ mat-card {
   background-color: rgba(0, 0, 0, 0.12) !important ;
 }
 .unexo__side--dashboard {
-  box-shadow: lightgrey 1px 1px 8px 1px !important;
   border-radius: 0px !important;
   padding: 2rem;
   text-transform: uppercase;
   color: var(--primary-color);
   font-weight: 600;
+  background-color: white;
+  border: solid 1px #e0e0e0;
 }
 .unexo__side--dashboard h2 {
   font-weight: bold;
@@ -1328,8 +1494,8 @@ mat-accordion {
   text-transform: uppercase;
 }
 mat-expansion-panel {
-  box-shadow: lightgrey 1px 1px 8px 1px !important;
   border-radius: 0px !important;
+  border: solid 1px #e0e0e0;
 }
 mat-card h4,
 mat-card h1 {

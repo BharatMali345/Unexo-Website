@@ -33,3 +33,28 @@
 #rc:hover label {
   display: block;
 }
+.unexo__primary--btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.unexo__primary--btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.unexo__links {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.link-un {
+  padding: 0.5rem;
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: bolder;
+}
+.link-un:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}

@@ -1,3 +1,28 @@
 <div class="funds-bg">
-  <h1>Funds Raising</h1>
+  <h1>Location</h1>
+</div>
+<div class="row">
+  <div class="offset-sm-2"></div>
+  <div class="col-sm-8 text-center" style="font-size: 1.6rem">
+    <br />
+    <br />
+    <h1 style="font-size: 4rem; font-weight: 700">Headquarters:</h1>
+    <br />
+    <h2 style="font-size: 2.5rem; font-weight: 500">
+      Unit no 2/207, Second floor , Opposite Rosary School, <br />
+      Plot 8 s.n.206/3 , 411014, <br />
+      Pune
+    </h2>
+    <br />
+    <agm-map
+      style="height: 300px"
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [zoom]="zoom"
+    >
+      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    </agm-map>
+    <br /><br />
+  </div>
+  <div class="offset-sm-2"></div>
 </div>
